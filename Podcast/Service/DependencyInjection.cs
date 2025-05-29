@@ -15,6 +15,7 @@ namespace Service
         {
             services.AddScoped<IPodcastService,PodcastService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITeamMemberService, TeamMemberService>();
             return services;
         }
     }

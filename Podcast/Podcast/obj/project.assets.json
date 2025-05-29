@@ -7947,11 +7947,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Elnare\\Desktop\\Podcast\\Podcast\\Podcast.csproj",
+      "projectUniqueName": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\Podcast.csproj",
       "projectName": "Podcast",
-      "projectPath": "C:\\Users\\Elnare\\Desktop\\Podcast\\Podcast\\Podcast.csproj",
+      "projectPath": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\Podcast.csproj",
       "packagesPath": "C:\\Users\\Elnare\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Elnare\\Desktop\\Podcast\\Podcast\\obj\\",
+      "outputPath": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7973,8 +7973,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Elnare\\Desktop\\Podcast\\Service\\Service.csproj": {
-              "projectPath": "C:\\Users\\Elnare\\Desktop\\Podcast\\Service\\Service.csproj"
+            "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Service\\Service.csproj": {
+              "projectPath": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Service\\Service.csproj"
             }
           }
         }

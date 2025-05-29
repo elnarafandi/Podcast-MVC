@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Repository.Data;
 using Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace Repository.Repositories
 {
     public class PodcastRepository:BaseRepository<Podcast>, IPodcastRepository
     {
+        public PodcastRepository(AppDbContext context) : base(context) { }
     }
 }

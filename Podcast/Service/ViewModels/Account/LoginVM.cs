@@ -17,8 +17,9 @@ namespace Service.ViewModels.Account
         public LoginVMValidator()
         {
             RuleFor(x => x.UserNameOrEmail).NotNull().WithMessage("Can't be empty")
-                                    .EmailAddress().WithMessage("Email address format is wrong");
-            RuleFor(x => x.Password).NotNull().WithMessage("Can't be empty");
+                                           .NotEmpty().WithMessage("Can't be empty");
+            RuleFor(x => x.Password).NotNull().WithMessage("Can't be empty")
+                                    .NotEmpty().WithMessage("Can't be empty");
         }
     }
 }

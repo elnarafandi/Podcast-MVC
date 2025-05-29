@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Elnare\\Desktop\\Podcast\\Domain\\Domain.csproj": {}
+    "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Elnare\\Desktop\\Podcast\\Domain\\Domain.csproj": {
+    "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Elnare\\Desktop\\Podcast\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Elnare\\Desktop\\Podcast\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Elnare\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Elnare\\Desktop\\Podcast\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,6 +1,7 @@
 using Domain.Entities;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Repository;
@@ -8,6 +9,19 @@ using Repository.Data;
 using Service;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load Kestrel limits from appsettings.json
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.MaxRequestBodySize =
+        builder.Configuration.GetValue<long>("Kestrel:Limits:MaxRequestBodySize");
+});
+
+// Configure form options for file uploads (50MB)
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 50 * 1024 * 1024; // 50MB
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

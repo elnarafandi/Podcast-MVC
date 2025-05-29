@@ -15,6 +15,8 @@ namespace Repository
         {
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IPodcastRepository, PodcastRepository>();
+            services.AddScoped<IPodcastCategoryRepository, PodcastCategoryRepository>();
+            services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
             return services;
         }
     }

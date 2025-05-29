@@ -1,0 +1,32 @@
+﻿@model PodcastCategoryCreateVM
+
+<div class="container d-flex justify-content-center pt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 mt-4" style="max-width: 600px; width: 100%;">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4 text-primary">Create Podcast Category</h4>
+
+            <form method="post" asp-action="Create" enctype="multipart/form-data">
+                <!-- Title Field -->
+                <div class="mb-3">
+                    <label for="title" class="form-label fw-semibold">Name</label>
+                    <input type="text" class="form-control rounded-3" id="title" asp-for="Name" placeholder="Enter category name">
+                    <span asp-validation-for="Name" class="text-danger small"></span>
+                </div>
+
+                <!-- Submit and Cancel Buttons -->
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-check-circle me-1"></i> Submit
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-outline-secondary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-x-circle me-1"></i> Cancel
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

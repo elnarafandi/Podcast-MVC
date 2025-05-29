@@ -1,0 +1,47 @@
+﻿@model IEnumerable<PodcastCategoryAdminVM>
+
+<div class="container-fluid py-4">
+    <!-- DataTales Example -->
+    <div class="card shadow-sm mb-4 border-0 rounded-3">
+        <div class="card-header bg-primary text-white py-3 rounded-top">
+            <h5 class="m-0 font-weight-bold">Podcast Categories</h5>
+        </div>
+        <div class="card-body">
+                <a asp-action="Create" class="btn btn-success mb-3">
+                    <i class="bi bi-plus-lg me-2"></i>Create New Category
+                </a>
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="table-light text-secondary">
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col" style="width: 180px;">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="align-middle">
+                                <td class="fw-semibold">@item.Name</td>
+                                <td>
+                                    @* <a asp-action="Detail" asp-route-id="@item.Id" class="btn btn-info btn-sm me-2 shadow-sm" title="View Details">
+                                        <i class="bi bi-info-circle"></i>
+                                    </a> *@
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm me-2 shadow-sm" title="Edit Category">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <form asp-action="Delete" method="post" asp-route-id="@item.Id" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                                        <button type="submit" class="btn btn-danger btn-sm shadow-sm" title="Delete Category">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
