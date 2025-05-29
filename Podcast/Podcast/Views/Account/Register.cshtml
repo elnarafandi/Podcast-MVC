@@ -1,0 +1,51 @@
+﻿@model RegisterVM
+
+<main>
+    <section id="signup-podcaster">
+        <div class="my-container">
+            <div class="signup">
+                <div class="inside-container">
+                    <p class="text">Sign up to Podcast</p>
+
+                    <form method="post" asp-action="Register">
+                        <div class="two-cols">
+                            <div>
+                                <input type="text" asp-for="FirstName" placeholder="First Name" class="form-control" />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <input type="text" asp-for="LastName" placeholder="Last Name" class="form-control" />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input type="text" asp-for="UserName" placeholder="Username" class="form-control" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+
+
+                        <div>
+                            <input type="email" asp-for="Email" placeholder="Email Address" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="two-cols">
+                            <div>
+                                <input type="password" asp-for="Password" placeholder="Password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div>
+                                <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <button type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+

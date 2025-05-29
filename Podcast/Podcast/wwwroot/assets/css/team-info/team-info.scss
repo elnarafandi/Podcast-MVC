@@ -1,0 +1,493 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+header{
+    width: 100vw;
+    #navbar{
+        height: 100px;
+        .my-container{
+        height: 100%;
+        margin-left: 10%;
+        margin-right: 10%;
+        .all{
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            .logo{
+                height: 100%;
+                .text {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 2%;
+                    a {
+                       color: #6A0DAD;
+                       font-size: 40px;
+                       text-decoration: none;
+                       font-weight: 600;
+                       margin-right: 10px;
+                       i {
+                        margin-top: 1.5%;
+                        font-size: 35px;
+                        color:#6A0DAD;
+                        }  
+                    }
+ 
+                }
+
+            }
+            .account {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+ 
+.logout{
+  margin-top: 2%;
+  form{
+          button{
+            background-color: white;
+            color: #6A0DAD;
+            border: none;
+            display: flex;
+            justify-content: center;
+            i{
+              font-size: 20px;
+            }
+            p{
+              margin-top: 3%;
+              margin-left: 10%;
+            }
+          }
+        }
+}
+ 
+  .profile {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 3%;
+    margin-left: auto;
+    
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+  }
+}
+
+        }
+    }
+    }
+    
+}
+
+main{
+    width: 100vw;
+    #team-member{
+        margin-top: 10%;
+        width: 100%;
+        .my-container{
+            width: 100%;
+            margin-left: 15%;
+            margin-right: 15%;
+        .member{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            .image{
+                grid-column-start: 1;
+                grid-column-end: 2;
+                height: 400px;
+                width: 400px;
+                border-radius: 20px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 20px;
+                }
+            }
+        }
+        .info{
+            margin-top: 3%;
+            .name{
+                p{
+                    font-weight: bold;
+                }
+            }
+            .about{
+                p{
+                    font-size: 15px;
+                    text-align: justify;
+                }
+            }
+            .social{
+                .text{
+                    color: #C084FC;
+                }
+                ul{
+                    width: 100%;
+                margin-left: 10%;
+                padding: 0;
+                li{
+                    p{
+                        font-size: 14px;
+                    }
+                }
+                }
+            }
+        }
+    }
+    }
+}
+
+footer{
+    width: 100vw;
+    #account-contact{
+      margin-top: 20%;
+        background-color: #C084FC;
+        .my-container{
+            height: 100%;
+            margin-left: 13%;
+            margin-right: 13%;
+            .all{
+                padding-top: 1%;
+                padding-bottom: 1%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10%;
+                   .logo{
+                    margin-top: 7%;
+                        .text {
+                            display: flex;
+                             i {
+                                margin-top: 0.5%;
+                                font-size: 13px;
+                                color: white;
+                               }  
+                            p{ 
+                                font-weight: 600;
+                                color: white;
+                                font-size: 15px;
+                                margin-left: 1%;
+                                a {
+                                color: white;
+                                font-size: 17px;
+                                text-decoration: none;
+                                font-weight: 600;
+                                margin-right: 3px;
+                               }
+
+                               i {
+                                margin-top: 1%;
+                                font-size: 15px;
+                                color: white;
+                               }  
+                            }
+                        }
+
+                    }
+                .contact{
+                    margin-left: auto;
+                    p{
+                        color: white;
+                    }
+                    ul{
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        li{
+                            margin-bottom: 1%;
+                            a{
+                                text-decoration: none;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (max-width: 480px){
+header{
+        #navbar{
+            .my-container{
+                .all{
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    .logo{
+                        .text{
+                            margin-left: 30%;
+                            a{
+                                font-size: 25px;
+                            }
+                            i{
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .account{
+                      margin-top: 5%;
+                        margin-left: -30%;
+                    }
+                }
+            }
+        }
+    }
+    main{
+        #team-member{
+            margin-top: 25%;
+            .my-container{
+                margin-left: 5%;
+                margin-right:2%;
+                .member{
+            display: block;
+            .image{
+                height: 250px;
+                width: 250px;
+            }
+            .info{
+            .about{
+                margin-right: 10%;
+                p{
+                    font-size: 13px;
+                }
+            }
+        }
+            
+        }
+            }
+        }
+    }
+    footer{
+        #account-contact{
+          margin-top: 50%;
+            .my-container{
+                margin-left: 5%;
+                margin-right: 5%;
+                .all{
+                    .logo{
+                        margin-top: 20%;
+                        .text{
+                            i{
+                                font-size: 10px;
+                            }
+                            p{
+                                width: 180px;
+                                font-size: 10px;
+                                a{
+                                    font-size: 10px;
+                                }
+                                i{
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .contact{
+                        p{
+                            font-size: 13px;
+                        }
+                        ul{
+                            li{
+                                a{
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 481px) and (max-width: 600px){
+header{
+        #navbar{
+            .my-container{
+                .all{
+                    .logo{
+                      margin-top: 3%;
+                    }
+                    
+                }
+            }
+        }
+    }
+    main{
+        #team-member{
+            margin-top: 25%;
+            .my-container{
+                margin-left: 2%;
+                margin-right:2%;
+                .member{
+            display: block;
+            .info{
+            .about{
+                margin-right: 10%;
+                p{
+                    font-size: 13px;
+                }
+            }
+        }
+            
+        }
+            }
+        }
+    }
+    footer{
+        #account-contact{
+          margin-top: 50%;
+            .my-container{
+                margin-left: 5%;
+                margin-right: 5%;
+                .all{
+                    .logo{
+                        margin-top: 20%;
+                        .text{
+                            i{
+                                font-size: 10px;
+                            }
+                            p{
+                                width: 180px;
+                                font-size: 10px;
+                                a{
+                                    font-size: 10px;
+                                }
+                                i{
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .contact{
+                        p{
+                            font-size: 13px;
+                        }
+                        ul{
+                            li{
+                                a{
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 601px) and (max-width: 768px){
+  header{
+        #navbar{
+            .my-container{
+                .all{
+                    .logo{
+                      margin-top: 3%;
+                    }
+                    
+                }
+            }
+        }
+    }
+    main{
+        #team-member{
+            margin-top: 25%;
+            .my-container{
+                margin-left: 10%;
+                margin-right:2%;
+                .member{
+                    column-gap: 5%;
+                    .image{
+                        height: 250px;
+                        width: 250px;
+                    }
+            .info{
+            .about{
+                p{
+                    font-size: 15px;
+                }
+            }
+        }
+            
+        }
+            }
+        }
+    }
+    footer{
+        #account-contact{
+            .my-container{
+                margin-left: 5%;
+                margin-right: 5%;
+                .all{
+                    .logo{
+                        margin-top: 20%;
+                        .text{
+                            i{
+                                font-size: 10px;
+                            }
+                            p{
+                                width: 180px;
+                                font-size: 10px;
+                                a{
+                                    font-size: 10px;
+                                }
+                                i{
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .contact{
+                        p{
+                            font-size: 13px;
+                        }
+                        ul{
+                            li{
+                                a{
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (min-width: 769px) and (max-width: 1024px){
+main{
+        #team-member{
+            margin-top: 25%;
+            .my-container{
+                margin-left: 10%;
+                margin-right:2%;
+                .member{
+                    column-gap: 5%;
+                    .image{
+                        height: 300px;
+                        width: 300px;
+                    }
+            .info{
+            
+        }
+            
+        }
+            }
+        }
+    }
+}

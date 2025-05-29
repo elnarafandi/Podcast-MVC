@@ -1,0 +1,791 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100vw;
+}
+header #navbar {
+  height: 100px;
+}
+header #navbar .my-container {
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+header #navbar .my-container .all {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+header #navbar .my-container .all .logo {
+  height: 100%;
+}
+header #navbar .my-container .all .logo .text {
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+}
+header #navbar .my-container .all .logo .text a {
+  color: #6A0DAD;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 10px;
+}
+header #navbar .my-container .all .logo .text a i {
+  margin-top: 1.5%;
+  font-size: 35px;
+  color: #6A0DAD;
+}
+header #navbar .my-container .all .account {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+}
+header #navbar .my-container .all .account .logout {
+  margin-top: 2%;
+}
+header #navbar .my-container .all .account .logout form button {
+  background-color: white;
+  color: #6A0DAD;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+header #navbar .my-container .all .account .logout form button i {
+  font-size: 20px;
+}
+header #navbar .my-container .all .account .logout form button p {
+  margin-top: 3%;
+  margin-left: 10%;
+}
+header #navbar .my-container .all .account .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 3%;
+  margin-left: auto;
+}
+header #navbar .my-container .all .account .profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+main {
+  width: 100vw;
+}
+main #search {
+  margin-top: 5%;
+  height: 200px;
+  width: 100%;
+}
+main #search .area {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg, #FFEB3B, #2196F3, #9C27B0, #F50057);
+  padding-top: 2%;
+}
+main #search .area .info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+}
+main #search .area .search {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #search .area .search form {
+  width: 350px;
+  background-color: #ffffff;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+main #search .area .search form input {
+  flex: 1;
+  height: 45px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 25px 0 0 25px;
+  font-size: 16px;
+  color: #000;
+}
+main #search .area .search form input::-moz-placeholder {
+  color: #6A0DAD;
+  opacity: 0.6;
+}
+main #search .area .search form input::placeholder {
+  color: #6A0DAD;
+  opacity: 0.6;
+}
+main #search .area .search form input:focus {
+  outline: none;
+  background-color: #fdfdfd;
+}
+main #search .area .search form button {
+  width: 50px;
+  height: 45px;
+  border: none;
+  background-color: #ffffff;
+  color: #6A0DAD;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+main #search .area .search form button i {
+  font-size: 20px;
+}
+main #search .area .search form button:hover {
+  background-color: #f3e6fb;
+}
+main #parameters-filter {
+  margin-top: 10%;
+  height: 700px;
+  width: 100%;
+}
+main #parameters-filter .my-container {
+  height: 100%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+main #parameters-filter .my-container .icons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1%;
+}
+main #parameters-filter .my-container .icons .right {
+  margin-left: auto;
+  margin-right: 3%;
+  text-align: center;
+}
+main #parameters-filter .my-container .icons .right p {
+  font-size: 16px;
+  font-weight: 500;
+  color: #6A0DAD;
+  letter-spacing: 1px;
+}
+main #parameters-filter .my-container .icons .left i {
+  font-size: 30px;
+  color: #6A0DAD;
+  transition: color 0.3s ease;
+}
+main #parameters-filter .my-container .icons .left i:hover {
+  color: #C084FC;
+}
+main #parameters-filter .my-container .all {
+  height: 90%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  -moz-column-gap: 1%;
+       column-gap: 1%;
+}
+main #parameters-filter .my-container .all .parameters {
+  height: 645px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  border: 1px solid #6A0DAD;
+  border-radius: 10px;
+}
+main #parameters-filter .my-container .all .parameters .list {
+  width: 100%;
+  margin-top: 20%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul {
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li {
+  width: 100%;
+  margin-bottom: 5%;
+  background-color: white;
+  padding-left: 8.5%;
+  padding-bottom: 2%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul {
+  margin-top: 7%;
+  list-style-type: none;
+  max-height: 170px;
+  overflow-y: auto;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul a {
+  text-decoration: none;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul li {
+  display: flex;
+  gap: 2%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul li .name {
+  padding-bottom: 1%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul li .name p {
+  font-size: 13px;
+  color: #2D2D2D;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul li .delete {
+  margin-right: 15%;
+  margin-left: auto;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul li .delete button {
+  background-color: white;
+  border: none;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul li .delete button i {
+  color: red;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .p-name {
+  display: flex;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .p-name .icon-name {
+  width: 150px;
+  display: flex;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .p-name .icon-name p {
+  margin-top: 2%;
+  margin-left: 5%;
+  color: #2D2D2D;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .p-name .icon-name i {
+  font-size: 20px;
+  color: #6A0DAD;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .p-name .create {
+  margin-left: auto;
+  margin-right: 8.5%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .p-name .create i {
+  font-size: 20px;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li {
+  width: 100%;
+  margin-bottom: 5%;
+  background-color: white;
+  padding-bottom: 2%;
+  padding-left: 10%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul {
+  margin-top: 7%;
+  list-style-type: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul a {
+  text-decoration: none;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul li {
+  margin-bottom: 3%;
+  display: flex;
+  gap: 2.5%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul li .image {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul li .image img {
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul li .name {
+  padding-top: 2%;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul li .name p {
+  font-size: 13px;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li p {
+  color: #2D2D2D;
+}
+main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li p i {
+  margin-right: 3%;
+  font-size: 20px;
+  color: #6A0DAD;
+}
+main #parameters-filter .my-container .all .podcasts {
+  grid-column-start: 2;
+  grid-column-end: 5;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  -moz-column-gap: 5%;
+       column-gap: 5%;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast {
+  width: 100%;
+  height: 310px;
+  border-radius: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .image {
+  width: 100%;
+  height: 50%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 3%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .image a {
+  width: 100%;
+  height: 100%;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .image a img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info {
+  width: 100%;
+  height: 30%;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .title {
+  margin-top: 1%;
+  height: 65%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .title a {
+  text-decoration: none;
+  color: #2D2D2D;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .podcaster {
+  height: 30%;
+  width: 100%;
+  text-align: center;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .podcaster p {
+  color: #2D2D2D;
+  font-size: 14px;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .follow {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .follow button {
+  border: none;
+  background-color: #D1A0FF;
+  height: 35px;
+  width: 90px;
+  border-radius: 5px;
+  color: white;
+  transition: all 0.3 ease;
+}
+main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .follow button:hover {
+  background-color: #C084FC;
+}
+main #parameters-filter .my-container .all .podcasts .pagination {
+  margin-top: 2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .page-btn {
+  background-color: white;
+  border: 1px solid #6A0DAD;
+  color: #6A0DAD;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .page-btn:hover {
+  background-color: #C084FC;
+  color: white;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .page-btn.active {
+  background-color: #C084FC;
+  color: white;
+  cursor: default;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .page-btn:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .prev, main #parameters-filter .my-container .all .podcasts .pagination .next {
+  font-weight: bold;
+  padding: 8px 15px;
+  background-color: white;
+  border: 1px solid #6A0DAD;
+  color: #6A0DAD;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .prev:hover, main #parameters-filter .my-container .all .podcasts .pagination .next:hover {
+  background-color: #C084FC;
+  color: white;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .prev:disabled, main #parameters-filter .my-container .all .podcasts .pagination .next:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+main #parameters-filter .my-container .all .podcasts .pagination .page-numbers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #categories {
+  margin-top: 25%;
+  width: 100%;
+}
+main #categories .my-container {
+  height: 100%;
+  margin-left: 3%;
+  margin-right: 3%;
+}
+main #categories .my-container .section-name {
+  padding: 10px;
+  border-left: 6px solid #6A0DAD;
+  background-color: #f9f6ff;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+main #categories .my-container .section-name p {
+  font-size: 20px;
+  color: #6A0DAD;
+  margin: 0;
+  padding-left: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+main #categories .my-container .all-categories {
+  margin-top: 3%;
+  margin-left: 15%;
+  margin-right: 15%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 7%;
+}
+main #categories .my-container .all-categories a {
+  text-decoration: none;
+}
+main #categories .my-container .all-categories .category {
+  width: 250px;
+  height: 100px;
+  border-radius: 20px;
+  background: linear-gradient(45deg, #FFEB3B, #2196F3, #9C27B0, #F50057);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+}
+
+footer {
+  width: 100vw;
+}
+footer #account-contact {
+  margin-top: 20%;
+  background-color: #C084FC;
+}
+footer #account-contact .my-container {
+  height: 100%;
+  margin-left: 13%;
+  margin-right: 13%;
+}
+footer #account-contact .my-container .all {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10%;
+}
+footer #account-contact .my-container .all .logo {
+  margin-top: 7%;
+}
+footer #account-contact .my-container .all .logo .text {
+  display: flex;
+}
+footer #account-contact .my-container .all .logo .text i {
+  margin-top: 0.5%;
+  font-size: 13px;
+  color: white;
+}
+footer #account-contact .my-container .all .logo .text p {
+  font-weight: 600;
+  color: white;
+  font-size: 15px;
+  margin-left: 1%;
+}
+footer #account-contact .my-container .all .logo .text p a {
+  color: white;
+  font-size: 17px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 3px;
+}
+footer #account-contact .my-container .all .logo .text p i {
+  margin-top: 1%;
+  font-size: 15px;
+  color: white;
+}
+footer #account-contact .my-container .all .contact {
+  margin-left: auto;
+}
+footer #account-contact .my-container .all .contact p {
+  color: white;
+}
+footer #account-contact .my-container .all .contact ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+footer #account-contact .my-container .all .contact ul li {
+  margin-bottom: 1%;
+}
+footer #account-contact .my-container .all .contact ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 480px) {
+  header #navbar .my-container .all {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  header #navbar .my-container .all .logo .text {
+    margin-left: 30%;
+  }
+  header #navbar .my-container .all .logo .text a {
+    font-size: 25px;
+  }
+  header #navbar .my-container .all .logo .text i {
+    font-size: 20px;
+  }
+  header #navbar .my-container .all .account {
+    margin-top: 5%;
+    margin-left: -30%;
+  }
+  main #search {
+    margin-top: 20%;
+  }
+  main #parameters-filter .my-container .icons .right {
+    display: none;
+  }
+  main #parameters-filter .my-container .icons .left {
+    display: none;
+  }
+  main #parameters-filter .my-container .all {
+    display: block;
+  }
+  main #parameters-filter .my-container .all .podcasts {
+    margin-top: 10%;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2%;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .title {
+    font-size: 10px;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .podcaster p {
+    font-size: 9px;
+  }
+  main #parameters-filter .my-container .all .podcasts .pagination {
+    margin-top: 20%;
+  }
+  main #categories {
+    margin-top: 300%;
+  }
+  main #categories .my-container .all-categories {
+    grid-template-columns: 1fr;
+  }
+  footer #account-contact {
+    margin-top: 100%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 481px) and (max-width: 600px) {
+  header #navbar .my-container .all .logo {
+    margin-top: 3%;
+  }
+  main #search {
+    margin-top: 20%;
+  }
+  main #parameters-filter .my-container .icons .right {
+    display: none;
+  }
+  main #parameters-filter .my-container .icons .left {
+    display: none;
+  }
+  main #parameters-filter .my-container .all {
+    display: block;
+  }
+  main #parameters-filter .my-container .all .podcasts {
+    margin-top: 20%;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2%;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .title {
+    font-size: 10px;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .podcaster p {
+    font-size: 9px;
+  }
+  main #parameters-filter .my-container .all .podcasts .pagination {
+    margin-top: 20%;
+  }
+  main #parameters-filter .my-container .all .parameters {
+    height: 700px;
+  }
+  main #categories {
+    margin-top: 250%;
+  }
+  main #categories .my-container .all-categories {
+    grid-template-columns: 1fr;
+  }
+  footer #account-contact {
+    margin-top: 100%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 601px) and (max-width: 768px) {
+  header #navbar .my-container .all .logo {
+    margin-top: 3%;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts {
+    row-gap: 2%;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .title {
+    font-size: 10px;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .podcaster p {
+    font-size: 9px;
+  }
+  main #parameters-filter .my-container .all .parameters {
+    height: 700px;
+  }
+  main #categories .my-container .all-categories {
+    grid-template-columns: 1fr 1fr;
+    -moz-column-gap: 5%;
+         column-gap: 5%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .title {
+    font-size: 13px;
+  }
+  main #parameters-filter .my-container .all .podcasts .all-podcasts .podcast .info .podcaster p {
+    font-size: 10px;
+  }
+  main #categories .my-container .all-categories {
+    grid-template-columns: 1fr 1fr;
+    -moz-column-gap: 5%;
+         column-gap: 5%;
+  }
+}/*# sourceMappingURL=home-listener.css.map */

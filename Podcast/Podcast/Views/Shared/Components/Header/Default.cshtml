@@ -1,0 +1,35 @@
+﻿<header>
+    <section id="navbar">
+        <div class="my-container">
+            <div class="all">
+                <div class="logo">
+                    <div class="text">
+                        <a href="./about.html">Podcast <i class="bi bi-soundwave"></i></a>
+                    </div>
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="account">
+                        <div class="profile"><a href=""><img src="~/assets/images/home/person1.jpg" alt=""></a></div>
+                        <div class="logout">
+                            <form method="POST" asp-controller="Account" asp-action="Logout">
+                                <button type="submit"><i class="bi bi-box-arrow-right"></i><p>Logout</p></button>
+                            </form>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="signin-signup">
+                        <div class="signin">
+                            <a asp-controller="Account" asp-action="Login">Sign in</a>
+                        </div>
+                        <div class="signup">
+                            <a asp-controller="Account" asp-action="Register">Sign up</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</header>

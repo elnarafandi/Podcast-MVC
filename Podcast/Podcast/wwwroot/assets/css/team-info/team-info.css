@@ -1,0 +1,385 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100vw;
+}
+header #navbar {
+  height: 100px;
+}
+header #navbar .my-container {
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+header #navbar .my-container .all {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+header #navbar .my-container .all .logo {
+  height: 100%;
+}
+header #navbar .my-container .all .logo .text {
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+}
+header #navbar .my-container .all .logo .text a {
+  color: #6A0DAD;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 10px;
+}
+header #navbar .my-container .all .logo .text a i {
+  margin-top: 1.5%;
+  font-size: 35px;
+  color: #6A0DAD;
+}
+header #navbar .my-container .all .account {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+}
+header #navbar .my-container .all .account .logout {
+  margin-top: 2%;
+}
+header #navbar .my-container .all .account .logout form button {
+  background-color: white;
+  color: #6A0DAD;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+header #navbar .my-container .all .account .logout form button i {
+  font-size: 20px;
+}
+header #navbar .my-container .all .account .logout form button p {
+  margin-top: 3%;
+  margin-left: 10%;
+}
+header #navbar .my-container .all .account .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 3%;
+  margin-left: auto;
+}
+header #navbar .my-container .all .account .profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+main {
+  width: 100vw;
+}
+main #team-member {
+  margin-top: 10%;
+  width: 100%;
+}
+main #team-member .my-container {
+  width: 100%;
+  margin-left: 15%;
+  margin-right: 15%;
+}
+main #team-member .my-container .member {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+main #team-member .my-container .member .image {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  height: 400px;
+  width: 400px;
+  border-radius: 20px;
+}
+main #team-member .my-container .member .image img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+main #team-member .my-container .info {
+  margin-top: 3%;
+}
+main #team-member .my-container .info .name p {
+  font-weight: bold;
+}
+main #team-member .my-container .info .about p {
+  font-size: 15px;
+  text-align: justify;
+}
+main #team-member .my-container .info .social .text {
+  color: #C084FC;
+}
+main #team-member .my-container .info .social ul {
+  width: 100%;
+  margin-left: 10%;
+  padding: 0;
+}
+main #team-member .my-container .info .social ul li p {
+  font-size: 14px;
+}
+
+footer {
+  width: 100vw;
+}
+footer #account-contact {
+  margin-top: 20%;
+  background-color: #C084FC;
+}
+footer #account-contact .my-container {
+  height: 100%;
+  margin-left: 13%;
+  margin-right: 13%;
+}
+footer #account-contact .my-container .all {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10%;
+}
+footer #account-contact .my-container .all .logo {
+  margin-top: 7%;
+}
+footer #account-contact .my-container .all .logo .text {
+  display: flex;
+}
+footer #account-contact .my-container .all .logo .text i {
+  margin-top: 0.5%;
+  font-size: 13px;
+  color: white;
+}
+footer #account-contact .my-container .all .logo .text p {
+  font-weight: 600;
+  color: white;
+  font-size: 15px;
+  margin-left: 1%;
+}
+footer #account-contact .my-container .all .logo .text p a {
+  color: white;
+  font-size: 17px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 3px;
+}
+footer #account-contact .my-container .all .logo .text p i {
+  margin-top: 1%;
+  font-size: 15px;
+  color: white;
+}
+footer #account-contact .my-container .all .contact {
+  margin-left: auto;
+}
+footer #account-contact .my-container .all .contact p {
+  color: white;
+}
+footer #account-contact .my-container .all .contact ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+footer #account-contact .my-container .all .contact ul li {
+  margin-bottom: 1%;
+}
+footer #account-contact .my-container .all .contact ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 480px) {
+  header #navbar .my-container .all {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  header #navbar .my-container .all .logo .text {
+    margin-left: 30%;
+  }
+  header #navbar .my-container .all .logo .text a {
+    font-size: 25px;
+  }
+  header #navbar .my-container .all .logo .text i {
+    font-size: 20px;
+  }
+  header #navbar .my-container .all .account {
+    margin-top: 5%;
+    margin-left: -30%;
+  }
+  main #team-member {
+    margin-top: 25%;
+  }
+  main #team-member .my-container {
+    margin-left: 5%;
+    margin-right: 2%;
+  }
+  main #team-member .my-container .member {
+    display: block;
+  }
+  main #team-member .my-container .member .image {
+    height: 250px;
+    width: 250px;
+  }
+  main #team-member .my-container .member .info .about {
+    margin-right: 10%;
+  }
+  main #team-member .my-container .member .info .about p {
+    font-size: 13px;
+  }
+  footer #account-contact {
+    margin-top: 50%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 481px) and (max-width: 600px) {
+  header #navbar .my-container .all .logo {
+    margin-top: 3%;
+  }
+  main #team-member {
+    margin-top: 25%;
+  }
+  main #team-member .my-container {
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+  main #team-member .my-container .member {
+    display: block;
+  }
+  main #team-member .my-container .member .info .about {
+    margin-right: 10%;
+  }
+  main #team-member .my-container .member .info .about p {
+    font-size: 13px;
+  }
+  footer #account-contact {
+    margin-top: 50%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 601px) and (max-width: 768px) {
+  header #navbar .my-container .all .logo {
+    margin-top: 3%;
+  }
+  main #team-member {
+    margin-top: 25%;
+  }
+  main #team-member .my-container {
+    margin-left: 10%;
+    margin-right: 2%;
+  }
+  main #team-member .my-container .member {
+    -moz-column-gap: 5%;
+         column-gap: 5%;
+  }
+  main #team-member .my-container .member .image {
+    height: 250px;
+    width: 250px;
+  }
+  main #team-member .my-container .member .info .about p {
+    font-size: 15px;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  main #team-member {
+    margin-top: 25%;
+  }
+  main #team-member .my-container {
+    margin-left: 10%;
+    margin-right: 2%;
+  }
+  main #team-member .my-container .member {
+    -moz-column-gap: 5%;
+         column-gap: 5%;
+  }
+  main #team-member .my-container .member .image {
+    height: 300px;
+    width: 300px;
+  }
+}/*# sourceMappingURL=team-info.css.map */

@@ -1,0 +1,775 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+header{
+    width: 100vw;
+    #navbar{
+        height: 100px;
+        .my-container{
+        height: 100%;
+        margin-left: 10%;
+        margin-right: 10%;
+        .all{
+            height: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            .logo{
+                height: 100%;
+                .text {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 2%;
+                    a {
+                       color: #6A0DAD;
+                       font-size: 40px;
+                       text-decoration: none;
+                       font-weight: 600;
+                       margin-right: 10px;
+                    }
+
+                     i {
+                        margin-top: 1.5%;
+                        font-size: 35px;
+                        color:#6A0DAD;
+                    }   
+                }
+
+            }
+            .signin-signup{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+                margin-left: auto;
+                .signin{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 30px;
+                    width: 100px;
+                    a{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-decoration: none;
+                        color: #6A0DAD;
+                        transition: color 0.3s ease;
+                        font-size: 17px;
+                    }
+                    
+                     &:hover {
+
+                        a {
+                             color: #ab60e1;
+                        }
+                    }
+                }
+                .signup{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 30px;
+                    width: 100px;
+                    border-radius: 5px;
+                    border: 1px solid #6A0DAD ;
+                    transition: background-color 0.3s ease;
+                    a{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-decoration: none;
+                        color: #6A0DAD;
+                        transition: color 0.3s ease;
+                        font-size: 17px;
+                    }
+                    
+                     &:hover {
+                        background-color: #C084FC;
+
+                        a {
+                             color: white;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    }
+    
+}
+
+main{
+    width: 100vw;
+    #informative{
+        height: 400px;
+        margin-top: 7%;
+        background-color: #C084FC;
+        .my-container{
+            height: 100%;
+            margin-left: 10%;
+            margin-right: 10%;
+            .all{
+                height: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                .image{
+                    height: 100%;
+                    img{
+                        height: 110%;
+                        width: 100%;
+                    }
+                }
+                .text{
+                    height: 110%;
+                    background-color: #C084FC;
+                    padding-top: 10%;
+                    padding-left: 5%;
+                    color: white;
+                    .text1{
+                        font-size: 35px;
+                        font-family: 'Inter', sans-serif;
+                    }
+                    .text2{
+                        font-size: 40px;
+                        font-family: 'Poppins', sans-serif;
+                    }
+                }
+            }
+        }
+    }
+    #new-podcasts{
+        margin-top: 20%;
+        .my-container{
+            height: 100%;
+            margin-left: 10%;
+            margin-right: 10%;
+                .section-name {
+                   margin-left: 5%;
+                   padding: 10px ;
+                   border-left: 6px solid #6A0DAD;
+                   background-color: #f9f6ff;
+                   width: fit-content;
+
+                   p {
+                     font-size: 20px;
+                     color: #6A0DAD;
+                     margin: 0;
+                     padding-left: 10px;
+                     font-family: Arial, Helvetica, sans-serif;
+                    }
+                }
+            .podcasts{
+                margin-top: 5%;
+                .podcast{
+                    height: 250px;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    .image{
+                        grid-column-start: 1;
+                        grid-column-end:2;
+                        display: flex;
+                        justify-content:center ;
+                        .img{
+                            margin-left: 8%;
+                            height: 65%;
+                            width: 58%;
+                            border-radius: 10px;
+                            a{
+                                img{
+                                    height: 100%;
+                                    width: 100%;
+                                    border-radius: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .informative{
+                        grid-column-start: 2;
+                        grid-column-end:5;
+                        .title{
+                            margin-right: 7%;
+                            p{
+                                a{
+                                    text-decoration: none;
+                                    font-size: 20px;
+                                    font-family: Verdana, Geneva, sans-serif;
+                                    text-align: justify;
+                                    color: #2D2D2D;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                        .description{
+                            margin-right: 7%;
+                            p{
+                                text-align: justify;
+                                font-family: Verdana, Geneva, sans-serif;
+                            }
+                        }
+                        .number{
+                            margin-right: 7%;
+                            p{
+                                color: #2D2D2D;
+                                font-size: 14px;
+                                font-family: Verdana, Geneva, sans-serif;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #best-podcasters{
+        margin-top: 15%;
+        margin-bottom: 15%;
+        .my-container{
+            height: 100%;
+            margin-left: 10%;
+            margin-right: 10%;
+            .section-name {
+  margin-left: 6%;
+  padding: 10px;
+  border-left: 6px solid #6A0DAD;
+  background-color: #f9f6ff;
+  width: fit-content;
+
+  p {
+    font-size: 20px;
+    color: #6A0DAD;
+    margin: 0;
+    padding-left: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+}
+            .podcasters{
+                 margin-top: 5%;
+                 height: 90%;
+                 padding-left: 5%;
+                .podcaster{
+                    width: 200px;
+                    img{
+                        height: 200px;
+                        width: 200px;
+                        border-radius: 50%;
+                    }
+                    a{
+                        text-decoration: none;
+                        p{
+                           margin-top: 3%;
+                           text-align: center;
+                           font-weight: bold;
+                           color: #2D2D2D;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer{
+    width: 100vw;
+    #account-contact{
+        background-color: #C084FC;
+        .my-container{
+            height: 100%;
+            margin-left: 13%;
+            margin-right: 13%;
+            .all{
+                padding-top: 1%;
+                padding-bottom: 1%;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 10%;
+                   .logo{
+                    margin-top: 7%;
+                        .text {
+                            display: flex;
+                             i {
+                                margin-top: 0.5%;
+                                font-size: 13px;
+                                color: white;
+                               }  
+                            p{ 
+                                font-weight: 600;
+                                color: white;
+                                font-size: 15px;
+                                margin-left: 1%;
+                                a {
+                                color: white;
+                                font-size: 17px;
+                                text-decoration: none;
+                                font-weight: 600;
+                                margin-right: 3px;
+                               }
+
+                               i {
+                                margin-top: 1%;
+                                font-size: 15px;
+                                color: white;
+                               }  
+                            }
+                        }
+
+                    }
+                .contact{
+                    margin-left: auto;
+                    p{
+                        color: white;
+                    }
+                    ul{
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        li{
+                            margin-bottom: 1%;
+                            a{
+                                text-decoration: none;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: 575px){
+    header{
+        #navbar{
+            .my-container{
+                .all{
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    .logo{
+                        .text{
+                            margin-left: 30%;
+                            a{
+                                font-size: 25px;
+                            }
+                            i{
+                                font-size: 20px;
+                            }
+                        }
+                    }
+                    .signin-signup{
+                        margin-left: -3%;
+                    }
+                }
+            }
+        }
+    }
+    main{
+        #informative{
+            margin-top: 5%;
+            height: 200px;
+            margin-bottom: 60%;
+            .my-container{
+                margin: 0 !important;
+                .all{
+                    display: block;
+                }
+                .image{
+                    height: 50%;
+                    img{
+                        height: 100%;
+                    }
+                }
+                .text{
+                    height: 50%;
+                    padding: 0 !important;
+                    .text1{
+                        padding-top: 10%;
+                        padding-left: 3%;
+                        font-size: 15px !important;
+                    }
+                    .text2{
+                        padding-left: 3%;
+                        font-size: 20px !important;
+                    }
+                }
+            }
+        }
+        #new-podcasts{
+            .my-container{
+                margin: 0;
+                .section-name{
+                    display: block;
+                    p{
+                        font-size: 20px;
+                        text-align: center;
+                    }
+                }
+                .podcasts{
+                    .podcast{
+                        margin-bottom: 15%;
+                        .image{
+                            .img{
+                                margin-left: 0;
+                                height: 30%;
+                            }
+                        }
+                        .informative{
+                            .title{
+                                p{
+                                    a{
+                                        font-size: 15px;
+                                    }
+                                }
+                            }
+                            .description{
+                                p{
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #best-podcasters{
+            margin-top: 20%;
+            .my-container{
+                margin: 0;
+                .section-name{
+                    display: block;
+                    p{
+                        font-size: 20px;
+                        text-align: center;
+                    }
+                }
+                .podcasters{
+                    margin-left: 17%;
+                }
+            }
+        }
+    }
+    footer{
+        #account-contact{
+            .my-container{
+                margin-left: 5%;
+                margin-right: 5%;
+                .all{
+                    .logo{
+                        margin-top: 20%;
+                        .text{
+                            i{
+                                font-size: 10px;
+                            }
+                            p{
+                                width: 180px;
+                                font-size: 10px;
+                                a{
+                                    font-size: 10px;
+                                }
+                                i{
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                    .contact{
+                        p{
+                            font-size: 13px;
+                        }
+                        ul{
+                            li{
+                                a{
+                                    font-size: 13px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px){
+    main{
+        #informative{
+            margin-bottom: 70%;
+            .my-container{
+                margin: 0 !important;
+                .all{
+                    display: block;
+                }
+            }
+        }
+        #new-podcasts{
+            .my-container{
+                .section-name{
+                    display: block;
+                    p{
+                        font-size: 25px;
+                        text-align: center;
+                    }
+                }
+                .podcasts{
+                    .podcast{
+                        margin-bottom: 10%;
+                        .image{
+                            .img{
+                                margin-left: 0;
+                                height: 30%;
+                            }
+                        }
+                        .informative{
+                            .title{
+                                p{
+                                    a{
+                                        font-size: 15px;
+                                    }
+                                }
+                            }
+                            .description{
+                                p{
+                                    font-size: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #best-podcasters{
+            .my-container{
+                margin: 0;
+                .section-name{
+                    display: block;
+                    p{
+                        font-size: 25px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    footer{
+        #account-contact{
+            .my-container{
+                margin-left: 5%;
+                margin-right: 5%;
+                .all{
+                    .logo{
+                        margin-top: 15%;
+                        .text{
+                            i{
+                                font-size: 15px;
+                            }
+                            p{
+                                font-size: 15px;
+                                a{
+                                    font-size: 15px;
+                                }
+                                i{
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+  
+    main{
+        #informative{
+            margin-top: 5%;
+            margin-bottom: 60%;
+            .my-container{
+                margin: 0 !important;
+                .all{
+                    display: block;
+                    .image{
+                        margin-left: 10%;
+                    }
+                }
+            }
+        }
+        #new-podcasts{
+            .my-container{
+                .section-name{
+                    display: block;
+                    p{
+                        font-size: 25px;
+                        text-align: center;
+                    }
+                }
+                
+                .podcasts{
+                    .podcast{
+                        margin-bottom: 5%;
+                        .image{
+                            .img{
+                                margin-left: 0;
+                                height: 40%;
+                            }
+                        }
+                        .informative{
+                            .title{
+                                p{
+                                    a{
+                                        font-size: 17px;
+                                    }
+                                }
+                            }
+                            .description{
+                                p{
+                                    font-size: 12px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #best-podcasters{
+            .my-container{
+                .section-name{
+                    display: block;
+                    p{
+                        font-size: 25px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+    footer{
+        #account-contact{
+            .my-container{
+                margin-left: 5%;
+                margin-right: 5%;
+                .all{
+                    .logo{
+                        margin-top: 10%;
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+   
+    main{
+        #informative{
+            margin-top: 5%;
+            margin-bottom: 10%;
+            .my-container{
+                margin: 0 !important;
+                .all{
+                    .text{
+                        .text1{
+                            font-size: 30px;
+                        }
+                        .text2{
+                            font-size: 35px;
+                        }
+                    }
+                }
+            }
+        }
+        #new-podcasts{
+            .my-container{
+                .section-name{
+                    display: block;
+                    p{
+                        text-align: center;
+                    }
+                }
+                .podcasts{
+                    .podcast{
+                        margin-bottom: 7%;
+                        .image{
+                            .img{
+                                margin-left: 0;
+                                height: 50%;
+                            }
+                        }
+                        .informative{
+                            .title{
+                                p{
+                                    a{
+                                        font-size: 20px;
+                                    }
+                                }
+                            }
+                            .description{
+                                p{
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #best-podcasters{
+            .my-container{
+                .section-name{
+                    display: block;
+                    p{
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px){
+     main{
+        #new-podcasts{
+            .my-container{
+                .section-name{
+                    display: block;
+                    p{
+                        text-align: center;
+                    }
+                }
+                .podcasts{
+                    .podcast{
+                        margin-bottom: 7%;
+                        .image{
+                            .img{
+                                margin-left: 0;
+                                height: 50%;
+                            }
+                        }
+                        .informative{
+                            .title{
+                                p{
+                                    a{
+                                        font-size: 23px;
+                                    }
+                                }
+                            }
+                            .description{
+                                p{
+                                    font-size: 18px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

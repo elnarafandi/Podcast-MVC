@@ -1,0 +1,271 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<main>
+    <section id="search">
+        <div class="area">
+            <div class="info">
+                <p>Discover your favorite podcasters, podcasts and episodes</p>
+            </div>
+            <div class="search">
+                <form action="/search" method="GET">
+                    <input type="text" name="q" placeholder="Search..." />
+                    <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="parameters-filter">
+        <div class="my-container">
+            <div class="icons">
+                <div class="left"><i class="bi bi-list" id="toggle-icon"></i></div>
+                <div class="right">
+                    <p>Recommended For You</p>
+                </div>
+            </div>
+            <div class="all">
+                <div class="parameters">
+                    <div class="list">
+                        <ul class="main-ul">
+                            <li class="play-li">
+                                <div class="p-name">
+                                    <div class="icon-name"><i class="bi bi-collection-fill"></i><p>Playlist</p></div>
+
+                                    <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create playlist</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="/create-playlist" method="post">
+                                                        <!-- Playlist adı -->
+                                                        <div class="mb-3">
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   id="playlistName"
+                                                                   name="playlist_name"
+                                                                   placeholder="Məsələn: Mənim Favorilərim"
+                                                                   required>
+                                                        </div>
+
+                                                        <!-- Submit düyməsi -->
+                                                        <button type="submit" class="btn btn-primary w-100">
+                                                            <i class="bi bi-plus-circle"></i> Playlist Yarat
+                                                        </button>
+                                                    </form>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul class="child-ul">
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem </p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet dfgfhgfh</p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet dfgfhgfh</p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                        <div class="delete">
+                                            <form action="" method="">
+                                                <button type="submit"><i class="bi bi-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="sub-li">
+                                <p><i class="bi bi-file-plus-fill"></i>Subscribers</p>
+                                <ul class="child-ul">
+                                    <li>
+                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                    </li>
+                                    <li>
+                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
+                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="podcasts">
+                    <div class="all-podcasts">
+                        <div class="podcast">
+                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast2.jpg" alt=""></a></div>
+                            <div class="info">
+                                <div class="title"><a href=""><p>consectetur adipisicing elit.</p></a></div>
+                                <div class="podcaster"><p>Name Surname</p></div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="podcast">
+                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast3.jpg" alt=""></a></div>
+                            <div class="info">
+                                <div class="title"><a href=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></a></div>
+                                <div class="podcaster"><p>Name Surname</p></div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="podcast">
+                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast2.jpg" alt=""></a></div>
+                            <div class="info">
+                                <div class="title"><a href=""><p>consectetur adipisicing elit.</p></a></div>
+                                <div class="podcaster"><p>Name Surname</p></div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="podcast">
+                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast3.jpg" alt=""></a></div>
+                            <div class="info">
+                                <div class="title"><a href=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></a></div>
+                                <div class="podcaster"><p>Name Surname</p></div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="podcast">
+                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast2.jpg" alt=""></a></div>
+                            <div class="info">
+                                <div class="title"><a href=""><p>consectetur adipisicing elit.</p></a></div>
+                                <div class="podcaster"><p>Name Surname</p></div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="podcast">
+                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast3.jpg" alt=""></a></div>
+                            <div class="info">
+                                <div class="title"><a href=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></a></div>
+                                <div class="podcaster"><p>Name Surname</p></div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pagination">
+                        <button class="page-btn prev"><i class="bi bi-caret-left-fill"></i></button>
+                        <span class="page-numbers">
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                        </span>
+                        <button class="page-btn next"><i class="bi bi-caret-right-fill"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="categories">
+        <div class="my-container">
+            <div class="section-name"><p>Enjoy Different Categories</p></div>
+            <div class="all-categories">
+                <a href=""><div class="category">Health</div></a>
+                <a href=""><div class="category">Science</div></a>
+                <a href=""><div class="category">Comedy</div></a>
+                <a href=""><div class="category">Sports</div></a>
+                <a href=""><div class="category">Economics</div></a>
+                <a href=""><div class="category">Magazine</div></a>
+                <a href=""><div class="category">Nature</div></a>
+            </div>
+        </div>
+    </section>
+</main>

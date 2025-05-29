@@ -1,0 +1,456 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100vw;
+}
+header #navbar {
+  height: 100px;
+}
+header #navbar .my-container {
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+header #navbar .my-container .all {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+header #navbar .my-container .all .logo {
+  height: 100%;
+}
+header #navbar .my-container .all .logo .text {
+  display: flex;
+  align-items: center;
+  margin-top: 2%;
+}
+header #navbar .my-container .all .logo .text a {
+  color: #6A0DAD;
+  font-size: 40px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 10px;
+}
+header #navbar .my-container .all .logo .text a i {
+  margin-top: 1.5%;
+  font-size: 35px;
+  color: #6A0DAD;
+}
+header #navbar .my-container .all .account {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-left: auto;
+  padding-right: 5%;
+}
+header #navbar .my-container .all .account .logout {
+  margin-top: 2%;
+}
+header #navbar .my-container .all .account .logout form button {
+  background-color: white;
+  color: #6A0DAD;
+  border: none;
+  display: flex;
+  justify-content: center;
+}
+header #navbar .my-container .all .account .logout form button i {
+  font-size: 20px;
+}
+header #navbar .my-container .all .account .logout form button p {
+  margin-top: 3%;
+  margin-left: 10%;
+}
+header #navbar .my-container .all .account .profile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 3%;
+  margin-left: auto;
+}
+header #navbar .my-container .all .account .profile img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+main #all-podcasts {
+  margin-top: 5%;
+  width: 100vw;
+  height: 300px;
+}
+main #all-podcasts .my-container {
+  height: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+main #all-podcasts .my-container .sorting-filter {
+  display: flex;
+}
+main #all-podcasts .my-container .sorting-filter .text {
+  color: #6A0DAD;
+  font-size: 17px;
+}
+main #all-podcasts .my-container .sorting-filter .mix {
+  display: flex;
+  margin-left: auto;
+  gap: 2%;
+}
+main #all-podcasts .my-container .sorting-filter .mix .filter .fltr {
+  display: flex;
+  gap: 10%;
+  border: 1px solid #6A0DAD;
+  width: 90px;
+  background-color: white;
+  color: #6A0DAD;
+  transition: all 0.3s ease;
+}
+main #all-podcasts .my-container .sorting-filter .mix .filter .fltr:hover {
+  background-color: #D1A0FF;
+  color: white;
+}
+main #all-podcasts .my-container .sorting-filter .mix .dropdown button {
+  border: none;
+  width: 90px;
+  background-color: white;
+  color: #6A0DAD;
+  transition: all 0.3s ease;
+}
+main #all-podcasts .my-container .sorting-filter .mix .dropdown button:hover {
+  background-color: #D1A0FF;
+  color: white;
+}
+main #all-podcasts .my-container .podcasts {
+  margin-top: 3%;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  -moz-column-gap: 3%;
+       column-gap: 3%;
+  row-gap: 5%;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast {
+  width: 100%;
+  height: 310px;
+  border-radius: 15px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .image {
+  width: 100%;
+  height: 50%;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 3%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .image a {
+  width: 100%;
+  height: 100%;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .image a img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info {
+  width: 100%;
+  height: 30%;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title {
+  margin-top: 1%;
+  height: 65%;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title a {
+  text-decoration: none;
+  color: #2D2D2D;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .podcaster {
+  height: 30%;
+  width: 100%;
+  text-align: center;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .podcaster p {
+  color: #2D2D2D;
+  font-size: 14px;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .follow {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #all-podcasts .my-container .podcasts .all-podcasts .podcast .follow button {
+  border: none;
+  background-color: #D1A0FF;
+  height: 35px;
+  width: 90px;
+  border-radius: 5px;
+  color: white;
+}
+main #all-podcasts .my-container .podcasts .show-more {
+  margin-top: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main #all-podcasts .my-container .podcasts .show-more button {
+  border: 1px solid #6A0DAD;
+  border-radius: 25px;
+  height: 45px;
+  width: 150px;
+  background-color: white;
+  color: #6A0DAD;
+  transition: all 0.3s ease;
+}
+main #all-podcasts .my-container .podcasts .show-more button:hover {
+  background-color: #D1A0FF;
+  color: white;
+}
+
+footer {
+  width: 100vw;
+}
+footer #account-contact {
+  margin-top: 50%;
+  background-color: #C084FC;
+}
+footer #account-contact .my-container {
+  height: 100%;
+  margin-left: 13%;
+  margin-right: 13%;
+}
+footer #account-contact .my-container .all {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10%;
+}
+footer #account-contact .my-container .all .logo {
+  margin-top: 7%;
+}
+footer #account-contact .my-container .all .logo .text {
+  display: flex;
+}
+footer #account-contact .my-container .all .logo .text i {
+  margin-top: 0.5%;
+  font-size: 13px;
+  color: white;
+}
+footer #account-contact .my-container .all .logo .text p {
+  font-weight: 600;
+  color: white;
+  font-size: 15px;
+  margin-left: 1%;
+}
+footer #account-contact .my-container .all .logo .text p a {
+  color: white;
+  font-size: 17px;
+  text-decoration: none;
+  font-weight: 600;
+  margin-right: 3px;
+}
+footer #account-contact .my-container .all .logo .text p i {
+  margin-top: 1%;
+  font-size: 15px;
+  color: white;
+}
+footer #account-contact .my-container .all .contact {
+  margin-left: auto;
+}
+footer #account-contact .my-container .all .contact p {
+  color: white;
+}
+footer #account-contact .my-container .all .contact ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+footer #account-contact .my-container .all .contact ul li {
+  margin-bottom: 1%;
+}
+footer #account-contact .my-container .all .contact ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 480px) {
+  header #navbar .my-container .all {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  header #navbar .my-container .all .logo .text {
+    margin-left: 30%;
+  }
+  header #navbar .my-container .all .logo .text a {
+    font-size: 25px;
+  }
+  header #navbar .my-container .all .logo .text i {
+    font-size: 20px;
+  }
+  header #navbar .my-container .all .account {
+    margin-top: 5%;
+    margin-left: -23%;
+  }
+  main #all-podcasts {
+    margin-top: 20%;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2%;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title {
+    font-size: 10px;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .podcaster p {
+    font-size: 9px;
+  }
+  main #all-podcasts .my-container .podcasts .show-more {
+    margin-top: 20%;
+  }
+  footer #account-contact {
+    margin-top: 250%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 481px) and (max-width: 600px) {
+  header #navbar .my-container .all .logo {
+    margin-top: 3%;
+  }
+  main #all-podcasts {
+    margin-top: 20%;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2%;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title {
+    font-size: 10px;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .podcaster p {
+    font-size: 9px;
+  }
+  main #all-podcasts .my-container .podcasts .show-more {
+    margin-top: 20%;
+  }
+  footer #account-contact {
+    margin-top: 200%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 20%;
+  }
+  footer #account-contact .my-container .all .logo .text i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p {
+    width: 180px;
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p a {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .logo .text p i {
+    font-size: 10px;
+  }
+  footer #account-contact .my-container .all .contact p {
+    font-size: 13px;
+  }
+  footer #account-contact .my-container .all .contact ul li a {
+    font-size: 13px;
+  }
+}
+@media (min-width: 601px) and (max-width: 991px) {
+  header #navbar .my-container .all .logo {
+    margin-top: 3%;
+  }
+  main #all-podcasts {
+    margin-top: 20%;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 2%;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title {
+    font-size: 10px;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .podcaster p {
+    font-size: 9px;
+  }
+  main #all-podcasts .my-container .podcasts .show-more {
+    margin-top: 20%;
+  }
+  footer #account-contact {
+    margin-top: 100%;
+  }
+  footer #account-contact .my-container {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  footer #account-contact .my-container .all .logo {
+    margin-top: 10%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+  main #all-podcasts {
+    margin-top: 20%;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title {
+    font-size: 13px;
+  }
+  main #all-podcasts .my-container .podcasts .all-podcasts .podcast .podcaster p {
+    font-size: 9px;
+  }
+  footer #account-contact {
+    margin-top: 70%;
+  }
+}/*# sourceMappingURL=search-listener.css.map */
