@@ -17,11 +17,11 @@ namespace Service.Services
         {
             _podcastCategoryRepository = podcastCategoryRepository;
         }
-        public async Task CreateAsync(PodcastCategoryCreateVM podcastCategory)
+        public async Task CreateAsync(PodcastCategoryCreateVM request)
         {
             PodcastCategory category = new PodcastCategory
             {
-                Name = podcastCategory.Name
+                Name = request.Name
             };
             await _podcastCategoryRepository.CreateAsync(category);
         }
@@ -32,10 +32,10 @@ namespace Service.Services
             await _podcastCategoryRepository.DeleteAsync(podcastCategory);
         }
 
-        public async Task EditAsync(int id, PodcastCategoryEditVM podcastCategory)
+        public async Task EditAsync(int id, PodcastCategoryEditVM request)
         {
             var category = await _podcastCategoryRepository.GetByIdAsync(id);
-            category.Name = podcastCategory.Name;
+            category.Name = request.Name;
             await _podcastCategoryRepository.EditAsync(category);
         }
 

@@ -7537,6 +7537,14 @@
       "PackagePath": "staticwebassets\\assets\\images\\about\\about.jpg"
     },
     {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\8be77cd7-23b5-41f1-a6bf-c19d2a73ce28-person3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\8be77cd7-23b5-41f1-a6bf-c19d2a73ce28-person3.jpg"
+    },
+    {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\person1.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\home\\person1.jpg"
     },

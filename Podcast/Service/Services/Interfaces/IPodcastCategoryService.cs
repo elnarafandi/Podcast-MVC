@@ -9,8 +9,8 @@ namespace Service.Services.Interfaces
 {
     public interface IPodcastCategoryService
     {
-        Task CreateAsync(PodcastCategoryCreateVM podcastCategory);
-        Task EditAsync(int id, PodcastCategoryEditVM podcastCategory);
+        Task CreateAsync(PodcastCategoryCreateVM request);
+        Task EditAsync(int id, PodcastCategoryEditVM request);
         Task DeleteAsync(int id);
         Task<PodcastCategoryAdminVM> GetByIdAsync(int id);
         Task<List<PodcastCategoryAdminVM>> GetAllAsync();

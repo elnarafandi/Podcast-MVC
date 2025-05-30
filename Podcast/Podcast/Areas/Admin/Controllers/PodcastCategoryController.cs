@@ -56,6 +56,7 @@ namespace Podcast.Areas.Admin.Controllers
             await _podcastCategoryService.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
+        
 
     }
 }

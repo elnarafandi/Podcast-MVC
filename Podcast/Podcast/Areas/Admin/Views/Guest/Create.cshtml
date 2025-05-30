@@ -1,0 +1,62 @@
+﻿@model GuestCreateVM
+
+<div class="container d-flex justify-content-center pt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 mt-4" style="max-width: 600px; width: 100%;">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4 text-primary">Create Guest</h4>
+
+            <form method="post" asp-action="Create" enctype="multipart/form-data">
+
+                <!-- First Name Field -->
+                <div class="mb-3">
+                    <label asp-for="FirstName" class="form-label fw-semibold">First Name</label>
+                    <input asp-for="FirstName" class="form-control rounded-3" placeholder="Enter first name">
+                    <span asp-validation-for="FirstName" class="text-danger small"></span>
+                </div>
+
+                <!-- Last Name Field -->
+                <div class="mb-3">
+                    <label asp-for="LastName" class="form-label fw-semibold">Last Name</label>
+                    <input asp-for="LastName" class="form-control rounded-3" placeholder="Enter last name">
+                    <span asp-validation-for="LastName" class="text-danger small"></span>
+                </div>
+
+                <!-- Upload Image Field -->
+                <div class="mb-3">
+                    <label asp-for="UploadImage" class="form-label fw-semibold">Profile Image</label>
+                    <input asp-for="UploadImage" type="file" class="form-control rounded-3">
+                    <span asp-validation-for="UploadImage" class="text-danger small"></span>
+                </div>
+
+                <!-- Information Field (changed to input) -->
+                <div class="mb-3">
+                    <label asp-for="Information" class="form-label fw-semibold">Information</label>
+                    <input asp-for="Information" class="form-control rounded-3" placeholder="Enter information">
+                    <span asp-validation-for="Information" class="text-danger small"></span>
+                </div>
+
+                <!-- Social Media Field -->
+                <div class="mb-3">
+                    <label asp-for="SocialMedia" class="form-label fw-semibold">Social Media</label>
+                    <input asp-for="SocialMedia" class="form-control rounded-3" placeholder="Enter social media link">
+                    <span asp-validation-for="SocialMedia" class="text-danger small"></span>
+                </div>
+
+                <!-- Submit and Cancel Buttons -->
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-check-circle me-1"></i> Submit
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-outline-secondary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-x-circle me-1"></i> Cancel
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

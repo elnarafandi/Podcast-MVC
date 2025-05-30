@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{08C5EC1F-DFED-49F4-A789-9ACC1B33EC32}|Service\\Service.csproj|c:\\users\\elnare\\desktop\\podcast-mvc\\podcast\\service\\services\\podcastservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08C5EC1F-DFED-49F4-A789-9ACC1B33EC32}|Service\\Service.csproj|solutionrelative:service\\services\\podcastservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{08C5EC1F-DFED-49F4-A789-9ACC1B33EC32}|Service\\Service.csproj|c:\\users\\elnare\\desktop\\podcast-mvc\\podcast\\service\\services\\teammemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{08C5EC1F-DFED-49F4-A789-9ACC1B33EC32}|Service\\Service.csproj|solutionrelative:service\\services\\teammemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TeamMemberService.cs",
+              "DocumentMoniker": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Service\\Services\\TeamMemberService.cs",
+              "RelativeDocumentMoniker": "Service\\Services\\TeamMemberService.cs",
+              "ToolTip": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Service\\Services\\TeamMemberService.cs",
+              "RelativeToolTip": "Service\\Services\\TeamMemberService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAwBUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T21:42:42.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PodcastService.cs",
+              "DocumentMoniker": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Service\\Services\\PodcastService.cs",
+              "RelativeDocumentMoniker": "Service\\Services\\PodcastService.cs",
+              "ToolTip": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Service\\Services\\PodcastService.cs",
+              "RelativeToolTip": "Service\\Services\\PodcastService.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAAB0AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-30T21:42:41.606Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

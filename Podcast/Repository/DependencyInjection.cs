@@ -17,6 +17,7 @@ namespace Repository
             services.AddScoped<IPodcastRepository, PodcastRepository>();
             services.AddScoped<IPodcastCategoryRepository, PodcastCategoryRepository>();
             services.AddScoped<ITeamMemberRepository, TeamMemberRepository>();
+            services.AddScoped<IGuestRepository, GuestRepository>();
             return services;
         }
     }

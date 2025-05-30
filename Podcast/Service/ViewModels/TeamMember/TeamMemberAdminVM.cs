@@ -12,5 +12,7 @@ namespace Service.ViewModels.TeamMember
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Image { get; set; }
+        public string Information { get; set; }
+        public string SocialMedia { get; set; }
     }
 }
