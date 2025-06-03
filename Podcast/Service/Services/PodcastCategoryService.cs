@@ -45,7 +45,8 @@ namespace Service.Services
             var categories= podcastCategories.Select(pc=>new PodcastCategoryAdminVM
             {
                 Id = pc.Id,
-                Name = pc.Name
+                Name = pc.Name,
+                Podcasts=pc.Podcasts
             }).ToList();
             return categories;
         }
@@ -56,7 +57,8 @@ namespace Service.Services
             PodcastCategoryAdminVM category = new PodcastCategoryAdminVM
             {
                 Id=podcastCategory.Id,
-                Name = podcastCategory.Name
+                Name = podcastCategory.Name,
+                Podcasts = podcastCategory.Podcasts
             };
             return category;
         }

@@ -30,6 +30,22 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Episode/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRXBpc29kZVxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Episode/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRXBpc29kZVxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Episode/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRXBpc29kZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Episode/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRXBpc29kZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Guest/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcR3Vlc3RcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -56,6 +72,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/PodcastCategory/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9kY2FzdENhdGVnb3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Podcast/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9kY2FzdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Podcast/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9kY2FzdFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Podcast/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9kY2FzdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Podcast/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUG9kY2FzdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Shared/_Layout.cshtml]
@@ -102,8 +134,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Views/PodcastCategory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9kY2FzdENhdGVnb3J5XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Views/Podcast/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9kY2FzdFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Views/Podcast/Search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9kY2FzdFxTZWFyY2guY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Views/Shared/Components/Footer/Default.cshtml]

@@ -10,5 +10,6 @@ namespace Service.ViewModels.PodcastCategory
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public ICollection<Domain.Entities.Podcast> Podcasts { get; set; }
     }
 }

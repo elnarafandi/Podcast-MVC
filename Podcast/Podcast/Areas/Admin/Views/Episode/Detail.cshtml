@@ -1,0 +1,53 @@
+﻿@model EpisodeAdminVM
+
+
+<div class="container mt-4">
+    <h2>@Model.Title</h2>
+
+    <div class="row">
+        <!-- Episode Image -->
+        <div class="col-md-4">
+            <div class="card">
+                <img src="~/assets//images/podcasts/@Model.Image" class="card-img-top" alt="Episode Image">
+            </div>
+        </div>
+
+        <!-- Episode Details -->
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Episode Details</h5>
+                    <p><strong>Title:</strong> @Model.Title</p>
+                    <p><strong>Description:</strong> @Model.Description</p>
+                    <p><strong>Podcast:</strong> @Model.Podcast.Title</p>
+
+                    <!-- Audio file, if exists -->
+                    @if (!string.IsNullOrEmpty(Model.Audio))
+                    {
+                        <div>
+                            <audio controls>
+                                <source src="@Url.Content("~/audios/" + Model.Audio)" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    }
+
+                    <!-- Episode Guests -->
+                    @if (Model.EpisodeGuests != null && Model.EpisodeGuests.Any())
+                    {
+                        <div>
+                            <strong>Guests:</strong>
+                            <ul>
+                                @foreach (var episodeGuest in Model.EpisodeGuests)
+                                {
+                                    <li>@episodeGuest.Guest.FirstName @episodeGuest.Guest.LastName</li>  <!-- Assuming the "EpisodeGuest" model has a "GuestName" property -->
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

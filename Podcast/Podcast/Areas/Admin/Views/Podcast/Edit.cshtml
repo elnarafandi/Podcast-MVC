@@ -1,0 +1,72 @@
+﻿@model PodcastEditVM
+
+
+<div class="container d-flex justify-content-center pt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 mt-4" style="max-width: 600px; width: 100%;">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4 text-primary">Edit Podcast</h4>
+
+            <form method="post" asp-action="Edit" enctype="multipart/form-data">
+
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label fw-semibold">Title</label>
+                    <input asp-for="Title" class="form-control rounded-3" placeholder="Enter podcast title">
+                    <span asp-validation-for="Title" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold">Description</label>
+                    <input asp-for="Description" class="form-control rounded-3" placeholder="Enter description">
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Current Image</label><br />
+                        <img src="~/assets/images/podcasts/@Model.Image" alt="Profile Image" class="img-thumbnail rounded" style="max-height: 150px;" />
+                    </div>
+                }
+
+
+                <div class="mb-3">
+                    <label asp-for="UploadImage" class="form-label fw-semibold">Cover Image</label>
+                    <input asp-for="UploadImage" type="file" class="form-control rounded-3">
+                    <span asp-validation-for="UploadImage" class="text-danger small"></span>
+                </div>
+
+                <!-- Team Member Selection -->
+                <div class="mb-3">
+                    <label asp-for="TeamMemberId" class="form-label fw-semibold">Team Member</label>
+                    <select asp-for="TeamMemberId" class="form-control" asp-items="ViewBag.TeamMembers">
+                        <option disabled selected value="">Please select one</option>
+                    </select>
+                    <span asp-validation-for="TeamMemberId" class="text-danger small"></span>
+                </div>
+
+                <!-- Podcast Category Selection -->
+                <div class="mb-3">
+                    <label asp-for="PodcastCategoryId" class="form-label fw-semibold">Category</label>
+                    <select asp-for="PodcastCategoryId" class="form-control" asp-items="ViewBag.Categories">
+                        <option disabled selected value="">Please select one</option>
+                    </select>
+                    <span asp-validation-for="PodcastCategoryId" class="text-danger small"></span>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-check-circle me-1"></i> Submit
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-outline-secondary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-x-circle me-1"></i> Cancel
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model PodcastAdminVM
+
+<div class="container my-4">
+    <div class="card shadow-sm">
+        <div class="row g-0">
+            <div class="col-md-4 d-flex align-items-center justify-content-center p-3">
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <img src="~/assets/images/podcasts/@Model.Image" alt="" class="img-fluid rounded-circle border border-secondary" style="height:200px; width:200px">
+                }
+                else
+                {
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center rounded-circle" style="width: 200px; height: 200px;">
+                        <span class="fs-3">No Image</span>
+                    </div>
+                }
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h2 class="card-title">@Model.Title</h2>
+                    <p class="card-text text-muted">Creator: @Model.TeamMember.FirstName @Model.TeamMember.LastName</p>
+                    <p class="card-text text-muted">Category: @Model.PodcastCategory.Name</p>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Description))
+                    {
+                        <div class="mt-3">
+                            <h5>Content</h5>
+                            <p class="border rounded p-3 bg-light" style="white-space: pre-line;">
+                                @Model.Description
+                            </p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

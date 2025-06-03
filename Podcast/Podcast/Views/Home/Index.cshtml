@@ -1,4 +1,8 @@
-﻿@{
+﻿@model HomeVM
+
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -9,8 +13,8 @@
                 <p>Discover your favorite podcasters, podcasts and episodes</p>
             </div>
             <div class="search">
-                <form action="/search" method="GET">
-                    <input type="text" name="q" placeholder="Search..." />
+                <form asp-controller="Podcast" asp-action="Search" method="get">
+                    <input type="text" name="podcastTitle" placeholder="Search..." />
                     <button type="submit"><i class="bi bi-search"></i></button>
                 </form>
             </div>
@@ -137,30 +141,16 @@
                             <li class="sub-li">
                                 <p><i class="bi bi-file-plus-fill"></i>Subscribers</p>
                                 <ul class="child-ul">
-                                    <li>
-                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                    </li>
-                                    <li>
-                                        <div class="image"><a href=""><img src="./assets/images/home/person2.jpg" alt=""></a></div>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                    </li>
+                                    @if (Model.FollowedPodcasts.Any())
+                                    {
+                                        @foreach (var followedPodcast in Model.FollowedPodcasts)
+                                        {
+                                            <li>
+                                                <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@followedPodcast.Id"><img src="~/assets/images/podcasts/@followedPodcast.Image" alt=""></a></div>
+                                                <div class="name"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@followedPodcast.Id"><p>@followedPodcast.Title</p></a></div>
+                                            </li>
+                                        }
+                                    }
                                 </ul>
                             </li>
                         </ul>
@@ -168,78 +158,31 @@
                 </div>
                 <div class="podcasts">
                     <div class="all-podcasts">
-                        <div class="podcast">
-                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast2.jpg" alt=""></a></div>
-                            <div class="info">
-                                <div class="title"><a href=""><p>consectetur adipisicing elit.</p></a></div>
-                                <div class="podcaster"><p>Name Surname</p></div>
+                        @foreach(var podcast in Model.Podcasts)
+                        {
+                            <div class="podcast">
+                                <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="./assets/images/podcasts/@podcast.Image" alt=""></a></div>
+                                <div class="info">
+                                    <div class="title"><a href=""><p>@podcast.Title</p></a></div>
+                                    <div class="podcaster"><p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p></div>
+                                </div>
+                                <div class="follow">
+                                    <form asp-controller="Podcast" asp-action="ToggleFollow" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="podcastId" value="@podcast.Id" />
+
+                                        @if (Model.FollowedPodcastIds.Contains(podcast.Id))
+                                        {
+                                            <button type="submit" class="btn btn-danger">Unfollow</button>
+                                        }
+                                        else
+                                        {
+                                            <button type="submit" class="btn btn-primary">Follow</button>
+                                        }
+                                    </form>
+                                </div>
                             </div>
-                            <div class="follow">
-                                <form action="" method="">
-                                    <button type="submit">Follow</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="podcast">
-                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast3.jpg" alt=""></a></div>
-                            <div class="info">
-                                <div class="title"><a href=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></a></div>
-                                <div class="podcaster"><p>Name Surname</p></div>
-                            </div>
-                            <div class="follow">
-                                <form action="" method="">
-                                    <button type="submit">Follow</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="podcast">
-                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast2.jpg" alt=""></a></div>
-                            <div class="info">
-                                <div class="title"><a href=""><p>consectetur adipisicing elit.</p></a></div>
-                                <div class="podcaster"><p>Name Surname</p></div>
-                            </div>
-                            <div class="follow">
-                                <form action="" method="">
-                                    <button type="submit">Follow</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="podcast">
-                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast3.jpg" alt=""></a></div>
-                            <div class="info">
-                                <div class="title"><a href=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></a></div>
-                                <div class="podcaster"><p>Name Surname</p></div>
-                            </div>
-                            <div class="follow">
-                                <form action="" method="">
-                                    <button type="submit">Follow</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="podcast">
-                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast2.jpg" alt=""></a></div>
-                            <div class="info">
-                                <div class="title"><a href=""><p>consectetur adipisicing elit.</p></a></div>
-                                <div class="podcaster"><p>Name Surname</p></div>
-                            </div>
-                            <div class="follow">
-                                <form action="" method="">
-                                    <button type="submit">Follow</button>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="podcast">
-                            <div class="image"><a href=""><img src="./assets/images/podcasts/podcast3.jpg" alt=""></a></div>
-                            <div class="info">
-                                <div class="title"><a href=""><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></a></div>
-                                <div class="podcaster"><p>Name Surname</p></div>
-                            </div>
-                            <div class="follow">
-                                <form action="" method="">
-                                    <button type="submit">Follow</button>
-                                </form>
-                            </div>
-                        </div>
+                        }
                     </div>
                     <div class="pagination">
                         <button class="page-btn prev"><i class="bi bi-caret-left-fill"></i></button>
@@ -258,13 +201,13 @@
         <div class="my-container">
             <div class="section-name"><p>Enjoy Different Categories</p></div>
             <div class="all-categories">
-                <a href=""><div class="category">Health</div></a>
-                <a href=""><div class="category">Science</div></a>
-                <a href=""><div class="category">Comedy</div></a>
-                <a href=""><div class="category">Sports</div></a>
-                <a href=""><div class="category">Economics</div></a>
-                <a href=""><div class="category">Magazine</div></a>
-                <a href=""><div class="category">Nature</div></a>
+                @foreach(var category in Model.PodcastCategories)
+                {
+                    @if (category.Podcasts.Any())
+                    {
+                        <a asp-controller="PodcastCategory" asp-action="Index" asp-route-id="@category.Id"><div class="category">@category.Name</div></a>
+                    }
+                }
             </div>
         </div>
     </section>

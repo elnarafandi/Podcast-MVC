@@ -7537,12 +7537,32 @@
       "PackagePath": "staticwebassets\\assets\\images\\about\\about.jpg"
     },
     {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\267d2077-f2ce-4fb4-bf73-c363749bc39d-person4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\267d2077-f2ce-4fb4-bf73-c363749bc39d-person4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\424938dc-f282-4edd-914c-b85549c33b34-person1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\424938dc-f282-4edd-914c-b85549c33b34-person1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\4b890e50-fed1-47e4-84f6-7183905d1a43-person3.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\4b890e50-fed1-47e4-84f6-7183905d1a43-person3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\68bc63bd-6a5e-41c8-a16e-7b073644a5d1-person1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\68bc63bd-6a5e-41c8-a16e-7b073644a5d1-person1.jpg"
+    },
+    {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\home\\6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg"
     },
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\8be77cd7-23b5-41f1-a6bf-c19d2a73ce28-person3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\home\\8be77cd7-23b5-41f1-a6bf-c19d2a73ce28-person3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\c76fc83d-3fe6-4bfd-a48f-8e6274bfd285-person1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\c76fc83d-3fe6-4bfd-a48f-8e6274bfd285-person1.jpg"
     },
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\person1.jpg",
@@ -7559,6 +7579,26 @@
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\person4.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\home\\person4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\49abb456-c585-41b6-8cfc-9f2f25aa2747-7.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\podcasts\\49abb456-c585-41b6-8cfc-9f2f25aa2747-7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\ac581604-835f-4c84-ad1b-9a64bf4b2c89-9.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\podcasts\\ac581604-835f-4c84-ad1b-9a64bf4b2c89-9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\b6b44def-88bc-4ea1-8fc1-0f14127ae0e4-lemons.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\podcasts\\b6b44def-88bc-4ea1-8fc1-0f14127ae0e4-lemons.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\c0222012-18da-4589-81a1-90275dc94823-pencil.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\podcasts\\c0222012-18da-4589-81a1-90275dc94823-pencil.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\eceef303-501a-4fa6-8726-03fa3ee965ca-4.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\podcasts\\eceef303-501a-4fa6-8726-03fa3ee965ca-4.jpg"
     },
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\podcast1.jpg",
@@ -7587,6 +7627,18 @@
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\js\\team-info.js",
       "PackagePath": "staticwebassets\\assets\\js\\team-info.js"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\audios\\3532483e-25fb-47da-a7a8-9b7aafdb992c-Recording.m4a",
+      "PackagePath": "staticwebassets\\audios\\3532483e-25fb-47da-a7a8-9b7aafdb992c-Recording.m4a"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\audios\\617af6ac-3911-4e50-a222-acb9e27aee76-Ocean.m4a",
+      "PackagePath": "staticwebassets\\audios\\617af6ac-3911-4e50-a222-acb9e27aee76-Ocean.m4a"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\audios\\9754b1a3-7ce5-4c12-9c67-d5629698b002-Recording.m4a",
+      "PackagePath": "staticwebassets\\audios\\9754b1a3-7ce5-4c12-9c67-d5629698b002-Recording.m4a"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Podcast.Microsoft.AspNetCore.StaticWebAssets.props",

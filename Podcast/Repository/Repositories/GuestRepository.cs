@@ -16,7 +16,7 @@ namespace Repository.Repositories
 
         public async Task<List<Guest>> GetAllAsync()
         {
-            return await _context.Set<Guest>().Include(eg => eg.EpisodeGuests).ThenInclude(g=>g.Episode).ToListAsync();
+            return await _context.Set<Guest>().Include(eg => eg.EpisodeGuests).ThenInclude(g=>g.Episode).OrderByDescending(c => c.CreatedDate).ToListAsync();
         }
 
         public async Task<Guest> GetByIdAsync(int id)

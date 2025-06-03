@@ -14,5 +14,6 @@ namespace Service.ViewModels.Podcast
         public string Image { get; set; }
         public Domain.Entities.TeamMember TeamMember { get; set; }
         public Domain.Entities.PodcastCategory PodcastCategory { get; set; }
+        public ICollection<Domain.Entities.Episode> Episodes { get; set; }
     }
 }

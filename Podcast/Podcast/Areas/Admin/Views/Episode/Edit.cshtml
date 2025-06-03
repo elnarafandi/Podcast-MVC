@@ -1,0 +1,96 @@
+﻿@model EpisodeEditVM
+
+<div class="container d-flex justify-content-center pt-5">
+    <div class="card shadow-lg border-0 rounded-4 p-4 mt-4" style="max-width: 600px; width: 100%;">
+        <div class="card-body">
+            <h4 class="card-title text-center mb-4 text-primary">Edit Podcast Episode</h4>
+
+            <form method="post" asp-action="Edit" enctype="multipart/form-data">
+
+                <!-- Title Field -->
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label fw-semibold">Title</label>
+                    <input asp-for="Title" class="form-control rounded-3" placeholder="Enter episode title" value="@Model.Title">
+                    <span asp-validation-for="Title" class="text-danger small"></span>
+                </div>
+
+                <!-- Description Field -->
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold">Description</label>
+                    <input asp-for="Description" class="form-control rounded-3" placeholder="Enter episode description" value="@Model.Description">
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <!-- Current Image (Readonly) -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Current Image</label>
+                    <div>
+                        <img src="~/assets/images/podcasts/@Model.Image" alt="Current Image" class="img-fluid rounded-3" style="max-height: 200px;">
+                    </div>
+                    <p class="small text-muted">If you wish to change the image, upload a new one.</p>
+                </div>
+
+                <!-- Upload New Image -->
+                <div class="mb-3">
+                    <label asp-for="UploadImage" class="form-label fw-semibold">Cover Image</label>
+                    <input asp-for="UploadImage" type="file" class="form-control rounded-3">
+                    <span asp-validation-for="UploadImage" class="text-danger small"></span>
+                </div>
+
+                <!-- Current Audio (Readonly) -->
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Current Audio</label>
+                    @if (!string.IsNullOrEmpty(Model.Audio))
+                    {
+                        <div>
+                            <audio controls>
+                                <source src="@Url.Content("~/audios/" + Model.Audio)" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    }
+                    <p class="small text-muted">If you wish to upload a new audio, select a file below.</p>
+                </div>
+
+                <!-- Upload New Audio -->
+                <div class="mb-3">
+                    <label asp-for="AudioFile" class="form-label fw-semibold">Audio File</label>
+                    <input asp-for="AudioFile" type="file" class="form-control rounded-3">
+                    <span asp-validation-for="AudioFile" class="text-danger small"></span>
+                </div>
+
+                <!-- Podcast Selection -->
+                <div class="mb-3">
+                    <label asp-for="PodcastId" class="form-label fw-semibold">Podcast</label>
+                    <select asp-for="PodcastId" class="form-control" asp-items="ViewBag.Podcasts">
+                        <option disabled selected value="">Please select a podcast</option>
+                    </select>
+                    <span asp-validation-for="PodcastId" class="text-danger small"></span>
+                </div>
+
+                <!-- Guests Selection -->
+                <div class="mb-3">
+                    <label asp-for="GuestIds" class="form-label fw-semibold">Guests</label>
+                    <select asp-for="GuestIds" class="form-control" asp-items="ViewBag.Guests" multiple="multiple">
+                        <option disabled value="">Please select guests</option>
+                    </select>
+                    <span asp-validation-for="GuestIds" class="text-danger small"></span>
+                </div>
+
+                <div class="row mt-4">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-check-circle me-1"></i> Submit
+                        </button>
+                    </div>
+                    <div class="col-6">
+                        <a asp-action="Index" class="btn btn-outline-secondary w-100 rounded-pill shadow-sm">
+                            <i class="bi bi-x-circle me-1"></i> Cancel
+                        </a>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

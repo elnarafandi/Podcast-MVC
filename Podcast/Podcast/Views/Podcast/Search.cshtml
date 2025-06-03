@@ -1,0 +1,82 @@
+﻿@model PodcastVM
+
+
+<main>
+        <section id="all-podcasts">
+            <div class="my-container">
+                <div class="sorting-filter">
+                    <div class="text"><p>Results of searching . . .</p></div>
+                    <div class="mix">
+                         <div class="filter">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary fltr" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <i class="bi bi-filter-left"></i>Filter
+                            </button>
+                           <!-- Modal -->
+                           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Select a category</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+                                        <form asp-controller="Podcast" asp-action="Filter" method="get">
+                                            <input type="hidden" name="searchText" value="@Model.SearchText" />
+                                            <div class="mb-3">
+                                                <label for="categorySelect" class="form-label">Kateqoriya seçin:</label>
+                                                <select class="form-control" id="categorySelect" name="category" required>
+                                                    <option disabled selected>Birini seçin</option>
+                                                    @foreach (var category in Model.PodcastCategories)
+                                                    {
+                                                        @if (category.Podcasts.Any())
+                                                        {
+                                                            <option value="@category.Name">@category.Name</option>
+                                                        }
+                                                    }
+                                                </select>
+                                            </div>
+
+                                            <!-- Submit düyməsi -->
+                                            <button type="submit" class="btn btn-primary">
+                                                <i class="bi bi-check-circle"></i> Təsdiqlə
+                                            </button>
+                                        </form>
+      </div>
+    </div>
+  </div>
+                           </div>
+                         </div>
+                    </div> 
+                </div>
+            
+                <div class="podcasts">
+                @if (Model.Podcasts == null || !Model.Podcasts.Any())
+                {
+                    <div class="d-flex justify-content-center align-items-center vh-50">
+                        <p class="text-muted fs-4">Uyğun podcast tapılmadı.</p>
+                    </div>
+                }
+                        <div class="all-podcasts">
+                   
+                    @foreach(var podcast in Model.Podcasts)
+                    {
+                        <div class="podcast">
+                            <div class="image"><a href=""><img src="~/assets/images/podcasts/@podcast.Image" alt=""></a></div>
+                            <div class="info">
+                                <div class="title"><a href=""><p>@podcast.Title</p></a></div>
+                                <div class="podcaster"><p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p></div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                </div>
+                       
+                </div>
+            </div>
+        </section>
+</main>

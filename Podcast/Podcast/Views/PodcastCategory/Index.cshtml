@@ -1,0 +1,56 @@
+﻿@model PodcastCategoryVM
+
+<main>
+    <section id="all-podcasts">
+        <div class="my-container">
+            <div class="sorting-filter">
+                <div class="text"><p>Category: @Model.PodcastCategory.Name</p></div>
+                <div class="mix">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Sorting
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Most followed</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="podcasts">
+                <!-- Burada id əlavə etdik -->
+                <div class="all-podcasts">
+                    @foreach (var podcast in Model.Podcasts)
+                    {
+                        <div class="podcast">
+                            <div class="image">
+                                <a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="~/assets/images/podcasts/@podcast.Image" alt="" /></a>
+                            </div>
+                            <div class="info">
+                                <div class="title">
+                                    <a href="#"><p>@podcast.Title</p></a>
+                                </div>
+                                <div class="podcaster">
+                                    <p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p>
+                                </div>
+                            </div>
+                            <div class="follow">
+                                <form action="" method="">
+                                    <button type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+                    <div class="show-more">
+                        <button id="showMoreBtn" data-skip="4" data-category-id="@Model.PodcastCategory.Id">Show more</button>
+                    </div>
+                
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+

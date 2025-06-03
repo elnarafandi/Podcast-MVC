@@ -1,4 +1,4 @@
-﻿
+﻿@model PodcastDetailVM
 
 
 
@@ -8,291 +8,131 @@
                 <div class="all">
                     <div class="podcast">
                         <div class="img-title">
-                            <div class="image"><img src="~/assets/images/podcasts/podcast2.jpg" alt=""></div>
+                            <div class="image"><img src="~/assets/images/podcasts/@Model.Podcast.Image" alt=""></div>
                             <div class="title">
-                              <div class="text"><p>Lorem ipsum dolor sit amet consecteturdfhsd shdgfhsd hsjgdfhjdgs hdsgfhgds</p></div>
-                              <div><span style="color: #9B59B6 ; font-weight: bold;">Category:</span> <span>Science</span></div>
-                              <div class="podcaster"><img src="~/assets/images/home/person2.jpg" alt=""><p>Name Surname</p></div>
+                            <div class="text"><p>@Model.Podcast.Title</p></div>
+                            <div><span style="color: #9B59B6 ; font-weight: bold;">Category:</span> <span>@Model.Podcast.PodcastCategory.Name</span></div>
+                            <div class="podcaster"><img src="~/assets/images/home/@Model.Podcast.TeamMember.Image" alt=""><p>@Model.Podcast.TeamMember.FirstName @Model.Podcast.TeamMember.LastName</p></div>
                               <div class="follow">
-                                <form action="" method="">
-                                     <button type="submit">Follow</button>
+                                <form asp-controller="Podcast"
+                                      asp-action="ToggleFollow"
+                                      method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
+
+                                    @if (Model.IsFollowing)
+                                    {
+                                        <button type="submit" class="btn btn-danger">Unfollow</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="submit" class="btn btn-primary">Follow</button>
+                                    }
                                 </form>
                             </div>
                             </div>
                         </div>
                         <div class="description">
-                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Pariatur, quisquam magni nam recusandae, aut odit optio iure, temporibus debitis inventore labore animi nesciunt officiis hic illum adipisci. Doloribus, officiis in! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae magnam dolor ad repudiandae libero quasi porro ducimus tempore adipisci? Aliquam, eos autem? Consequuntur eaque tempore adipisci, laborum libero aperiam explicabo!</p>
+                        <p>@Model.Podcast.Description</p>
                         </div>
                     </div>
                     <div class="episodes">
-                        <div class="episode">
-                            <div class="img-title">
-                               <div class="image"><a href=""><img src="~/assets/images/podcasts/podcast3.jpg" alt=""></a></div>
-                               <div class="number">
-                                <div class="title"><a href="">Lorem ipsum dolor sit amet</a></div>
-                               <div class="num"><p>56000 listen</p></div>
-                               </div>
-                            </div>
-                           <div class="description"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum eum voluptatem quam nostrum enim ipsa nulla minus optio nobis ad. Perferendis delectus neque animi! Ex ut facere itaque accusantium non.</p></div>
-                           <div class="guests">
-                            <div class="text"><p>Our guests:</p></div>
-                            <div class="g-info">
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person3.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person4.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person1.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                            </div>
-                           </div>
-                           <div class="icons-play">
-                              <div class="icons">
-                                  <div class="add-episode">
-                                    <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                                       <i class="bi bi-plus-circle"></i>
-                                    </button>
-                                    <!-- Modal -->
-                           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Select a category</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-       <div class="modal-body">
-        <form action="/YourController/YourAction" method="post">
-          <div class="mb-3">
-            <label for="categorySelect" class="form-label">Kateqoriya seçin:</label>
-            <select class="form-control" id="categorySelect" name="category">
-              <option disabled selected>Birini seçin</option>
-              <option value="tech">Texnologiya</option>
-              <option value="health">Sağlamlıq</option>
-              <option value="education">Təhsil</option>
-              <option value="sports">İdman</option>
-            </select>
-          </div>
+                    @if (Model.Podcast.Episodes.Any())
+                    {
+                        @foreach (var episode in Model.Podcast.Episodes)
+                        {
+                            <div class="episode">
+                                <div class="img-title">
+                                    <div class="image"><a href=""><img src="~/assets/images/podcasts/@episode.Image" alt=""></a></div>
+                                    <div class="number">
+                                        <div class="title"><a href="">@episode.Title</a></div>
+                                        <div class="num"><p>56000 listen</p></div>
+                                    </div>
+                                </div>
+                                <div class="description"><p>@episode.Description</p></div>
+                                <div class="guests">
+                                    <div class="text"><p>Our guests:</p></div>
+                                    <div class="g-info">
+                                        @if (episode.EpisodeGuests.Any())
+                                        {
+                                            @foreach(var episodeGuest in episode.EpisodeGuests)
+                                            {
+                                                <div class="member">
+                                                    <a href=""><img src="~/assets/images/home/@episodeGuest.Guest.Image" alt=""></a>
+                                                    <a class="name" href="">@episodeGuest.Guest.FirstName @episodeGuest.Guest.LastName</a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <div class="icons-play">
+                                    <div class="icons">
+                                        <div class="add-episode">
+                                            <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <i class="bi bi-plus-circle"></i>
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Select a category</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="/YourController/YourAction" method="post">
+                                                                <div class="mb-3">
+                                                                    <label for="categorySelect" class="form-label">Kateqoriya seçin:</label>
+                                                                    <select class="form-control" id="categorySelect" name="category">
+                                                                        <option disabled selected>Birini seçin</option>
+                                                                        <option value="tech">Texnologiya</option>
+                                                                        <option value="health">Sağlamlıq</option>
+                                                                        <option value="education">Təhsil</option>
+                                                                        <option value="sports">İdman</option>
+                                                                    </select>
+                                                                </div>
 
-          <!-- Submit düyməsi -->
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle"></i> Təsdiqlə
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-                           </div>
-                                  </div>
-                                  <div class="delete-episode">
-                                    <form action="" method="">
-                                      <button type="submit" class="btn btn-primary delete">
-                                         <i class="bi bi-dash-circle"></i>
-                                      </button>
-                                    </form>
-                                  </div>
-                                  
-                                  <div class="like-episode">
-                                    <form action="" method="">
-                                      <button type="submit" class="btn btn-primary like">
-                                         <i class="bi bi-hand-thumbs-up"></i>
-                                      </button>
-                                    </form>
-                                    <span>112</span>
-                                  </div>
-                              </div>
-                              <div class="play">
-                                <button><i class="bi bi-play-circle-fill"></i></button>
-                                <audio controls>
-                                  <source src="" type="audio/mp3">
-                                  Sizin brauzeriniz audio elementini dəstəkləmir.
-                                </audio>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="episode">
-                            <div class="img-title">
-                               <div class="image"><a href=""><img src="~/assets/images/podcasts/podcast3.jpg" alt=""></a></div>
-                               <div class="number">
-                                <div class="title"><a href="">Lorem ipsum dolor sit amet</a></div>
-                               <div class="num"><p>56000 listen</p></div>
-                               </div>
-                            </div>
-                           <div class="description"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum eum voluptatem quam nostrum enim ipsa nulla minus optio nobis ad. Perferendis delectus neque animi! Ex ut facere itaque accusantium non.</p></div>
-                           <div class="guests">
-                            <div class="text"><p>Our guests:</p></div>
-                            <div class="g-info">
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person3.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person4.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person1.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                            </div>
-                           </div>
-                           <div class="icons-play">
-                              <div class="icons">
-                                  <div class="add-episode">
-                                    <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                                       <i class="bi bi-plus-circle"></i>
-                                    </button>
-                                    <!-- Modal -->
-                           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Select a category</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-       <div class="modal-body">
-        <form action="/YourController/YourAction" method="post">
-          <div class="mb-3">
-            <label for="categorySelect" class="form-label">Kateqoriya seçin:</label>
-            <select class="form-control" id="categorySelect" name="category">
-              <option disabled selected>Birini seçin</option>
-              <option value="tech">Texnologiya</option>
-              <option value="health">Sağlamlıq</option>
-              <option value="education">Təhsil</option>
-              <option value="sports">İdman</option>
-            </select>
-          </div>
+                                                                <!-- Submit düyməsi -->
+                                                                <button type="submit" class="btn btn-primary">
+                                                                    <i class="bi bi-check-circle"></i> Təsdiqlə
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="delete-episode">
+                                            <form action="" method="">
+                                                <button type="submit" class="btn btn-primary delete">
+                                                    <i class="bi bi-dash-circle"></i>
+                                                </button>
+                                            </form>
+                                        </div>
 
-          <!-- Submit düyməsi -->
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle"></i> Təsdiqlə
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-                           </div>
-                                  </div>
-                                  <div class="delete-episode">
-                                    <form action="" method="">
-                                      <button type="submit" class="btn btn-primary delete">
-                                         <i class="bi bi-dash-circle"></i>
-                                      </button>
-                                    </form>
-                                  </div>
-                                  
-                                  <div class="like-episode">
-                                    <form action="" method="">
-                                      <button type="submit" class="btn btn-primary like">
-                                         <i class="bi bi-hand-thumbs-up"></i>
-                                      </button>
-                                    </form>
-                                    <span>112</span>
-                                  </div>
-                              </div>
-                              <div class="play">
-                                <button><i class="bi bi-play-circle-fill"></i></button>
-                                <audio controls>
-                                  <source src="" type="audio/mp3">
-                                  Sizin brauzeriniz audio elementini dəstəkləmir.
-                                </audio>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="episode">
-                            <div class="img-title">
-                               <div class="image"><a href=""><img src="~/assets/images/podcasts/podcast3.jpg" alt=""></a></div>
-                               <div class="number">
-                                <div class="title"><a href="">Lorem ipsum dolor sit amet</a></div>
-                               <div class="num"><p>56000 listen</p></div>
-                               </div>
+                                        <div class="like-episode">
+                                            <form action="" method="">
+                                                <button type="submit" class="btn btn-primary like">
+                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                                </button>
+                                            </form>
+                                            <span>112</span>
+                                        </div>
+                                    </div>
+                                    <div class="play">
+                                        <button onclick="playAudio('@episode.Audio', this)">
+                                            <i class="bi bi-play-circle-fill"></i>
+                                        </button>
+                                        <audio id="audio-@episode.Id" controls>
+                                            <source src="@Url.Content("~/audios/" + episode.Audio)" type="audio/mp3">
+                                            Sizin brauzeriniz audio elementini dəstəkləmir.
+                                        </audio>
+                                    </div>
+                                </div>
                             </div>
-                           <div class="description"><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum eum voluptatem quam nostrum enim ipsa nulla minus optio nobis ad. Perferendis delectus neque animi! Ex ut facere itaque accusantium non.</p></div>
-                           <div class="guests">
-                            <div class="text"><p>Our guests:</p></div>
-                            <div class="g-info">
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person3.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person4.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                              <div class="member">
-                                  <a href=""><img src="~/assets/images/home/person1.jpg" alt=""></a>
-                                  <a class="name" href="">Name Surname</a>
-                              </div>
-                            </div>
-                           </div>
-                           <div class="icons-play">
-                              <div class="icons">
-                                  <div class="add-episode">
-                                    <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal" >
-                                       <i class="bi bi-plus-circle"></i>
-                                    </button>
-                                    <!-- Modal -->
-                           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Select a category</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-       <div class="modal-body">
-        <form action="/YourController/YourAction" method="post">
-          <div class="mb-3">
-            <label for="categorySelect" class="form-label">Kateqoriya seçin:</label>
-            <select class="form-control" id="categorySelect" name="category">
-              <option disabled selected>Birini seçin</option>
-              <option value="tech">Texnologiya</option>
-              <option value="health">Sağlamlıq</option>
-              <option value="education">Təhsil</option>
-              <option value="sports">İdman</option>
-            </select>
-          </div>
-
-          <!-- Submit düyməsi -->
-          <button type="submit" class="btn btn-primary">
-            <i class="bi bi-check-circle"></i> Təsdiqlə
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-                           </div>
-                                  </div>
-                                  <div class="delete-episode">
-                                    <form action="" method="">
-                                      <button type="submit" class="btn btn-primary delete">
-                                         <i class="bi bi-dash-circle"></i>
-                                      </button>
-                                    </form>
-                                  </div>
-                                  
-                                  <div class="like-episode">
-                                    <form action="" method="">
-                                      <button type="submit" class="btn btn-primary like">
-                                         <i class="bi bi-hand-thumbs-up"></i>
-                                      </button>
-                                    </form>
-                                    <span>112</span>
-                                  </div>
-                              </div>
-                              <div class="play">
-                                <button><i class="bi bi-play-circle-fill"></i></button>
-                                <audio controls>
-                                  <source src="" type="audio/mp3">
-                                  Sizin brauzeriniz audio elementini dəstəkləmir.
-                                </audio>
-                              </div>
-                           </div>
-                        </div>
-                    </div>
+                        }
+                    }
+                </div>
                 </div>
             </div>
         </section>
@@ -323,3 +163,29 @@
           </div>
         </section>
 </main>
+
+
+<script>
+    function playAudio(audioSrc, button) {
+        const episodeDiv = button.closest('.episode'); // Ən yaxın .episode konteynerini tapır
+        const audioElement = episodeDiv.querySelector('audio'); // Onun içindəki audio elementini tapır
+        const isPlaying = !audioElement.paused;
+
+        // Bütün digər audio-ları dayandır
+        document.querySelectorAll('audio').forEach(audio => {
+            if (audio !== audioElement) {
+                audio.pause();
+                audio.previousElementSibling.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+            }
+        });
+
+        if (isPlaying) {
+            audioElement.pause();
+            button.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+        } else {
+            audioElement.play();
+            button.innerHTML = '<i class="bi bi-pause-circle-fill"></i>';
+        }
+    }
+
+</script>

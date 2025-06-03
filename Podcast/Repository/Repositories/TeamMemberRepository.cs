@@ -16,7 +16,7 @@ namespace Repository.Repositories
 
         public async Task<List<TeamMember>> GetAllAsync()
         {
-            return await _context.Set<TeamMember>().Include(tm=>tm.Podcasts).ToListAsync();
+            return await _context.Set<TeamMember>().Include(tm=>tm.Podcasts).OrderByDescending(c => c.CreatedDate).ToListAsync();
         }
 
         public async Task<TeamMember> GetByIdAsync(int id)

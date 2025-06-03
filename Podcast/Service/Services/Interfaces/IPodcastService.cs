@@ -13,7 +13,11 @@ namespace Service.Services.Interfaces
         Task CreateAsync(PodcastCreateVM request);
         Task EditAsync(int id, PodcastEditVM request);
         Task DeleteAsync(int id);
-        Task<TeamMemberAdminVM> GetByIdAsync(int id);
-        Task<List<TeamMemberAdminVM>> GetAllAsync();
+        Task<PodcastAdminVM> GetByIdAsync(int id);
+        Task<List<PodcastAdminVM>> GetAllAsync();
+        Task<IEnumerable<PodcastAdminVM>> SearchByTitleAsync(string searchText);
+        Task<IEnumerable<PodcastAdminVM>> FilterByCategoryAsync(string searchText,string categoryName);
+        Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryAsync(int categoryId);
+        Task<IEnumerable<PodcastAdminVM>> GetPodcastsAsync(int skip, int take,int categoryId);
     }
 }

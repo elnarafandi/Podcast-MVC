@@ -18,6 +18,8 @@ namespace Service
             services.AddScoped<IPodcastCategoryService, PodcastCategoryService>();
             services.AddScoped<ITeamMemberService, TeamMemberService>();
             services.AddScoped<IGuestService, GuestService>();
+            services.AddScoped<IEpisodeService, EpisodeService>();
+            services.AddScoped<IAppUserPodcastService, AppUserPodcastService>();
             return services;
         }
     }

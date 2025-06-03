@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Domain.Entities;
+using Microsoft.AspNetCore.Hosting;
 using Repository.Repositories.Interfaces;
+using Service.Helpers.Extensions;
 using Service.Services.Interfaces;
+using Service.ViewModels.Guest;
 using Service.ViewModels.Podcast;
 using Service.ViewModels.TeamMember;
 using System;
@@ -21,29 +24,140 @@ namespace Service.Services
             _podcastRepository = podcastRepository;
             _env = env;
         }
-        public Task CreateAsync(PodcastCreateVM request)
+        public async Task CreateAsync(PodcastCreateVM request)
         {
-            throw new NotImplementedException();
+            string fileName = Guid.NewGuid().ToString() + "-" + request.UploadImage.FileName;
+            string filePath = _env.GenerateFilePath("assets/images/podcasts", fileName);
+            using (FileStream stream = new FileStream(filePath, FileMode.Create))
+            {
+                await request.UploadImage.CopyToAsync(stream);
+            }
+            Podcast podcast = new Podcast()
+            {
+                Title = request.Title,
+                Description = request.Description,
+                Image = fileName,
+                TeamMemberId = request.TeamMemberId,
+                PodcastCategoryId = request.PodcastCategoryId
+            };
+            await _podcastRepository.CreateAsync(podcast);
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var podcast=await _podcastRepository.GetByIdAsync(id);
+            string filePath = _env.GenerateFilePath("assets/images/podcasts", podcast.Image);
+            filePath.DeleteFile();
+            await _podcastRepository.DeleteAsync(podcast);
         }
 
-        public Task EditAsync(int id, PodcastEditVM request)
+        public async Task EditAsync(int id, PodcastEditVM request)
         {
-            throw new NotImplementedException();
+            var podcast = await _podcastRepository.GetByIdAsync(id);
+            if (request.UploadImage != null)
+            {
+                string oldFilePath = _env.GenerateFilePath("assets/images/podcasts", podcast.Image);
+                oldFilePath.DeleteFile();
+                string fileName = Guid.NewGuid().ToString() + "-" + request.UploadImage.FileName;
+                string filePath = _env.GenerateFilePath("assets/images/podcasts", fileName);
+                using (FileStream stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await request.UploadImage.CopyToAsync(stream);
+                }
+                podcast.Image = fileName;
+            }
+            podcast.Title = request.Title;
+            podcast.Description = request.Description;
+            podcast.PodcastCategoryId = request.PodcastCategoryId;
+            podcast.TeamMemberId = request.TeamMemberId;
+            await _podcastRepository.EditAsync(podcast);
         }
 
-        public Task<List<TeamMemberAdminVM>> GetAllAsync()
+        public async Task<IEnumerable<PodcastAdminVM>> FilterByCategoryAsync(string searchText,string categoryName)
         {
-            throw new NotImplementedException();
+            var podcastsDb = await _podcastRepository.GetAllWithConditionAsync(p => p.Title.Trim().ToLower().Contains(searchText.Trim().ToLower()) && p.PodcastCategory.Name==categoryName);
+            var podcasts = podcastsDb.Select(p => new PodcastAdminVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Image = p.Image,
+                TeamMember = p.TeamMember
+            }).ToList();
+            return podcasts;
         }
 
-        public Task<TeamMemberAdminVM> GetByIdAsync(int id)
+        public async Task<List<PodcastAdminVM>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var podcastsDb=await _podcastRepository.GetAllAsync();
+            var podcasts=podcastsDb.Select(m=>new PodcastAdminVM
+            {
+                Id = m.Id,
+                Title = m.Title,
+                Description = m.Description,
+                Image = m.Image,
+                TeamMember=m.TeamMember,
+                PodcastCategory=m.PodcastCategory
+            }).ToList();
+            return podcasts;
+        }
+
+        public async Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryAsync(int categoryId)
+        {
+            var podcastsDb = await _podcastRepository.GetAllWithConditionAsync(p => p.PodcastCategoryId==categoryId);
+            var podcasts = podcastsDb.Select(p => new PodcastAdminVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Image = p.Image,
+                TeamMember = p.TeamMember
+            }).ToList();
+            return podcasts;
+        }
+
+        public async Task<PodcastAdminVM> GetByIdAsync(int id)
+        {
+            var podcastDb= await _podcastRepository.GetByIdAsync(id);
+            PodcastAdminVM podcast = new PodcastAdminVM
+            {
+                Id = podcastDb.Id,
+                Title = podcastDb.Title,
+                Description = podcastDb.Description,
+                Image = podcastDb.Image,
+                TeamMember = podcastDb.TeamMember,
+                PodcastCategory = podcastDb.PodcastCategory,
+                Episodes=podcastDb.Episodes
+            };
+            return podcast;
+        }
+
+        public async Task<IEnumerable<PodcastAdminVM>> GetPodcastsAsync(int skip, int take, int categoryId)
+        {
+            var podcastsDb = await _podcastRepository.GetPodcastsAsync(skip, take, categoryId);
+            var podcasts = podcastsDb.Select(p => new PodcastAdminVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Image = p.Image,
+                TeamMember = p.TeamMember
+            }).ToList();
+            return podcasts;
+        }
+
+        public async Task<IEnumerable<PodcastAdminVM>> SearchByTitleAsync(string searchText)
+        {
+            var podcastsDb = await _podcastRepository.GetAllWithConditionAsync(p=>p.Title.Trim().ToLower().Contains(searchText.Trim().ToLower()));
+            var podcasts=podcastsDb.Select(p=>new PodcastAdminVM
+            {
+                Id=p.Id,
+                Title=p.Title,
+                Description=p.Description,
+                Image = p.Image,
+                TeamMember = p.TeamMember
+            }).ToList();
+            return podcasts;
         }
     }
 }
