@@ -153,18 +153,14 @@ namespace Repository.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PodcastId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PodcastId1")
+                    b.Property<int>("PodcastId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("PodcastId1");
+                    b.HasIndex("PodcastId");
 
                     b.ToTable("Comments");
                 });
@@ -641,7 +637,7 @@ namespace Repository.Migrations
 
                     b.HasOne("Domain.Entities.Podcast", "Podcast")
                         .WithMany("Comments")
-                        .HasForeignKey("PodcastId1")
+                        .HasForeignKey("PodcastId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

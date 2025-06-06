@@ -1,4 +1,5 @@
-﻿using Service.ViewModels.Podcast;
+﻿using Domain.Entities;
+using Service.ViewModels.Podcast;
 using Service.ViewModels.PodcastCategory;
 using System;
 using System.Collections.Generic;
@@ -14,5 +15,6 @@ namespace Service.ViewModels.Home
         public List<PodcastAdminVM> Podcasts { get; set; }
         public List<int> FollowedPodcastIds { get; set; }
         public List<PodcastAdminVM> FollowedPodcasts { get; set; }
+        public IEnumerable<Domain.Entities.Playlist> Playlists { get; set; }
     }
 }

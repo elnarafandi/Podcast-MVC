@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Nu3cU+3EPIhxEin3xDK45euBevps4K9Iw0bscg6gG6g=",
+  "Hash": "BK9fJIw2oIvSaBZNIZB9C1tqlY9c3gGFamPnVj3vJws=",
   "Source": "Podcast",
   "BasePath": "_content/Podcast",
   "Mode": "Default",
@@ -36058,6 +36058,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\podcasts\\49abb456-c585-41b6-8cfc-9f2f25aa2747-7.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\5ab43866-c006-452b-a784-454211096b61-podcast2.jpg",
+      "SourceId": "Podcast",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\",
+      "BasePath": "_content/Podcast",
+      "RelativePath": "assets/images/podcasts/5ab43866-c006-452b-a784-454211096b61-podcast2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\podcasts\\5ab43866-c006-452b-a784-454211096b61-podcast2.jpg"
     },
     {
       "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\ac581604-835f-4c84-ad1b-9a64bf4b2c89-9.jpg",

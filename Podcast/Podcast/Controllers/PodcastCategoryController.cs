@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Service.Services;
 using Service.Services.Interfaces;
+using Service.ViewModels.Podcast;
 using Service.ViewModels.PodcastCategory;
+using System.Security.Claims;
 
 namespace Podcast.Controllers
 {
@@ -10,22 +13,37 @@ namespace Podcast.Controllers
     {
         private readonly IPodcastCategoryService _podcastCategoryService;
         private readonly IPodcastService _podcastService;
+        private readonly IAppUserPodcastService _appUserPodcastService;
         public PodcastCategoryController(IPodcastCategoryService podcastCategoryService,
-                                         IPodcastService podcastService)
+                                         IPodcastService podcastService,
+                                         IAppUserPodcastService appUserPodcastService)
         {
             _podcastCategoryService = podcastCategoryService;
             _podcastService = podcastService;
+            _appUserPodcastService = appUserPodcastService;
         }
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(int id, string sortOrder = null)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var podcastCategory = await _podcastCategoryService.GetByIdAsync(id);
-            var podcasts= await _podcastService.GetAllByCategoryAsync(id);
-            return View(new PodcastCategoryVM
+
+            var podcasts = sortOrder == "most_followed"
+                ? await _podcastService.GetAllByCategorySortedByFollowCountAsync(id)
+                : await _podcastService.GetAllByCategoryAsync(id);
+
+            var followedPodcastIds = userId != null
+                ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
+                : new List<int>();
+
+            var viewModel = new PodcastCategoryVM
             {
                 Podcasts = podcasts,
-                PodcastCategory=podcastCategory
-            });
+                PodcastCategory = podcastCategory,
+                FollowedPodcastIds = followedPodcastIds
+            };
+
+            return View(viewModel);
         }
-       
+
     }
 }

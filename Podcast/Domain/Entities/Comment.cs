@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string Content { get; set; }
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-        public string PodcastId { get; set; }
+        public int PodcastId { get; set; }
         public Podcast Podcast { get; set; }
     }
 }

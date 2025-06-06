@@ -137,7 +137,8 @@ namespace Service.Services
                 Podcast = m.Podcast,
                 Image = m.Image,
                 Audio = m.Audio,
-                EpisodeGuests = m.EpisodeGuests
+                EpisodeGuests = m.EpisodeGuests,
+                Likes = m.Likes
             }).ToList();
             return episode;
         }
@@ -153,7 +154,8 @@ namespace Service.Services
                 Podcast = episodeDb.Podcast,
                 Image = episodeDb.Image,
                 Audio = episodeDb.Audio,
-                EpisodeGuests = episodeDb.EpisodeGuests
+                EpisodeGuests = episodeDb.EpisodeGuests,
+                Likes= episodeDb.Likes
             };
             return episode;
         }

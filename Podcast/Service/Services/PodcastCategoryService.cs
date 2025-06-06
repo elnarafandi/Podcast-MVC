@@ -2,6 +2,8 @@
 using Repository.Repositories.Interfaces;
 using Service.Services.Interfaces;
 using Service.ViewModels.PodcastCategory;
+using Service.ViewModels.Podcast;
+using Service.ViewModels.TeamMember;
 using System;
 using System.Collections.Generic;
 using System.Linq;

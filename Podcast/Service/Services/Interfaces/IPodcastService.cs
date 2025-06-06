@@ -1,4 +1,5 @@
-﻿using Service.ViewModels.Podcast;
+﻿using Domain.Entities;
+using Service.ViewModels.Podcast;
 using Service.ViewModels.TeamMember;
 using System;
 using System.Collections.Generic;
@@ -19,5 +20,6 @@ namespace Service.Services.Interfaces
         Task<IEnumerable<PodcastAdminVM>> FilterByCategoryAsync(string searchText,string categoryName);
         Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryAsync(int categoryId);
         Task<IEnumerable<PodcastAdminVM>> GetPodcastsAsync(int skip, int take,int categoryId);
+        Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountAsync(int categoryId);
     }
 }

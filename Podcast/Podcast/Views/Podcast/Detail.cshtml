@@ -55,7 +55,7 @@
                                     <div class="g-info">
                                         @if (episode.EpisodeGuests.Any())
                                         {
-                                            @foreach(var episodeGuest in episode.EpisodeGuests)
+                                            @foreach (var episodeGuest in episode.EpisodeGuests)
                                             {
                                                 <div class="member">
                                                     <a href=""><img src="~/assets/images/home/@episodeGuest.Guest.Image" alt=""></a>
@@ -68,34 +68,33 @@
                                 <div class="icons-play">
                                     <div class="icons">
                                         <div class="add-episode">
-                                            <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal-@episode.Id">
                                                 <i class="bi bi-plus-circle"></i>
                                             </button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="exampleModal-@episode.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Select a category</h1>
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Your Playlists</h1>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form action="/YourController/YourAction" method="post">
-                                                                <div class="mb-3">
-                                                                    <label for="categorySelect" class="form-label">Kateqoriya seçin:</label>
-                                                                    <select class="form-control" id="categorySelect" name="category">
-                                                                        <option disabled selected>Birini seçin</option>
-                                                                        <option value="tech">Texnologiya</option>
-                                                                        <option value="health">Sağlamlıq</option>
-                                                                        <option value="education">Təhsil</option>
-                                                                        <option value="sports">İdman</option>
-                                                                    </select>
-                                                                </div>
+                                                            <form asp-action="AddEpisodeToPlaylist" method="post">
+                                                                <input type="hidden" name="episodeId" value="@episode.Id" />
+                                                                <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
 
-                                                                <!-- Submit düyməsi -->
-                                                                <button type="submit" class="btn btn-primary">
-                                                                    <i class="bi bi-check-circle"></i> Təsdiqlə
-                                                                </button>
+                                                                <select name="playlistId" class="form-control">
+                                                                    
+                                                                    <option value="" disabled selected>Select Playlist</option>
+
+                                                                    @foreach (var playlist in Model.Playlists)
+                                                                    {
+                                                                        <option value="@playlist.Id">@playlist.Name</option>
+                                                                    }
+                                                                </select>
+
+                                                                <button type="submit" class="btn btn-primary mt-2">Add to Playlist</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -111,12 +110,13 @@
                                         </div>
 
                                         <div class="like-episode">
-                                            <form action="" method="">
-                                                <button type="submit" class="btn btn-primary like">
-                                                    <i class="bi bi-hand-thumbs-up"></i>
+                                            <form method="post" class="like-form" data-episode-id="@episode.Id">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-primary like like-btn">
+                                                    <i class="bi @(Model.LikedEpisodeIds.Contains(episode.Id) ? "bi-hand-thumbs-up-fill" : "bi-hand-thumbs-up")"></i>
                                                 </button>
                                             </form>
-                                            <span>112</span>
+                                            <span class="like-count" data-episode-id="@episode.Id">@episode.Likes.Count()</span>
                                         </div>
                                     </div>
                                     <div class="play">
@@ -140,32 +140,29 @@
           <div class="my-container">
             <div class="area">
               <div class="write-comment">
-                <form action="" method="">
-                  <input type="text" name="" id="" placeholder="Share your opinion . . .">
-                  <button type="submit"><i class="bi bi-send"></i></button>
-                </form>
+                    <form asp-controller="Podcast" asp-action="AddComment" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
+                        <input type="text" name="content" placeholder="Share your opinion . . ." required>
+                        <button type="submit"><i class="bi bi-send"></i></button>
+                    </form>
               </div>
               <div class="all-comments">
-                <div class="comment">
-                  <div class="profile"><img src="~/assets/images/home/person2.jpg" alt=""> <p>Name Surname</p></div>
-                  <div class="text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quam consequuntur quas placeat voluptate. Recusandae amet expedita eum, eos quis qui dolore! Enim totam eveniet maiores fuga animi fugiat vitae!</p></div>
+                    @foreach(var comment in Model.Comments)
+                    {
+                        <div class="comment">
+                            <div class="profile"><img src="~/assets/images/home/@comment.AppUser.Image" alt=""> <p>@comment.AppUser.FirstName @comment.AppUser.LastName</p></div>
+                            <div class="text"><p>@comment.Content</p></div>
+                        </div>
+                    }
                 </div>
-                <div class="comment">
-                  <div class="profile"><img src="~/assets/images/home/person1.jpg" alt=""> <p>Name Surname</p></div>
-                  <div class="text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quam consequuntur quas placeat voluptate. Recusandae amet expedita eum, eos quis qui dolore! Enim totam eveniet maiores fuga animi fugiat vitae! Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere iure aliquam dolor, eaque impedit nesciunt aut ullam quasi quis pariatur eos reprehenderit a, numquam alias cumque rem est voluptate. Nihil. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto voluptatibus illum placeat magni nobis, sequi maxime soluta asperiores temporibus architecto reprehenderit unde accusantium aliquid doloremque dolores tempore modi deserunt tempora.</p></div>
-                </div>
-                <div class="comment">
-                  <div class="profile"><img src="~/assets/images/home/person4.jpg" alt=""> <p>Name Surname</p></div>
-                  <div class="text"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p></div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 </main>
 
 
-<script>
+@* <script>
     function playAudio(audioSrc, button) {
         const episodeDiv = button.closest('.episode'); // Ən yaxın .episode konteynerini tapır
         const audioElement = episodeDiv.querySelector('audio'); // Onun içindəki audio elementini tapır
@@ -188,4 +185,69 @@
         }
     }
 
+</script> *@
+
+<script>
+    // 🔊 Play/Pause funksiyası
+    function playAudio(audioSrc, button) {
+        const episodeDiv = button.closest('.episode');
+        const audioElement = episodeDiv.querySelector('audio');
+        const isPlaying = !audioElement.paused;
+
+        document.querySelectorAll('audio').forEach(audio => {
+            if (audio !== audioElement) {
+                audio.pause();
+                audio.previousElementSibling.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+            }
+        });
+
+        if (isPlaying) {
+            audioElement.pause();
+            button.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+        } else {
+            audioElement.play();
+            button.innerHTML = '<i class="bi bi-pause-circle-fill"></i>';
+        }
+    }
+
+    // 👍 Like funksiyası
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".like-form").forEach(form => {
+            form.addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const episodeId = form.dataset.episodeId;
+                const button = form.querySelector(".like-btn");
+                const icon = button.querySelector("i");
+                const span = document.querySelector(`.like-count[data-episode-id='${episodeId}']`);
+
+                const token = document.querySelector("input[name='__RequestVerificationToken']").value;
+
+                const formData = new FormData();
+                formData.append("episodeId", episodeId);
+
+                const response = await fetch("/Podcast/ToggleEpisodeLike", {
+                    method: "POST",
+                    headers: {
+                        "RequestVerificationToken": token
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+
+                    if (result.isLiked) {
+                        icon.classList.remove("bi-hand-thumbs-up");
+                        icon.classList.add("bi-hand-thumbs-up-fill");
+                    } else {
+                        icon.classList.remove("bi-hand-thumbs-up-fill");
+                        icon.classList.add("bi-hand-thumbs-up");
+                    }
+
+                    span.textContent = result.likeCount;
+                }
+            });
+        });
+    });
 </script>

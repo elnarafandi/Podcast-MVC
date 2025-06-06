@@ -14,14 +14,18 @@ namespace Repository.Repositories
     {
         public EpisodeRepository(AppDbContext context) : base(context) { }
 
+        
+
         public async Task<List<Episode>> GetAllAsync()
         {
-            return await _context.Set<Episode>().Include(e=>e.Podcast).Include(e=>e.EpisodeGuests).ThenInclude(eg=>eg.Guest).OrderByDescending(c => c.CreatedDate).ToListAsync();
+            return await _context.Set<Episode>().Include(e=>e.Podcast).Include(e=>e.Likes).Include(e=>e.EpisodeGuests).ThenInclude(eg=>eg.Guest).OrderByDescending(c => c.CreatedDate).ToListAsync();
         }
 
         public async Task<Episode> GetByIdAsync(int id)
         {
-            return await _context.Set<Episode>().Include(e => e.Podcast).Include(e => e.EpisodeGuests).ThenInclude(eg => eg.Guest).FirstOrDefaultAsync(g=>g.Id==id);
+            return await _context.Set<Episode>().Include(e => e.Podcast).Include(e => e.Likes).Include(e => e.EpisodeGuests).ThenInclude(eg => eg.Guest).FirstOrDefaultAsync(g=>g.Id==id);
         }
+
+        
     }
 }

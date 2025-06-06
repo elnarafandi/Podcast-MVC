@@ -6,6 +6,7 @@ using Service.Services.Interfaces;
 using Service.ViewModels.Guest;
 using Service.ViewModels.Podcast;
 using Service.ViewModels.TeamMember;
+using Service.ViewModels.PodcastCategory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,8 +97,8 @@ namespace Service.Services
                 Title = m.Title,
                 Description = m.Description,
                 Image = m.Image,
-                TeamMember=m.TeamMember,
-                PodcastCategory=m.PodcastCategory
+                TeamMember = m.TeamMember,
+                PodcastCategory =m.PodcastCategory
             }).ToList();
             return podcasts;
         }
@@ -105,6 +106,20 @@ namespace Service.Services
         public async Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryAsync(int categoryId)
         {
             var podcastsDb = await _podcastRepository.GetAllWithConditionAsync(p => p.PodcastCategoryId==categoryId);
+            var podcasts = podcastsDb.Select(p => new PodcastAdminVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Image = p.Image,
+                TeamMember = p.TeamMember
+            }).ToList();
+            return podcasts;
+        }
+
+        public async Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountAsync(int categoryId)
+        {
+            var podcastsDb= await _podcastRepository.GetAllByCategorySortedByFollowCountAsync(categoryId);
             var podcasts = podcastsDb.Select(p => new PodcastAdminVM
             {
                 Id = p.Id,
@@ -127,7 +142,7 @@ namespace Service.Services
                 Image = podcastDb.Image,
                 TeamMember = podcastDb.TeamMember,
                 PodcastCategory = podcastDb.PodcastCategory,
-                Episodes=podcastDb.Episodes
+                Episodes =podcastDb.Episodes
             };
             return podcast;
         }

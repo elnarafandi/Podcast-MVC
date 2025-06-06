@@ -17,7 +17,24 @@ namespace Repository.Repositories
 
         public async Task<List<Podcast>> GetAllAsync()
         {
-            return await _context.Set<Podcast>().Include(c=>c.PodcastCategory).Include(c=>c.TeamMember).Include(c=>c.Episodes).ThenInclude(e=>e.EpisodeGuests).ThenInclude(eg=>eg.Guest).OrderByDescending(c => c.CreatedDate).ToListAsync();
+            return await _context.Set<Podcast>()
+    .Include(c => c.PodcastCategory)
+    .Include(c => c.TeamMember)
+    .Include(c => c.Episodes)
+        .ThenInclude(e => e.Likes)               
+    .Include(c => c.Episodes)
+        .ThenInclude(e => e.EpisodeGuests)     
+            .ThenInclude(eg => eg.Guest)        
+    .OrderByDescending(c => c.CreatedDate)
+    .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Podcast>> GetAllByCategorySortedByFollowCountAsync(int categoryId)
+        {
+            return await _context.Podcasts
+                .Where(p => p.PodcastCategoryId == categoryId)
+                .OrderByDescending(p => _context.AppUserPodcasts.Count(ap => ap.PodcastId == p.Id))
+                .ToListAsync();
         }
 
         public async Task<IEnumerable<Podcast>> GetAllWithConditionAsync(Expression<Func<Podcast, bool>> predicate)
@@ -27,7 +44,15 @@ namespace Repository.Repositories
 
         public async Task<Podcast> GetByIdAsync(int id)
         {
-            return await _context.Set<Podcast>().Include(c => c.PodcastCategory).Include(c => c.TeamMember).Include(c => c.Episodes).ThenInclude(e => e.EpisodeGuests).ThenInclude(eg => eg.Guest).FirstOrDefaultAsync(c=>c.Id==id);
+            return await _context.Set<Podcast>()
+    .Include(c => c.PodcastCategory)
+    .Include(c => c.TeamMember)
+    .Include(c => c.Episodes)
+        .ThenInclude(e => e.Likes)
+    .Include(c => c.Episodes)
+        .ThenInclude(e => e.EpisodeGuests)
+            .ThenInclude(eg => eg.Guest)
+    .FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<IEnumerable<Podcast>> GetPodcastsAsync(int skip, int take, int categoryId)

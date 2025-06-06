@@ -48,6 +48,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <form action="/create-playlist" method="post">
+                                                        @Html.AntiForgeryToken()
                                                         <!-- Playlist adı -->
                                                         <div class="mb-3">
                                                             <input type="text"
@@ -60,7 +61,7 @@
 
                                                         <!-- Submit düyməsi -->
                                                         <button type="submit" class="btn btn-primary w-100">
-                                                            <i class="bi bi-plus-circle"></i> Playlist Yarat
+                                                            <i class="bi bi-plus-circle"></i> Create Playlist
                                                         </button>
                                                     </form>
                                                 </div>
@@ -71,75 +72,22 @@
                                     </div>
                                 </div>
                                 <ul class="child-ul">
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem </p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet dfgfhgfh</p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet dfgfhgfh</p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="name"><a href=""><p>Lorem ipsum dolor sit amet</p></a></div>
-                                        <div class="delete">
-                                            <form action="" method="">
-                                                <button type="submit"><i class="bi bi-trash"></i></button>
-                                            </form>
-                                        </div>
-                                    </li>
+                                    @foreach(var playlist in Model.Playlists)
+                                    {
+                                        <li>
+                                            <div class="name"><a asp-controller="Playlist" asp-action="Detail" asp-route-id="@playlist.Id"><p>@playlist.Name</p></a></div>
+                                            <div class="delete">
+                                                <form asp-controller="Playlist" asp-action="DeletePlaylist" method="post" asp-route-id="@playlist.Id">
+                                                    <button type="submit"><i class="bi bi-trash"></i></button>
+                                                </form>
+                                            </div>
+                                        </li>
+                                    }
 
                                 </ul>
                             </li>
                             <li class="sub-li">
-                                <p><i class="bi bi-file-plus-fill"></i>Subscribers</p>
+                                <p><i class="bi bi-file-plus-fill"></i>Followed Podcasts</p>
                                 <ul class="child-ul">
                                     @if (Model.FollowedPodcasts.Any())
                                     {
@@ -161,9 +109,9 @@
                         @foreach(var podcast in Model.Podcasts)
                         {
                             <div class="podcast">
-                                <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="./assets/images/podcasts/@podcast.Image" alt=""></a></div>
+                                <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="~/assets/images/podcasts/@podcast.Image" alt=""></a></div>
                                 <div class="info">
-                                    <div class="title"><a href=""><p>@podcast.Title</p></a></div>
+                                    <div class="title"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><p>@podcast.Title</p></a></div>
                                     <div class="podcaster"><p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p></div>
                                 </div>
                                 <div class="follow">

@@ -20,6 +20,10 @@ namespace Repository
             services.AddScoped<IGuestRepository, GuestRepository>();
             services.AddScoped<IEpisodeRepository, EpisodeRepository>();
             services.AddScoped<IAppUserPodcastRepository, AppUserPodcastRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<IPlaylistRepository, PlaylistRepository>();
+            services.AddScoped<IPlaylistEpisodeRepository, PlaylistEpisodeRepository>();
+            services.AddScoped<ILikeRepository, LikeRepository>();
             return services;
         }
     }

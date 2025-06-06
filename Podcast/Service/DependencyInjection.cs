@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Repository.Repositories.Interfaces;
 using Service.Services;
 using Service.Services.Interfaces;
 using System;
@@ -20,6 +21,10 @@ namespace Service
             services.AddScoped<IGuestService, GuestService>();
             services.AddScoped<IEpisodeService, EpisodeService>();
             services.AddScoped<IAppUserPodcastService, AppUserPodcastService>();
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<IPlaylistService, PlaylistService>();
+            services.AddScoped<IPlaylistEpisodeService, PlaylistEpisodeService>();
+            services.AddScoped<ILikeService, LikeService>();
             return services;
         }
     }

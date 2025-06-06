@@ -1,0 +1,100 @@
+﻿@model PlaylistAdminVM
+
+
+
+<main>
+    
+    <section id="podcast-episodes">
+        <div class="my-container">
+            <h5 >@Model.Name</h5>
+            <div class="all">
+          
+                <div class="episodes">
+                    @foreach (var playlistEpisode in Model.PlaylistEpisodes)
+                    {
+                        <div class="episode">
+                            <div class="img-title">
+                                <div class="image"><a href=""><img src="~/assets/images/podcasts/@playlistEpisode.Episode.Image" alt=""></a></div>
+                                <div class="number">
+                                    <div class="title"><a href="">@playlistEpisode.Episode.Title</a></div>
+                                    <div class="num"><p>56000 listen</p></div>
+                                </div>
+                            </div>
+                            <div class="description"><p>@playlistEpisode.Episode.Description</p></div>
+                            <div class="guests">
+                                <div class="text"><p>Our guests:</p></div>
+                                <div class="g-info">
+                                    @foreach (var guest in playlistEpisode.Episode.EpisodeGuests)
+                                    {
+                                        <div class="member">
+                                            <a href=""><img src="~/assets/images/home/@guest.Guest.Image" alt=""></a>
+                                            <a class="name" href="">@guest.Guest.FirstName @guest.Guest.LastName</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div class="icons-play">
+                                <div class="icons">
+
+                                    <div class="delete">
+                                        <form action="@Url.Action("DeleteEpisode", "Playlist")" method="POST">
+                                            <input type="hidden" name="playlistId" value="@playlistEpisode.PlaylistId" />
+                                            <input type="hidden" name="episodeId" value="@playlistEpisode.EpisodeId" />
+                                            <button type="submit" class="btn btn-primary delete" style="background-color:white; color:red; border:none;">
+                                                <i class="bi bi-dash-circle"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <div class="like-episode">
+                                        <form action="" method="">
+                                            <button type="submit" class="btn btn-primary like">
+                                                <i class="bi bi-hand-thumbs-up"></i>
+                                            </button>
+                                        </form>
+                                        <span>112</span>
+                                    </div>
+                                </div>
+                                <div class="play">
+                                    <button onclick="playAudio('@playlistEpisode.Episode.Audio', this)">
+                                        <i class="bi bi-play-circle-fill"></i>
+                                    </button>
+                                    <audio id="audio-@playlistEpisode.Episode.Id" controls>
+                                        <source src="@Url.Content("~/audios/" + playlistEpisode.Episode.Audio)" type="audio/mp3">
+                                        Sizin brauzeriniz audio elementini dəstəkləmir.
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+
+<script>
+    function playAudio(audioSrc, button) {
+        const episodeDiv = button.closest('.episode'); // Ən yaxın .episode konteynerini tapır
+        const audioElement = episodeDiv.querySelector('audio'); // Onun içindəki audio elementini tapır
+        const isPlaying = !audioElement.paused;
+
+        // Bütün digər audio-ları dayandır
+        document.querySelectorAll('audio').forEach(audio => {
+            if (audio !== audioElement) {
+                audio.pause();
+                audio.previousElementSibling.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+            }
+        });
+
+        if (isPlaying) {
+            audioElement.pause();
+            button.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+        } else {
+            audioElement.play();
+            button.innerHTML = '<i class="bi bi-pause-circle-fill"></i>';
+        }
+    }
+
+</script>

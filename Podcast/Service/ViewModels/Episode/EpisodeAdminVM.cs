@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+using Service.ViewModels.Podcast;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +17,6 @@ namespace Service.ViewModels.Episode
         public string Audio { get; set; }
         public Domain.Entities.Podcast Podcast { get; set; }
         public ICollection<Domain.Entities.EpisodeGuest> EpisodeGuests { get; set; }
+        public ICollection<Domain.Entities.Like> Likes { get; set; }
     }
 }
