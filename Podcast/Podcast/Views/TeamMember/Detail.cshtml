@@ -1,0 +1,23 @@
+﻿@model TeamMemberAdminVM
+
+
+
+<main>
+    <section id="team-member">
+        <div class="my-container">
+            <div class="member">
+                <div class="image"><img src="~/assets/images/home/@Model.Image" alt=""></div>
+                <div class="info">
+                    <div class="name"><p>@Model.FirstName @Model.LastName</p></div>
+                    <div class="about"><p>@Model.Information</p></div>
+                    <div class="social">
+                        <p class="text" style="font-weight: bold; font-size: 15px;">Social media links:</p>
+                        <ul>
+                            <li><p>@Model.SocialMedia</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

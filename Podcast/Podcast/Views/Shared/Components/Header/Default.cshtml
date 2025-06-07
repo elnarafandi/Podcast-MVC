@@ -1,4 +1,7 @@
-﻿<header>
+﻿@model HeaderVM
+
+
+<header>
     <section id="navbar">
         <div class="my-container">
             <div class="all">
@@ -10,7 +13,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="account">
-                        <div class="profile"><a href=""><img src="~/assets/images/home/person1.jpg" alt=""></a></div>
+                        <div class="profile"><a href=""><img src="~/assets/images/home/@Model.Image" alt=""></a></div>
                         <div class="logout">
                             <form method="POST" asp-controller="Account" asp-action="Logout">
                                 <button type="submit"><i class="bi bi-box-arrow-right"></i><p>Logout</p></button>

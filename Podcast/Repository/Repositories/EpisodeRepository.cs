@@ -16,9 +16,14 @@ namespace Repository.Repositories
 
         
 
-        public async Task<List<Episode>> GetAllAsync()
+        public async Task<List<Episode>> GetAllAsync(int? count = null)
         {
-            return await _context.Set<Episode>().Include(e=>e.Podcast).Include(e=>e.Likes).Include(e=>e.EpisodeGuests).ThenInclude(eg=>eg.Guest).OrderByDescending(c => c.CreatedDate).ToListAsync();
+            var episodes= await _context.Set<Episode>().Include(e=>e.Podcast).Include(e=>e.Likes).Include(e=>e.EpisodeGuests).ThenInclude(eg=>eg.Guest).OrderByDescending(c => c.CreatedDate).ToListAsync();
+            if (count.HasValue)
+            {
+                episodes=episodes.Take(count.Value).ToList();
+            }
+            return episodes;
         }
 
         public async Task<Episode> GetByIdAsync(int id)

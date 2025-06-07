@@ -17,7 +17,7 @@ namespace Podcast.Controllers
         public async Task<IActionResult> Index()
         {
             var teamMembers= await _teamMemberService.GetAllAsync();
-            var episodes= await _episodeService.GetAllAsync();
+            var episodes= await _episodeService.GetAllAsync(3);
             return View(new AboutVM
             {
                 TeamMembers = teamMembers,

@@ -28,7 +28,7 @@ namespace Repository.Repositories
 
         public async Task<Playlist> GetByIdAsync(int id)
         {
-            return await _context.Set<Playlist>().Include(p=>p.PlaylistEpisodes).ThenInclude(e=>e.Episode).ThenInclude(eg=>eg.EpisodeGuests).ThenInclude(g=>g.Guest).FirstOrDefaultAsync(p=>p.Id==id);
+            return await _context.Set<Playlist>().Include(p => p.PlaylistEpisodes).ThenInclude(pe => pe.Episode).ThenInclude(e => e.Likes) .Include(p => p.PlaylistEpisodes).ThenInclude(pe => pe.Episode).ThenInclude(e => e.EpisodeGuests) .ThenInclude(eg => eg.Guest).FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task<IEnumerable<Playlist>> GetPlaylistsByUserIdAsync(string userId)

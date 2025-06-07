@@ -35,7 +35,7 @@
                                 <p>@episode.Description</p>
                             </div>
                             <div class="number">
-                                <p>23 min listen</p>
+                                <p>@episode.Likes.Count() like</p>
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                 {
                     <div class="podcaster">
                         <img src="~/assets/images/home/@teamMember.Image" alt="">
-                        <a href="./signin.html"><p>Name Surname</p></a>
+                        <a href="./signin.html"><p>@teamMember.FirstName @teamMember.LastName</p></a>
                     </div>
                 }
             </div>

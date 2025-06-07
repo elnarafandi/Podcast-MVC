@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "BK9fJIw2oIvSaBZNIZB9C1tqlY9c3gGFamPnVj3vJws=",
+  "Hash": "96hMpc6hWekUTg9IOjYKFjx7dp8069twd+M7vqztXDU=",
   "Source": "Podcast",
   "BasePath": "_content/Podcast",
   "Mode": "Default",
@@ -35965,6 +35965,25 @@
       "OriginalItemSpec": "wwwroot\\assets\\images\\home\\c76fc83d-3fe6-4bfd-a48f-8e6274bfd285-person1.jpg"
     },
     {
+      "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\listener.jpg",
+      "SourceId": "Podcast",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\",
+      "BasePath": "_content/Podcast",
+      "RelativePath": "assets/images/home/listener.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\home\\listener.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\person1.jpg",
       "SourceId": "Podcast",
       "SourceType": "Discovered",
@@ -36096,6 +36115,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\podcasts\\ac581604-835f-4c84-ad1b-9a64bf4b2c89-9.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\b4ce9371-f488-47cc-a7d3-842fe066fc3a-3.jpg",
+      "SourceId": "Podcast",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\",
+      "BasePath": "_content/Podcast",
+      "RelativePath": "assets/images/podcasts/b4ce9371-f488-47cc-a7d3-842fe066fc3a-3.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\podcasts\\b4ce9371-f488-47cc-a7d3-842fe066fc3a-3.jpg"
     },
     {
       "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\b6b44def-88bc-4ea1-8fc1-0f14127ae0e4-lemons.jpg",
@@ -36343,6 +36381,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\audios\\9754b1a3-7ce5-4c12-9c67-d5629698b002-Recording.m4a"
+    },
+    {
+      "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\audios\\fb87f199-5845-485c-a04a-e7425630d9d0-Ocean.m4a",
+      "SourceId": "Podcast",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\",
+      "BasePath": "_content/Podcast",
+      "RelativePath": "audios/fb87f199-5845-485c-a04a-e7425630d9d0-Ocean.m4a",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\audios\\fb87f199-5845-485c-a04a-e7425630d9d0-Ocean.m4a"
     }
   ]
 }

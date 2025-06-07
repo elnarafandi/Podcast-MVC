@@ -10,6 +10,6 @@ namespace Repository.Repositories.Interfaces
     public interface IEpisodeRepository:IBaseRepository<Episode>
     {
         Task<Episode> GetByIdAsync(int id);
-        Task<List<Episode>> GetAllAsync();
+        Task<List<Episode>> GetAllAsync(int? count = null);
     }
 }

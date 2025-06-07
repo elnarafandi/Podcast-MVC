@@ -1,4 +1,4 @@
-﻿@model PlaylistAdminVM
+﻿@model PlaylistVM
 
 
 
@@ -6,11 +6,11 @@
     
     <section id="podcast-episodes">
         <div class="my-container">
-            <h5 >@Model.Name</h5>
+            <h5 >@Model.Playlist.Name</h5>
             <div class="all">
           
                 <div class="episodes">
-                    @foreach (var playlistEpisode in Model.PlaylistEpisodes)
+                    @foreach (var playlistEpisode in Model.Playlist.PlaylistEpisodes)
                     {
                         <div class="episode">
                             <div class="img-title">
@@ -47,12 +47,13 @@
                                     </div>
 
                                     <div class="like-episode">
-                                        <form action="" method="">
-                                            <button type="submit" class="btn btn-primary like">
-                                                <i class="bi bi-hand-thumbs-up"></i>
+                                        <form method="post" class="like-form" data-episode-id="@playlistEpisode.Episode.Id">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-primary like like-btn">
+                                                <i class="bi @(Model.LikedEpisodeIds.Contains(playlistEpisode.Episode.Id) ? "bi-hand-thumbs-up-fill" : "bi-hand-thumbs-up")"></i>
                                             </button>
                                         </form>
-                                        <span>112</span>
+                                        <span class="like-count" data-episode-id="@playlistEpisode.Episode.Id">@playlistEpisode.Episode.Likes.Count()</span>
                                     </div>
                                 </div>
                                 <div class="play">
@@ -74,7 +75,7 @@
 </main>
 
 
-<script>
+@* <script>
     function playAudio(audioSrc, button) {
         const episodeDiv = button.closest('.episode'); // Ən yaxın .episode konteynerini tapır
         const audioElement = episodeDiv.querySelector('audio'); // Onun içindəki audio elementini tapır
@@ -97,4 +98,71 @@
         }
     }
 
+</script> *@
+
+
+
+<script>
+    // 🔊 Play/Pause funksiyası
+    function playAudio(audioSrc, button) {
+        const episodeDiv = button.closest('.episode');
+        const audioElement = episodeDiv.querySelector('audio');
+        const isPlaying = !audioElement.paused;
+
+        document.querySelectorAll('audio').forEach(audio => {
+            if (audio !== audioElement) {
+                audio.pause();
+                audio.previousElementSibling.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+            }
+        });
+
+        if (isPlaying) {
+            audioElement.pause();
+            button.innerHTML = '<i class="bi bi-play-circle-fill"></i>';
+        } else {
+            audioElement.play();
+            button.innerHTML = '<i class="bi bi-pause-circle-fill"></i>';
+        }
+    }
+
+    // 👍 Like funksiyası
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".like-form").forEach(form => {
+            form.addEventListener("submit", async function (e) {
+                e.preventDefault();
+
+                const episodeId = form.dataset.episodeId;
+                const button = form.querySelector(".like-btn");
+                const icon = button.querySelector("i");
+                const span = document.querySelector(`.like-count[data-episode-id='${episodeId}']`);
+
+                const token = document.querySelector("input[name='__RequestVerificationToken']").value;
+
+                const formData = new FormData();
+                formData.append("episodeId", episodeId);
+
+                const response = await fetch("/Podcast/ToggleEpisodeLike", {
+                    method: "POST",
+                    headers: {
+                        "RequestVerificationToken": token
+                    },
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+
+                    if (result.isLiked) {
+                        icon.classList.remove("bi-hand-thumbs-up");
+                        icon.classList.add("bi-hand-thumbs-up-fill");
+                    } else {
+                        icon.classList.remove("bi-hand-thumbs-up-fill");
+                        icon.classList.add("bi-hand-thumbs-up");
+                    }
+
+                    span.textContent = result.likeCount;
+                }
+            });
+        });
+    });
 </script>

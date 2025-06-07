@@ -64,7 +64,7 @@ namespace Service.Services
                 LastName = model.LastName,
                 UserName = model.UserName,
                 Email = model.Email,
-                Image = "person2.jpg",
+                Image = "listener.jpg",
             };
             var result = await _userManager.CreateAsync(appUser, model.Password);
             if (!result.Succeeded)

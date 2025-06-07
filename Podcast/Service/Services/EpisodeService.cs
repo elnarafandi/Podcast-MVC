@@ -126,9 +126,9 @@ namespace Service.Services
 
         }
 
-        public async Task<List<EpisodeAdminVM>> GetAllAsync()
+        public async Task<List<EpisodeAdminVM>> GetAllAsync(int? count = null)
         {
-            var episodeDb= await _episodeRepository.GetAllAsync();
+            var episodeDb= await _episodeRepository.GetAllAsync(count);
             var episode = episodeDb.Select(m => new EpisodeAdminVM
             {
                 Id = m.Id,

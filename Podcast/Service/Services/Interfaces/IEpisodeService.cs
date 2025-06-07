@@ -14,6 +14,6 @@ namespace Service.Services.Interfaces
         Task EditAsync(int id, EpisodeEditVM request);
         Task DeleteAsync(int id);
         Task<EpisodeAdminVM> GetByIdAsync(int id);
-        Task<List<EpisodeAdminVM>> GetAllAsync();
+        Task<List<EpisodeAdminVM>> GetAllAsync(int? count = null);
     }
 }
