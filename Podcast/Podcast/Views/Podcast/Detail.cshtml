@@ -147,12 +147,30 @@
                         <button type="submit"><i class="bi bi-send"></i></button>
                     </form>
               </div>
-              <div class="all-comments">
-                    @foreach(var comment in Model.Comments)
+                <div class="all-comments">
+                    @foreach (var comment in Model.Comments)
                     {
-                        <div class="comment">
-                            <div class="profile"><img src="~/assets/images/home/@comment.AppUser.Image" alt=""> <p>@comment.AppUser.FirstName @comment.AppUser.LastName</p></div>
-                            <div class="text"><p>@comment.Content</p></div>
+                        <div class="comment" style="position: relative; background-color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                            <!-- "X" işarəsi - silmək üçün -->
+                            @if (comment.AppUserId == Model.UserId) // Yalnız şərh sahibinə silmə imkanı veririk
+                            {
+                                <form method="post" action="@Url.Action("DeleteComment", "Podcast")" style="position: absolute; top: 10px; right: 10px; padding: 0; margin: 0;">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="commentId" value="@comment.Id" />
+                                    <button type="submit" class="btn btn-danger btn-sm" style="background-color: transparent; border: none; font-size: 18px; color: #dc3545; cursor: pointer;">
+                                        <i class="bi bi-x-circle" style="font-size: 20px;"></i>
+                                    </button>
+                                </form>
+                            }
+
+                            <!-- Profil şəkli və mətn -->
+                            <div class="profile" style="display: flex; align-items: center; gap: 10px;">
+                                <img src="~/assets/images/home/@comment.AppUser.Image" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                                <p style="font-weight: bold; margin: 0;">@comment.AppUser.FirstName @comment.AppUser.LastName</p>
+                            </div>
+                            <div class="text" style="margin-top: 10px;">
+                                <p style="font-size: 15px; color: #555;">@comment.Content</p>
+                            </div>
                         </div>
                     }
                 </div>

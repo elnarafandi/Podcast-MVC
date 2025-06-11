@@ -6,6 +6,10 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+
+
+
 <main>
     <section id="search">
         <div class="area">
@@ -106,40 +110,48 @@
                 </div>
                 <div class="podcasts">
                     <div class="all-podcasts">
-                        @foreach(var podcast in Model.Podcasts)
-                        {
-                            <div class="podcast">
-                                <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="~/assets/images/podcasts/@podcast.Image" alt=""></a></div>
-                                <div class="info">
-                                    <div class="title"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><p>@podcast.Title</p></a></div>
-                                    <div class="podcaster"><p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p></div>
-                                </div>
-                                <div class="follow">
-                                    <form asp-controller="Podcast" asp-action="ToggleFollow" method="post">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="podcastId" value="@podcast.Id" />
-
-                                        @if (Model.FollowedPodcastIds.Contains(podcast.Id))
-                                        {
-                                            <button type="submit" class="btn btn-danger">Unfollow</button>
-                                        }
-                                        else
-                                        {
-                                            <button type="submit" class="btn btn-primary">Follow</button>
-                                        }
-                                    </form>
-                                </div>
-                            </div>
-                        }
+                        <partial name="_PodcastHomePartial" model="@Model" />
                     </div>
+
                     <div class="pagination">
-                        <button class="page-btn prev"><i class="bi bi-caret-left-fill"></i></button>
-                        <span class="page-numbers">
-                            <button class="page-btn active">1</button>
-                            <button class="page-btn">2</button>
-                            <button class="page-btn">3</button>
-                        </span>
-                        <button class="page-btn next"><i class="bi bi-caret-right-fill"></i></button>
+
+                        @if (Model.TotalPages > 1)
+                        {
+                            @if (Model.CurrentPage > 1)
+                            {
+                                <a href="javascript:void(0);" class="page-btn prev" data-page="@Model.CurrentPage - 1">
+                                    <i class="bi bi-caret-left-fill"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <button class="page-btn prev" disabled>
+                                    <i class="bi bi-caret-left-fill"></i>
+                                </button>
+                            }
+
+                            <span class="page-numbers">
+                                @for (int i = 1; i <= Model.TotalPages; i++)
+                                {
+                                    <button class="page-btn @(i == Model.CurrentPage ? "active" : "")" data-page="@i">
+                                        @i
+                                    </button>
+                                }
+                            </span>
+
+                            @if (Model.CurrentPage < Model.TotalPages)
+                            {
+                                <a href="javascript:void(0);" class="page-btn next" data-page="@Model.CurrentPage + 1">
+                                    <i class="bi bi-caret-right-fill"></i>
+                                </a>
+                            }
+                            else
+                            {
+                                <button class="page-btn next" disabled>
+                                    <i class="bi bi-caret-right-fill"></i>
+                                </button>
+                            }
+                        }
                     </div>
                 </div>
             </div>
@@ -160,3 +172,183 @@
         </div>
     </section>
 </main>
+
+
+@* <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const pagination = document.querySelector(".pagination");
+
+        pagination.addEventListener("click", function (e) {
+            const btn = e.target.closest(".page-btn");
+            if (!btn || btn.hasAttribute("disabled")) return;
+
+            e.preventDefault();
+
+            const page = btn.getAttribute("data-page");
+            if (!page) return;
+
+            fetch(`/Home/Index?page=${page}`, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+                .then(res => res.text())
+                .then(html => {
+                    document.querySelector(".all-podcasts").innerHTML = html;
+                    updateActivePageBtn(page);
+                    updatePrevNextButtons(page);
+                })
+                .catch(() => alert("Səhifə yüklənərkən xəta baş verdi."));
+        });
+
+        function updateActivePageBtn(currentPage) {
+            currentPage = Number(currentPage);
+            const allBtns = document.querySelectorAll(".pagination .page-btn");
+
+            allBtns.forEach(btn => {
+                btn.classList.remove("active");
+                const btnPage = Number(btn.getAttribute("data-page"));
+                if (btnPage === currentPage) {
+                    btn.classList.add("active");
+                }
+            });
+        }
+
+        function updatePrevNextButtons(currentPage) {
+            currentPage = Number(currentPage);
+            const totalPages = @Model.TotalPages;
+
+            const prevBtn = document.querySelector(".pagination .prev");
+            const nextBtn = document.querySelector(".pagination .next");
+
+            const prevIcon = prevBtn?.querySelector("i");
+            const nextIcon = nextBtn?.querySelector("i");
+
+            // Sol ox (prev)
+            if (prevBtn) {
+                if (currentPage <= 1) {
+                    prevBtn.setAttribute("disabled", "disabled");
+                    prevBtn.removeAttribute("href");
+                    prevBtn.removeAttribute("data-page");
+                    prevBtn.style.backgroundColor = "#f0f0f0";
+                    if (prevIcon) prevIcon.style.color = "#6A0DAD";
+                } else {
+                    prevBtn.removeAttribute("disabled");
+                    prevBtn.setAttribute("data-page", currentPage - 1);
+                    prevBtn.setAttribute("href", "javascript:void(0);");
+                    prevBtn.style.backgroundColor = "";
+                    if (prevIcon) prevIcon.style.color = "";
+                }
+            }
+
+            // Sağ ox (next)
+            if (nextBtn) {
+                if (currentPage >= totalPages) {
+                    nextBtn.setAttribute("disabled", "disabled");
+                    nextBtn.removeAttribute("href");
+                    nextBtn.removeAttribute("data-page");
+                    nextBtn.style.backgroundColor = "#f0f0f0";
+                    if (nextIcon) nextIcon.style.color = "#6A0DAD";
+                } else {
+                    nextBtn.removeAttribute("disabled");
+                    nextBtn.setAttribute("data-page", currentPage + 1);
+                    nextBtn.setAttribute("href", "javascript:void(0);");
+                    nextBtn.style.backgroundColor = "";
+                    if (nextIcon) nextIcon.style.color = "";
+                }
+            }
+        }
+
+        const initialPage = document.querySelector(".page-btn.active")?.getAttribute("data-page") || 1;
+        updatePrevNextButtons(initialPage);
+    });
+</script> *@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const pagination = document.querySelector(".pagination");
+
+        pagination.addEventListener("click", function (e) {
+            const btn = e.target.closest(".page-btn");
+            if (!btn || btn.hasAttribute("disabled")) return;
+
+            e.preventDefault();
+
+            const page = btn.getAttribute("data-page");
+            if (!page) return;
+
+            fetch(`/Home/Index?page=${page}`, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+                .then(res => res.text())
+                .then(html => {
+                    document.querySelector(".all-podcasts").innerHTML = html;
+                    updateActivePageBtn(page);
+                    updatePrevNextButtons(page);
+                })
+                .catch(() => alert("Səhifə yüklənərkən xəta baş verdi."));
+        });
+
+        function updateActivePageBtn(currentPage) {
+            currentPage = Number(currentPage);
+            const allBtns = document.querySelectorAll(".pagination .page-btn");
+
+            allBtns.forEach(btn => {
+                btn.classList.remove("active");
+                const btnPage = Number(btn.getAttribute("data-page"));
+                if (btnPage === currentPage) {
+                    btn.classList.add("active");
+                }
+            });
+        }
+
+        function updatePrevNextButtons(currentPage) {
+            currentPage = Number(currentPage);
+            const totalPages = @Model.TotalPages;
+
+            const prevBtn = document.querySelector(".pagination .prev");
+            const nextBtn = document.querySelector(".pagination .next");
+
+            const prevIcon = prevBtn?.querySelector("i");
+            const nextIcon = nextBtn?.querySelector("i");
+
+            // Sol ox (prev)
+            if (prevBtn) {
+                if (currentPage <= 1) {
+                    prevBtn.setAttribute("disabled", "disabled");
+                    prevBtn.removeAttribute("href");
+                    prevBtn.removeAttribute("data-page");
+                    prevBtn.style.backgroundColor = "#f0f0f0";
+                    prevBtn.style.cursor = "not-allowed";
+                    if (prevIcon) prevIcon.style.color = "#6A0DAD";
+                } else {
+                    prevBtn.removeAttribute("disabled");
+                    prevBtn.setAttribute("data-page", currentPage - 1);
+                    prevBtn.setAttribute("href", "javascript:void(0);");
+                    prevBtn.style.backgroundColor = "";
+                    prevBtn.style.cursor = "pointer";
+                    if (prevIcon) prevIcon.style.color = "";
+                }
+            }
+
+            // Sağ ox (next)
+            if (nextBtn) {
+                if (currentPage >= totalPages) {
+                    nextBtn.setAttribute("disabled", "disabled");
+                    nextBtn.removeAttribute("href");
+                    nextBtn.removeAttribute("data-page");
+                    nextBtn.style.backgroundColor = "#f0f0f0";
+                    nextBtn.style.cursor = "not-allowed";
+                    if (nextIcon) nextIcon.style.color = "#6A0DAD";
+                } else {
+                    nextBtn.removeAttribute("disabled");
+                    nextBtn.setAttribute("data-page", currentPage + 1);
+                    nextBtn.setAttribute("href", "javascript:void(0);");
+                    nextBtn.style.backgroundColor = "";
+                    nextBtn.style.cursor = "pointer";
+                    if (nextIcon) nextIcon.style.color = "";
+                }
+            }
+        }
+
+        const initialPage = document.querySelector(".page-btn.active")?.getAttribute("data-page") || 1;
+        updatePrevNextButtons(initialPage);
+    });
+</script>

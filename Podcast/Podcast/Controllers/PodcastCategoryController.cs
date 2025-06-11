@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Service.Services;
 using Service.Services.Interfaces;
 using Service.ViewModels.Podcast;
@@ -28,8 +30,34 @@ namespace Podcast.Controllers
             var podcastCategory = await _podcastCategoryService.GetByIdAsync(id);
 
             var podcasts = sortOrder == "most_followed"
-                ? await _podcastService.GetAllByCategorySortedByFollowCountAsync(id)
-                : await _podcastService.GetAllByCategoryAsync(id);
+                ? await _podcastService.GetAllByCategorySortedByFollowCountShowMoreAsync(podcastCategory.Id,0,8)
+                : await _podcastService.GetAllByCategoryShowMoreAsync(id);
+
+            var followedPodcastIds = userId != null
+                ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
+                : new List<int>();
+
+            var allPodcasts = await _podcastService.GetAllByCategoryAsync(podcastCategory.Id);
+            var podcastCount=allPodcasts.Count();
+
+            var viewModel = new PodcastCategoryVM
+            {
+                Podcasts = podcasts,
+                PodcastCategory = podcastCategory,
+                FollowedPodcastIds = followedPodcastIds,
+                PodcastCount = podcastCount
+            };
+
+            return View(viewModel);
+        }
+        public async Task<IActionResult> ShowMore(int id, int skip, string sortOrder = null)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var podcastCategory = await _podcastCategoryService.GetByIdAsync(id);
+
+            var podcasts = sortOrder == "most_followed"
+                ? await _podcastService.GetAllByCategorySortedByFollowCountShowMoreAsync(podcastCategory.Id, skip, 8)
+                : await _podcastService.GetAllByCategoryShowMoreAsync(id, skip, 8);
 
             var followedPodcastIds = userId != null
                 ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
@@ -42,7 +70,7 @@ namespace Podcast.Controllers
                 FollowedPodcastIds = followedPodcastIds
             };
 
-            return View(viewModel);
+            return PartialView("_PodcastPartial", viewModel);
         }
 
     }

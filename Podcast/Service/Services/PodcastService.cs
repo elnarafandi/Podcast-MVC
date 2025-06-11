@@ -117,9 +117,37 @@ namespace Service.Services
             return podcasts;
         }
 
+        public async Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryShowMoreAsync(int categoryId, int skip = 0, int take = 8)
+        {
+            var podcastsDb= await _podcastRepository.GetPodcastsAsync(categoryId,skip,take);
+            var podcasts = podcastsDb.Select(p => new PodcastAdminVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Image = p.Image,
+                TeamMember = p.TeamMember
+            }).ToList();
+            return podcasts;
+        }
+
         public async Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountAsync(int categoryId)
         {
             var podcastsDb= await _podcastRepository.GetAllByCategorySortedByFollowCountAsync(categoryId);
+            var podcasts = podcastsDb.Select(p => new PodcastAdminVM
+            {
+                Id = p.Id,
+                Title = p.Title,
+                Description = p.Description,
+                Image = p.Image,
+                TeamMember = p.TeamMember
+            }).ToList();
+            return podcasts;
+        }
+
+        public async Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountShowMoreAsync(int categoryId, int skip = 0, int take = 8)
+        {
+            var podcastsDb=await _podcastRepository.GetAllByCategorySortedByFollowCountShowMoreAsync(categoryId, skip, take);
             var podcasts = podcastsDb.Select(p => new PodcastAdminVM
             {
                 Id = p.Id,
@@ -145,20 +173,6 @@ namespace Service.Services
                 Episodes =podcastDb.Episodes
             };
             return podcast;
-        }
-
-        public async Task<IEnumerable<PodcastAdminVM>> GetPodcastsAsync(int skip, int take, int categoryId)
-        {
-            var podcastsDb = await _podcastRepository.GetPodcastsAsync(skip, take, categoryId);
-            var podcasts = podcastsDb.Select(p => new PodcastAdminVM
-            {
-                Id = p.Id,
-                Title = p.Title,
-                Description = p.Description,
-                Image = p.Image,
-                TeamMember = p.TeamMember
-            }).ToList();
-            return podcasts;
         }
 
         public async Task<IEnumerable<PodcastAdminVM>> SearchByTitleAsync(string searchText)

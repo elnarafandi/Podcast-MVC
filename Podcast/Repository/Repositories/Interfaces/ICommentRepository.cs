@@ -10,5 +10,7 @@ namespace Repository.Repositories.Interfaces
     public interface ICommentRepository:IBaseRepository<Comment>
     {
         Task<IEnumerable<Comment>> GetCommentsByPodcastIdAsync(int podcastId);
+        Task<Comment> GetByIdAsync(int id);
+        Task<IEnumerable<Comment>> GetAllAsync();
     }
 }

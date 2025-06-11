@@ -9,5 +9,6 @@ namespace Service.ViewModels.Header
     public class HeaderVM
     {
         public string Image {  get; set; }
+        public string AppUserId { get; set; }
     }
 }

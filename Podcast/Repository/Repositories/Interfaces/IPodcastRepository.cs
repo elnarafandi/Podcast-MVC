@@ -13,7 +13,9 @@ namespace Repository.Repositories.Interfaces
         Task<Podcast> GetByIdAsync(int id);
         Task<List<Podcast>> GetAllAsync();
         Task<IEnumerable<Podcast>> GetAllWithConditionAsync(Expression<Func<Podcast, bool>> predicate);
-        Task<IEnumerable<Podcast>> GetPodcastsAsync(int skip, int take,int categoryId);
         Task<IEnumerable<Podcast>> GetAllByCategorySortedByFollowCountAsync(int categoryId);
+
+        Task<IEnumerable<Podcast>> GetAllByCategorySortedByFollowCountShowMoreAsync(int categoryId, int skip = 0, int take = 8);
+        Task<IEnumerable<Podcast>>  GetPodcastsAsync(int categoryId, int skip = 0, int take = 8);
     }
 }

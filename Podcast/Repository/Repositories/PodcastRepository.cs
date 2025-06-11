@@ -42,7 +42,16 @@ namespace Repository.Repositories
             return await _context.Set<Podcast>().Include(c => c.PodcastCategory).Include(c => c.TeamMember).Where(predicate).OrderByDescending(c=>c.CreatedDate).ToListAsync();
         }
 
+        
+
         public async Task<Podcast> GetByIdAsync(int id)
+        {
+            return await _context.Set<Podcast>().Include(c => c.PodcastCategory).Include(c => c.TeamMember).Include(c => c.Episodes).ThenInclude(e => e.Likes).Include(c => c.Episodes).ThenInclude(e => e.EpisodeGuests).ThenInclude(eg => eg.Guest).FirstOrDefaultAsync(c => c.Id == id);
+        }
+
+
+
+        public async Task<IEnumerable<Podcast>> GetAllByCategorySortedByFollowCountShowMoreAsync(int categoryId, int skip = 0, int take = 8)
         {
             return await _context.Set<Podcast>()
     .Include(c => c.PodcastCategory)
@@ -52,12 +61,29 @@ namespace Repository.Repositories
     .Include(c => c.Episodes)
         .ThenInclude(e => e.EpisodeGuests)
             .ThenInclude(eg => eg.Guest)
-    .FirstOrDefaultAsync(c => c.Id == id);
+                .Where(p => p.PodcastCategoryId == categoryId)
+                .OrderByDescending(p => _context.AppUserPodcasts.Count(ap => ap.PodcastId == p.Id))
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
         }
 
-        public async Task<IEnumerable<Podcast>> GetPodcastsAsync(int skip, int take, int categoryId)
+        public async Task<IEnumerable<Podcast>> GetPodcastsAsync(int categoryId, int skip = 0, int take = 8)
         {
-            return await _context.Set<Podcast>().Where(p => p.PodcastCategoryId == categoryId).Skip(skip).Take(take).ToListAsync();
+            return await _context.Set<Podcast>()
+    .Include(c => c.PodcastCategory)
+    .Include(c => c.TeamMember)
+    .Include(c => c.Episodes)
+        .ThenInclude(e => e.Likes)
+    .Include(c => c.Episodes)
+        .ThenInclude(e => e.EpisodeGuests)
+            .ThenInclude(eg => eg.Guest)
+                .Where(p => p.PodcastCategoryId == categoryId)
+                .OrderByDescending(p => p.CreatedDate) // Default sort, sonuncu əlavə olunanlar üst sırada
+                .Skip(skip)
+                .Take(take)
+                .ToListAsync();
         }
+
     }
 }

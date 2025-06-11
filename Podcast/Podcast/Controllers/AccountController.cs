@@ -1,17 +1,22 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Service.Services.Interfaces;
 using Service.ViewModels.Account;
+using Service.ViewModels.TeamMember;
 
 namespace Podcast.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
-        public AccountController(IAccountService accountService)
+        private readonly UserManager<AppUser> _userManager;
+        public AccountController(IAccountService accountService,
+                                 UserManager<AppUser> userManager)
         {
             _accountService = accountService;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -63,8 +68,24 @@ namespace Podcast.Controllers
             await _accountService.LogoutAsync();
             return RedirectToAction("Index", "About");
         }
-
-
+        [HttpGet]
+        public async Task<IActionResult> EditAccount(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            return View(new AccountEditVM
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Image = user.Image
+            });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditAccount(string id, AccountEditVM request)
+        {
+            await _accountService.EditAccountAsync(id, request);
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }

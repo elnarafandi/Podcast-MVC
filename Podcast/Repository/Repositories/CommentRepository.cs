@@ -14,6 +14,16 @@ namespace Repository.Repositories
     {
         public CommentRepository(AppDbContext context) : base(context) { }
 
+        public async Task<IEnumerable<Comment>> GetAllAsync()
+        {
+            return await _context.Set<Comment>().Include(c => c.AppUser).Include(c=>c.Podcast).ToListAsync();
+        }
+
+        public async Task<Comment> GetByIdAsync(int id)
+        {
+            return await _context.Set<Comment>().Include(c => c.AppUser).FirstOrDefaultAsync(c => c.Id == id);
+        }
+
         public async Task<IEnumerable<Comment>> GetCommentsByPodcastIdAsync(int podcastId)
         {
             return await _context.Set<Comment>().Include(c => c.AppUser).Where(c => c.PodcastId == podcastId).ToListAsync();

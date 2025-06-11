@@ -1,0 +1,31 @@
+﻿@model AccountEditVM
+
+<main>
+    <section id="account">
+        <div class="my-container">
+            <div class="profile">
+                <div class="photo">
+                    <img src="~/assets/images/home/@Model.Image" alt="" id="profile-preview">
+                </div>
+
+                
+
+                <form method="post" asp-controller="Account" asp-action="EditAccount" enctype="multipart/form-data">
+                    <div class="custom-file-wrapper">
+                        <label asp-for="UploadImage" class="custom-file-label">Select Photo</label>
+                        <input asp-for="UploadImage" type="file">
+                        <span asp-validation-for="UploadImage" class="text-danger small"></span>
+                    </div>
+                        <input asp-for="FirstName" placeholder="First Name" required>
+                        <span asp-validation-for="FirstName" class="text-danger small"></span>
+
+                        <input asp-for="LastName" placeholder="Last Name" required>
+                        <span asp-validation-for="LastName" class="text-danger small"></span>
+
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>

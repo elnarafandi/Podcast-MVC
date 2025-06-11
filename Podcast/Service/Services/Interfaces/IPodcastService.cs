@@ -19,7 +19,9 @@ namespace Service.Services.Interfaces
         Task<IEnumerable<PodcastAdminVM>> SearchByTitleAsync(string searchText);
         Task<IEnumerable<PodcastAdminVM>> FilterByCategoryAsync(string searchText,string categoryName);
         Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryAsync(int categoryId);
-        Task<IEnumerable<PodcastAdminVM>> GetPodcastsAsync(int skip, int take,int categoryId);
         Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountAsync(int categoryId);
+
+        Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountShowMoreAsync(int categoryId, int skip = 0, int take = 8);
+        Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryShowMoreAsync(int categoryId, int skip = 0, int take = 8);
     }
 }

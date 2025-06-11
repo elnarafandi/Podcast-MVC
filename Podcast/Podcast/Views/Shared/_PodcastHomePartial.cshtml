@@ -1,0 +1,31 @@
+﻿@model HomeVM
+
+
+
+
+    @foreach (var podcast in Model.Podcasts)
+    {
+        <div class="podcast">
+            <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="~/assets/images/podcasts/@podcast.Image" alt=""></a></div>
+            <div class="info">
+                <div class="title"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><p>@podcast.Title</p></a></div>
+                <div class="podcaster"><p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p></div>
+            </div>
+            <div class="follow">
+                <form asp-controller="Podcast" asp-action="ToggleFollow" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="podcastId" value="@podcast.Id" />
+
+                    @if (Model.FollowedPodcastIds.Contains(podcast.Id))
+                    {
+                        <button type="submit" class="btn btn-danger">Unfollow</button>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn btn-primary">Follow</button>
+                    }
+                </form>
+            </div>
+        </div>
+    }
+

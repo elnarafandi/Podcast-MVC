@@ -28,26 +28,49 @@ namespace Podcast.Controllers
             _appUserPodcastService = appUserPodcastService;
             _playlistService = playlistService;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
+            int pageSize = 6;
+
+
             var categories= await _podcastCategoryService.GetAllAsync();
-            var podcasts= await _podcastService.GetAllAsync();
-            
+
+            var podcasts = await _podcastService.GetAllAsync();
+            var pagedPodcasts = podcasts.Skip((page - 1) * pageSize).Take(pageSize).ToList();
+
+            var totalPodcasts = podcasts.Count;
+            var totalPages = (int)Math.Ceiling((double)totalPodcasts / pageSize);
+
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var playlists = await _playlistService.GetPlaylistsByUserIdAsync(userId);
             var followedPodcastIds = userId != null
                 ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
                 : new List<int>();
             var followedPodcasts = await _appUserPodcastService.GetFollowedPodcastsAsync(userId);
-            return View(new HomeVM
+
+            
+
+            var model = new HomeVM
             {
                 PodcastCategories = categories,
-                Podcasts = podcasts,
+                Podcasts = pagedPodcasts,
                 FollowedPodcastIds = followedPodcastIds,
                 FollowedPodcasts = followedPodcasts,
-                Playlists = playlists
-            });
+                Playlists = playlists,
+                CurrentPage = page,
+                TotalPages = totalPages
+            };
+
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                return PartialView("_PodcastHomePartial", model);
+            }
+
+
+                return View(model);
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("create-playlist")]

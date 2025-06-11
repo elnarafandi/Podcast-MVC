@@ -11,8 +11,9 @@ namespace Service.ViewModels.Podcast
     {
         public PodcastAdminVM Podcast { get; set; }
         public bool IsFollowing { get; set; }
-        public IEnumerable<Comment> Comments { get; set; }
+        public IEnumerable<Domain.Entities.Comment> Comments { get; set; }
         public IEnumerable<Domain.Entities.Playlist> Playlists { get; set; }
         public List<int> LikedEpisodeIds { get; set; } = new List<int>();
+        public string UserId { get; set; }
     }
 }

@@ -83,56 +83,55 @@ header #navbar .my-container .all .account .profile img {
   border-radius: 50%;
 }
 
-main #all-podcasts {
+#all-podcasts {
   margin-top: 5%;
   width: 100vw;
-  height: 300px;
 }
-main #all-podcasts .my-container {
+#all-podcasts .my-container {
   height: 100%;
   margin-left: 10%;
   margin-right: 10%;
 }
-main #all-podcasts .my-container .sorting-filter {
+#all-podcasts .my-container .sorting-filter {
   display: flex;
 }
-main #all-podcasts .my-container .sorting-filter .text {
-  color: #6A0DAD;
+#all-podcasts .my-container .sorting-filter .text {
+  color: #6a0dad;
   font-size: 17px;
 }
-main #all-podcasts .my-container .sorting-filter .mix {
+#all-podcasts .my-container .sorting-filter .mix {
   display: flex;
   margin-left: auto;
   gap: 2%;
 }
-main #all-podcasts .my-container .sorting-filter .mix .filter .fltr {
+#all-podcasts .my-container .sorting-filter .mix .filter .fltr {
   display: flex;
   gap: 10%;
-  border: 1px solid #6A0DAD;
+  border: 1px solid #6a0dad;
   width: 90px;
   background-color: white;
-  color: #6A0DAD;
+  color: #6a0dad;
   transition: all 0.3s ease;
 }
-main #all-podcasts .my-container .sorting-filter .mix .filter .fltr:hover {
-  background-color: #D1A0FF;
+#all-podcasts .my-container .sorting-filter .mix .filter .fltr:hover {
+  background-color: #d1a0ff;
   color: white;
 }
-main #all-podcasts .my-container .sorting-filter .mix .dropdown button {
+#all-podcasts .my-container .sorting-filter .mix .dropdown button {
   border: none;
   width: 90px;
   background-color: white;
-  color: #6A0DAD;
+  color: #6a0dad;
   transition: all 0.3s ease;
 }
-main #all-podcasts .my-container .sorting-filter .mix .dropdown button:hover {
-  background-color: #D1A0FF;
+#all-podcasts .my-container .sorting-filter .mix .dropdown button:hover {
+  background-color: #d1a0ff;
   color: white;
 }
-main #all-podcasts .my-container .podcasts {
+#all-podcasts .my-container .podcasts {
   margin-top: 3%;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts {
+#all-podcasts .my-container .podcasts .all-podcasts {
   width: 100%;
   height: 100%;
   display: grid;
@@ -141,13 +140,13 @@ main #all-podcasts .my-container .podcasts .all-podcasts {
        column-gap: 3%;
   row-gap: 5%;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast {
   width: 100%;
   height: 310px;
   border-radius: 15px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .image {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .image {
   width: 100%;
   height: 50%;
   padding-left: 10%;
@@ -156,72 +155,75 @@ main #all-podcasts .my-container .podcasts .all-podcasts .podcast .image {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .image a {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .image a {
   width: 100%;
   height: 100%;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .image a img {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .image a img {
   width: 100%;
   height: 100%;
   border-radius: 10px;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .info {
   width: 100%;
   height: 30%;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title {
   margin-top: 1%;
   height: 65%;
   width: 100%;
   text-align: center;
   font-weight: bold;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title a {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .info .title a {
   text-decoration: none;
-  color: #2D2D2D;
+  color: #2d2d2d;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .podcaster {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .info .podcaster {
   height: 30%;
   width: 100%;
   text-align: center;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .info .podcaster p {
-  color: #2D2D2D;
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .info .podcaster p {
+  color: #2d2d2d;
   font-size: 14px;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .follow {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .follow {
   width: 100%;
   height: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-main #all-podcasts .my-container .podcasts .all-podcasts .podcast .follow button {
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .follow button {
   border: none;
-  background-color: #D1A0FF;
+  background-color: #d1a0ff;
   height: 35px;
   width: 90px;
   border-radius: 5px;
   color: white;
 }
-main #all-podcasts .my-container .podcasts .show-more {
-  margin-top: 10%;
+
+#button {
+  margin-top: 20%;
+}
+#button .show-more {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-main #all-podcasts .my-container .podcasts .show-more button {
-  border: 1px solid #6A0DAD;
+#button .show-more button {
+  border: 1px solid #6a0dad;
   border-radius: 25px;
   height: 45px;
   width: 150px;
   background-color: white;
-  color: #6A0DAD;
+  color: #6a0dad;
   transition: all 0.3s ease;
 }
-main #all-podcasts .my-container .podcasts .show-more button:hover {
-  background-color: #D1A0FF;
+#button .show-more button:hover {
+  background-color: #d1a0ff;
   color: white;
 }
 
@@ -229,7 +231,7 @@ footer {
   width: 100vw;
 }
 footer #account-contact {
-  margin-top: 50%;
+  margin-top: 20%;
   background-color: #C084FC;
 }
 footer #account-contact .my-container {

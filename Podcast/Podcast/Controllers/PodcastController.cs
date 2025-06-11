@@ -63,7 +63,8 @@ namespace Podcast.Controllers
                 IsFollowing = isFollowing,
                 Comments=comments,
                 Playlists=playlists,
-                LikedEpisodeIds = likedEpisodeIds
+                LikedEpisodeIds = likedEpisodeIds,
+                UserId = userId
             });
         }
         [HttpGet]
@@ -188,6 +189,22 @@ namespace Podcast.Controllers
             var isLiked = await _likeService.IsLikedAsync(userId, episodeId);
 
             return Json(new { likeCount, isLiked });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteComment(int commentId)
+        {
+            var comment = await _commentService.GetByIdAsync(commentId);
+            if (comment == null)
+                return NotFound();
+
+            // Yalnız istifadəçi şərhə sahibdirsə silə bilər
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (comment.AppUserId != userId)
+                return Forbid(); // İstifadəçinin şərhi silmək hüququ yoxdur.
+
+            await _commentService.DeleteAsync(commentId);
+            return RedirectToAction("Detail", new { id = comment.PodcastId });
         }
     }
 }

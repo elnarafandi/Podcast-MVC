@@ -16,5 +16,7 @@ namespace Service.ViewModels.Home
         public List<int> FollowedPodcastIds { get; set; }
         public List<PodcastAdminVM> FollowedPodcasts { get; set; }
         public IEnumerable<Domain.Entities.Playlist> Playlists { get; set; }
+        public int CurrentPage { get; set; }
+        public int TotalPages { get; set; }
     }
 }

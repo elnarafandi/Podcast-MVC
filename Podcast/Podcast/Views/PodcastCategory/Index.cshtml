@@ -23,43 +23,61 @@
             </div>
             <div class="podcasts">
                 <!-- Burada id əlavə etdik -->
-                <div class="all-podcasts">
-                    @foreach (var podcast in Model.Podcasts)
-                    {
-                        <div class="podcast">
-                            <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="~/assets/images/podcasts/@podcast.Image" alt=""></a></div>
-                            <div class="info">
-                                <div class="title"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><p>@podcast.Title</p></a></div>
-                                <div class="podcaster"><p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p></div>
-                            </div>
-                            <div class="follow">
-                                <form asp-controller="Podcast" asp-action="ToggleFollow" method="post">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="podcastId" value="@podcast.Id" />
-
-                                    @if (Model.FollowedPodcastIds.Contains(podcast.Id))
-                                    {
-                                        <button type="submit" class="btn btn-danger">Unfollow</button>
-                                    }
-                                    else
-                                    {
-                                        <button type="submit" class="btn btn-primary">Follow</button>
-                                    }
-                                </form>
-                            </div>
-                        </div>
-                    }
+                <div class="all-podcasts parent-elem">
+                    <partial name="_PodcastPartial" model="@Model" />
                 </div>
                 
-                    <div class="show-more">
-                        <button id="showMoreBtn" data-skip="4" data-category-id="@Model.PodcastCategory.Id">Show more</button>
-                    </div>
+                    
                 
             </div>
         </div>
     </section>
+    @if (Model.PodcastCount>8)
+    {
+        <section id="button">
+            <div class="show-more mt-5 text-center"
+                 data-count="@Model.Podcasts.Count()"
+                 data-category-id="@Model.PodcastCategory.Id"
+                 data-sort-order="@Context.Request.Query["sortOrder"]">
+                <button type="button" class="btn btn-primary">Show more</button>
+            </div>
+        </section>
+    }
 </main>
 
 
 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const showMoreBtn = document.querySelector(".show-more"); // <div class="show-more" ...>
+        const parentElem = document.querySelector(".parent-elem"); // .parent-elem -> podcastların konteyneri
+
+        if (!showMoreBtn || !parentElem) return;
+
+        showMoreBtn.addEventListener("click", function () {
+            const skip = parentElem.children.length;
+            const totalCount = parseInt(this.getAttribute("data-count"));
+            const categoryId = this.getAttribute("data-category-id");
+            const sortOrder = this.getAttribute("data-sort-order") || "";
+
+            fetch(`/PodcastCategory/ShowMore?id=${categoryId}&skip=${skip}&sortOrder=${sortOrder}`)
+                .then(response => {
+                    if (!response.ok) throw new Error("Network response was not ok");
+                    return response.text();
+                })
+                .then(html => {
+                    parentElem.innerHTML += html;
+
+                    const newSkip = parentElem.children.length;
+                    if (newSkip >= totalCount) {
+                        showMoreBtn.classList.add("d-none");
+                    }
+                })
+                .catch(error => {
+                    console.error("Fetch error:", error);
+                });
+        });
+    });
+</script>
 

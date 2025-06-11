@@ -1,4 +1,5 @@
 ﻿using Service.ViewModels.Account;
+using Service.ViewModels.TeamMember;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Service.Services.Interfaces
         Task RegisterAsync(RegisterVM model);
         Task<bool> LoginAsync(LoginVM model);
         Task LogoutAsync();
+        Task EditAccountAsync(string id, AccountEditVM request);
     }
 }

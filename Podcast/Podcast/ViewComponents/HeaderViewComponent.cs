@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Service.ViewModels.Header;
+using System.Security.Claims;
 
 namespace Podcast.ViewComponents
 {
@@ -19,7 +20,8 @@ namespace Podcast.ViewComponents
             var user = await _userManager.GetUserAsync(HttpContext.User);
             return View(new HeaderVM
             {
-                Image=user?.Image
+                Image=user?.Image,
+                AppUserId=user?.Id
             });
         }
     }

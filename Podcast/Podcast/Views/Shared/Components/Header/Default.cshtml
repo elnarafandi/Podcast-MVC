@@ -13,7 +13,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="account">
-                        <div class="profile"><a href=""><img src="~/assets/images/home/@Model.Image" alt=""></a></div>
+                        <div class="profile"><a asp-controller="Account" asp-action="EditAccount" asp-route-id="@Model.AppUserId"><img src="~/assets/images/home/@Model.Image" alt=""></a></div>
                         <div class="logout">
                             <form method="POST" asp-controller="Account" asp-action="Logout">
                                 <button type="submit"><i class="bi bi-box-arrow-right"></i><p>Logout</p></button>

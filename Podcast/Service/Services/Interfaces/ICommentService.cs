@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Service.ViewModels.Comment;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,8 @@ namespace Service.Services.Interfaces
     {
         Task AddCommentAsync(Comment comment);
         Task<IEnumerable<Comment>> GetCommentsByPodcastIdAsync(int podcastId);
+        Task<Comment> GetByIdAsync(int id);
+        Task DeleteAsync(int id);
+        Task<IEnumerable<CommentAdminVM>> GetAllAsync();
     }
 }

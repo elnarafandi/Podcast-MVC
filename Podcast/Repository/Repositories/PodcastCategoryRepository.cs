@@ -20,6 +20,8 @@ namespace Repository.Repositories
             return await _context.Set<PodcastCategory>().Include(pc=>pc.Podcasts).OrderByDescending(pc=>pc.CreatedDate).ToListAsync();
         }
 
+        
+
         public async Task<PodcastCategory> GetByIdAsync(int id)
         {
             return await _context.Set<PodcastCategory>().Include(pc=>pc.Podcasts).ThenInclude(p=>p.TeamMember).FirstOrDefaultAsync(gc => gc.Id == id);
