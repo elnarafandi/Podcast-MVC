@@ -70,7 +70,7 @@ namespace Service.Services
             if (existUser == null)
                 return false;
 
-            var result = await _signInManager.PasswordSignInAsync(existUser, model.Password, false, false);
+            var result = await _signInManager.PasswordSignInAsync(existUser, model.Password, model.RememberMe, false);
 
             return result.Succeeded;
 

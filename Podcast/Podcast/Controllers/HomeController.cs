@@ -78,7 +78,7 @@ namespace Podcast.Controllers
         {
             if (string.IsNullOrWhiteSpace(playlist_name))
             {
-                ModelState.AddModelError("", "Playlist ad? bo? ola bilm?z");
+                ModelState.AddModelError("", "dont playlsit");
                 return RedirectToAction("Index", "Home"); 
             }
 

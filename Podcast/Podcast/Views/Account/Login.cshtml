@@ -9,13 +9,19 @@
                     <p class="text">Sign in to Podcast</p>
                     <form method="post" asp-action="Login">
                         
-                            <label for="">Email</label>
+                            
                             <input type="text" asp-for="UserNameOrEmail" placeholder="Username or Email">
                             <span asp-validation-for="UserNameOrEmail" class="text-danger mb-2"></span>
                         
-                            <label for="">Password</label>
+                            
                             <input type="password" asp-for="Password" placeholder="Password">
                             <span asp-validation-for="Password" class="text-danger mb-2"></span>
+
+                        <div class="remember-me">
+                            <input type="checkbox" asp-for="RememberMe" id="remember-me" name="remember-me">
+                            <label for="remember-me">Remember Me</label>
+                        </div>
+
 
                         <div class="forgot-password">
                             <a href="#">Forgot Password?</a>

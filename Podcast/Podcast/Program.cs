@@ -35,6 +35,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
                                                          .AddDefaultTokenProviders();
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    // Cookie (çerez) parametrl?ri
+    options.ExpireTimeSpan = TimeSpan.FromDays(3);
+    options.Cookie.HttpOnly = true;  
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None;  
+});
+
 builder.Services.Configure<IdentityOptions>(options =>
 {
     // Password settings.
@@ -51,7 +59,10 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = true;
+
 });
+
+
 
 builder.Services.AddFluentValidationAutoValidation();
 var assemblies = AppDomain.CurrentDomain.GetAssemblies();

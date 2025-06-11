@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "urVTfXFrN3e2drJ8BE2HKqP+88BdLI2RBL7ARjc/NBs=",
+  "Hash": "xnOZTWdTGFY9xGEDLaPV/rc6IFiTbphRsxuNzSYPeqc=",
   "Source": "Podcast",
   "BasePath": "_content/Podcast",
   "Mode": "Default",
@@ -35982,6 +35982,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\images\\home\\c76fc83d-3fe6-4bfd-a48f-8e6274bfd285-person1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\listener.jpg",
+      "SourceId": "Podcast",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\",
+      "BasePath": "_content/Podcast",
+      "RelativePath": "assets/images/home/listener.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\images\\home\\listener.jpg"
     },
     {
       "Identity": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\person1.jpg",

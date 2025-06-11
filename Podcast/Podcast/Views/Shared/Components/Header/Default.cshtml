@@ -1,5 +1,13 @@
 ﻿@model HeaderVM
 
+@if (User.Identity.IsAuthenticated)
+{
+    <link rel="stylesheet" href="~/assets/css/home-listener/home-listener.css">
+}
+else
+{
+    <link rel="stylesheet" href="~/assets/css/about/about.css">
+}
 
 <header>
     <section id="navbar">

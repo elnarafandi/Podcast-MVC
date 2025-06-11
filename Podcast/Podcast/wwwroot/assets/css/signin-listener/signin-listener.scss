@@ -78,40 +78,39 @@ main{
         }
 
         form {
-          display: flex;
-          flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-          label {
-            display: none;
-          }
+ 
 
-          input {
-            padding: 0.8rem 1.2rem;
-            margin-bottom: 1.5rem;
-            border: 2px solid #C084FC;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            outline: none;
-            background: #F9F5FF;
-            color: #6A0DAD;
-            
-            &::placeholder {
-              color: #C084FC;
-              opacity: 1;
-              transition: opacity 0.3s ease;
-            }
+  input {
+    padding: 0.8rem 1.2rem;
+    margin-bottom: 1.5rem;
+    border: 2px solid #C084FC;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    background: #F9F5FF;
+    color: #6A0DAD;
 
-            &:focus {
-              border-color: #6A0DAD;
-              box-shadow: 0 0 8px rgba(106, 13, 173, 0.4);
-            }
+    &::placeholder {
+      color: #C084FC;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
 
-            &:focus::placeholder {
-              opacity: 0;
-            }
-          }
-          .forgot-password {
+    &:focus {
+      border-color: #6A0DAD;
+      box-shadow: 0 0 8px rgba(106, 13, 173, 0.4);
+    }
+
+    &:focus::placeholder {
+      opacity: 0;
+    }
+  }
+
+  .forgot-password {
     align-self: flex-end;
     margin-bottom: 1rem;
 
@@ -128,22 +127,46 @@ main{
     }
   }
 
-          button {
-            background: #6A0DAD;
-            color: #fff;
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
+  /* Add styles for the Remember Me checkbox */
+  .remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
 
-            &:hover {
-              background: #C084FC;
-            }
-          }
+    input[type="checkbox"] {
+      margin-right: 0.5rem;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #C084FC;
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+    }
 
-        }
+    label {
+      margin-top: -7%;
+      font-size: 1rem;
+      color: #6A0DAD;
+      user-select: none;
+    }
+  }
+
+  button {
+    background: #6A0DAD;
+    color: #fff;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: #C084FC;
+    }
+  }
+}
+
       }
     }
   }

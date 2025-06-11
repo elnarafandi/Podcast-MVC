@@ -387,6 +387,7 @@ main{
           display: flex;
           align-items: center;
           margin-bottom: 0.5rem;
+          
 
           img {
             width: 40px;
@@ -395,6 +396,7 @@ main{
             object-fit: cover;
             background-color: #ccc; // fallback for empty image
             margin-right: 0.75rem;
+            background-color: #C084FC;
           }
 
           p {

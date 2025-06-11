@@ -101,44 +101,50 @@ main {
   width: 100vw;
 }
 main #informative {
-  height: 400px;
-  margin-top: 7%;
-  background-color: #C084FC;
-}
-main #informative .my-container {
-  height: 100%;
-  margin-left: 10%;
-  margin-right: 10%;
-}
-main #informative .my-container .all {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-main #informative .my-container .all .image {
-  height: 100%;
-}
-main #informative .my-container .all .image img {
-  height: 110%;
-  width: 100%;
-}
-main #informative .my-container .all .text {
-  height: 110%;
-  background-color: #C084FC;
-  padding-top: 10%;
-  padding-left: 5%;
+  margin-top: 3%;
+  height: auto;
+  padding: 3% 0;
+  background: linear-gradient(135deg, #C084FC, #9333EA);
   color: white;
 }
-main #informative .my-container .all .text .text1 {
-  font-size: 35px;
-  font-family: "Inter", sans-serif;
+main #informative .my-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10%;
+  flex-wrap: wrap;
 }
-main #informative .my-container .all .text .text2 {
-  font-size: 40px;
-  font-family: "Poppins", sans-serif;
+main #informative .all {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  align-items: center;
+  width: 100%;
+}
+main #informative .image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+main #informative .image img:hover {
+  transform: scale(1.03);
+}
+main #informative .text {
+  padding: 0 2rem;
+}
+main #informative .text .text1, main #informative .text .text2 {
+  font-family: "Inter", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+main #informative .text .text2 {
+  opacity: 0.9;
 }
 main #new-podcasts {
-  margin-top: 20%;
+  margin-top: 10%;
 }
 main #new-podcasts .my-container {
   height: 100%;
@@ -345,35 +351,19 @@ footer #account-contact .my-container .all .contact ul li a {
   header #navbar .my-container .all .signin-signup {
     margin-left: -3%;
   }
-  main #informative {
-    margin-top: 5%;
-    height: 200px;
-    margin-bottom: 60%;
-  }
   main #informative .my-container {
     margin: 0 !important;
+    padding-left: 0 !important;
   }
-  main #informative .my-container .all {
-    display: block;
+  main #informative .my-container .all .text {
+    padding: 0 1rem;
   }
-  main #informative .my-container .image {
-    height: 50%;
+  main #informative .my-container .all .text .text1, main #informative .my-container .all .text .text2 {
+    font-size: 1.2rem;
+    line-height: 1.3;
   }
-  main #informative .my-container .image img {
-    height: 100%;
-  }
-  main #informative .my-container .text {
-    height: 50%;
-    padding: 0 !important;
-  }
-  main #informative .my-container .text .text1 {
-    padding-top: 10%;
-    padding-left: 3%;
-    font-size: 15px !important;
-  }
-  main #informative .my-container .text .text2 {
-    padding-left: 3%;
-    font-size: 20px !important;
+  main #informative .my-container .all .image img {
+    border-radius: 15px;
   }
   main #new-podcasts .my-container {
     margin: 0;
@@ -442,14 +432,19 @@ footer #account-contact .my-container .all .contact ul li a {
   }
 }
 @media (min-width: 576px) and (max-width: 767px) {
-  main #informative {
-    margin-bottom: 70%;
-  }
   main #informative .my-container {
     margin: 0 !important;
+    padding-left: 0 !important;
   }
-  main #informative .my-container .all {
-    display: block;
+  main #informative .my-container .all .text {
+    padding: 0 1rem;
+  }
+  main #informative .my-container .all .text .text1, main #informative .my-container .all .text .text2 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+  main #informative .my-container .all .image img {
+    border-radius: 15px;
   }
   main #new-podcasts .my-container .section-name {
     display: block;
@@ -502,18 +497,19 @@ footer #account-contact .my-container .all .contact ul li a {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  main #informative {
-    margin-top: 5%;
-    margin-bottom: 60%;
-  }
   main #informative .my-container {
     margin: 0 !important;
+    padding-left: 0 !important;
   }
-  main #informative .my-container .all {
-    display: block;
+  main #informative .my-container .all .text {
+    padding: 0 1rem;
   }
-  main #informative .my-container .all .image {
-    margin-left: 10%;
+  main #informative .my-container .all .text .text1, main #informative .my-container .all .text .text2 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+  main #informative .my-container .all .image img {
+    border-radius: 15px;
   }
   main #new-podcasts .my-container .section-name {
     display: block;
@@ -551,18 +547,18 @@ footer #account-contact .my-container .all .contact ul li a {
   }
 }
 @media (min-width: 992px) and (max-width: 1199px) {
-  main #informative {
-    margin-top: 5%;
-    margin-bottom: 10%;
-  }
   main #informative .my-container {
     margin: 0 !important;
   }
-  main #informative .my-container .all .text .text1 {
-    font-size: 30px;
+  main #informative .my-container .all .text {
+    padding: 0 1rem;
   }
-  main #informative .my-container .all .text .text2 {
-    font-size: 35px;
+  main #informative .my-container .all .text .text1, main #informative .my-container .all .text .text2 {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+  main #informative .my-container .all .image img {
+    border-radius: 15px;
   }
   main #new-podcasts .my-container .section-name {
     display: block;

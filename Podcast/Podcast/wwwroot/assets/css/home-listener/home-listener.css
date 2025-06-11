@@ -80,6 +80,7 @@ header #navbar .my-container .all .account .profile img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
+  background-color: #C084FC;
 }
 
 main {
@@ -657,8 +658,14 @@ footer #account-contact .my-container .all .contact ul li a {
   }
 }
 @media (min-width: 481px) and (max-width: 600px) {
+  header #navbar .my-container {
+    margin-left: 0 !important;
+  }
   header #navbar .my-container .all .logo {
     margin-top: 3%;
+  }
+  header #navbar .my-container .all .logo .text {
+    margin-left: -1%;
   }
   main #search {
     margin-top: 20%;

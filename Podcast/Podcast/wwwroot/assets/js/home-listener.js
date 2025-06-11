@@ -1,23 +1,24 @@
 "use strict";
  
-document.getElementById("toggle-icon").addEventListener("click", function () {
-  const parametersDiv = document.querySelector("#parameters-filter .my-container .all .parameters");
-  const podcastsDiv = document.querySelector(".podcasts");
-  const allPodcastsDiv = document.querySelector(".podcasts .all-podcasts");
 
-  if (parametersDiv.style.display !== "none") {
-    parametersDiv.style.display = "none";
-    podcastsDiv.style.gridColumnStart = "1";
-    podcastsDiv.style.gridColumnEnd = "5";
-    
-    allPodcastsDiv.style.gridTemplateColumns = "1fr 1fr 1fr 1fr"; 
-  } else {
-    parametersDiv.style.display = "block";
-    podcastsDiv.style.gridColumnStart = "2";
-    podcastsDiv.style.gridColumnEnd = "5";
-    
-    allPodcastsDiv.style.gridTemplateColumns = "1fr 1fr 1fr"; 
-  }
+document.getElementById("toggle-icon").addEventListener("click", function () {
+    const parametersDiv = document.querySelector("#parameters-filter .my-container .all .parameters");
+    const podcastsDiv = document.querySelector(".podcasts");
+    const allPodcastsDiv = document.querySelector(".podcasts .all-podcasts");
+
+    if (parametersDiv.style.display !== "none") {
+        parametersDiv.style.display = "none";
+        podcastsDiv.style.gridColumnStart = "1";
+        podcastsDiv.style.gridColumnEnd = "5";
+
+        allPodcastsDiv.style.gridTemplateColumns = "1fr 1fr 1fr";
+    } else {
+        parametersDiv.style.display = "block";
+        podcastsDiv.style.gridColumnStart = "2";
+        podcastsDiv.style.gridColumnEnd = "5";
+
+        allPodcastsDiv.style.gridTemplateColumns = "1fr 1fr 1fr";
+    }
 });
 
 

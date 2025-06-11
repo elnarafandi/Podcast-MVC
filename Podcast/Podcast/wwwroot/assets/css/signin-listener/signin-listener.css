@@ -75,9 +75,7 @@ main #signin-listener .my-container .signin .inside-container .text {
 main #signin-listener .my-container .signin .inside-container form {
   display: flex;
   flex-direction: column;
-}
-main #signin-listener .my-container .signin .inside-container form label {
-  display: none;
+  /* Add styles for the Remember Me checkbox */
 }
 main #signin-listener .my-container .signin .inside-container form input {
   padding: 0.8rem 1.2rem;
@@ -124,6 +122,28 @@ main #signin-listener .my-container .signin .inside-container form .forgot-passw
 main #signin-listener .my-container .signin .inside-container form .forgot-password a:hover {
   color: #C084FC;
   text-decoration: underline;
+}
+main #signin-listener .my-container .signin .inside-container form .remember-me {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+main #signin-listener .my-container .signin .inside-container form .remember-me input[type=checkbox] {
+  margin-right: 0.5rem;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #C084FC;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+main #signin-listener .my-container .signin .inside-container form .remember-me label {
+  margin-top: -7%;
+  font-size: 1rem;
+  color: #6A0DAD;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 main #signin-listener .my-container .signin .inside-container form button {
   background: #6A0DAD;

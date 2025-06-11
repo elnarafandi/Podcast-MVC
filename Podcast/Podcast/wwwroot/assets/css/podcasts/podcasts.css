@@ -368,6 +368,7 @@ main #comments .area .all-comments .comment .profile img {
      object-fit: cover;
   background-color: #ccc;
   margin-right: 0.75rem;
+  background-color: #C084FC;
 }
 main #comments .area .all-comments .comment .profile p {
   margin: 0;
