@@ -203,6 +203,9 @@ header #navbar .my-container .all .account .profile img {
   border-radius: 5px;
   color: white;
 }
+#all-podcasts .my-container .podcasts .all-podcasts .podcast .follow button:hover {
+  background-color: #C084FC;
+}
 
 #button {
   margin-top: 20%;

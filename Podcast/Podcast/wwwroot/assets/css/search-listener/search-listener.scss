@@ -227,6 +227,9 @@ header{
               width: 90px;
               border-radius: 5px;
               color: white;
+               &:hover{
+                        background-color: #C084FC;
+                      }
             }
           }
         }

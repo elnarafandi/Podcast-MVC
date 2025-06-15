@@ -18,5 +18,6 @@ namespace Service.ViewModels.Home
         public IEnumerable<Domain.Entities.Playlist> Playlists { get; set; }
         public int CurrentPage { get; set; }
         public int TotalPages { get; set; }
+        public Domain.Entities.AppUser User { get; set; }
     }
 }

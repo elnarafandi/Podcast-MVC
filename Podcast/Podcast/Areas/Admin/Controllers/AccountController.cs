@@ -72,6 +72,28 @@ namespace Podcast.Areas.Admin.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return BadRequest();
+            }
+
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
         //[HttpGet]
         //public async Task<IActionResult> CreateRoles()
         //{

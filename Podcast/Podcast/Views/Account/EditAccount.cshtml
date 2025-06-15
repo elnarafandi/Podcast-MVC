@@ -22,6 +22,12 @@
                         <input asp-for="LastName" placeholder="Last Name" required>
                         <span asp-validation-for="LastName" class="text-danger small"></span>
 
+                    <input type="password" asp-for="Password" placeholder="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+
+                    <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
                     <button type="submit">Edit</button>
                 </form>
             </div>

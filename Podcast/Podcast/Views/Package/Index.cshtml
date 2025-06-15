@@ -1,0 +1,31 @@
+﻿@model PackageAdminVM
+
+
+
+<main>
+    <section id="packages">
+        <div class="my-container">
+            <div class="all">
+
+                <div class="package-card highlighted">
+                    <p class="name">Premium Package</p>
+                    <p class="title">Unlock all premium podcast features</p>
+                    <p class="feature">What features you can access:</p>
+                    <ul>
+                        <li><i class="bi bi-headphones"></i> Listen to podcasts in various categories</li>
+                        <li><i class="bi bi-chat-dots"></i> Share your thoughts with the community</li>
+                        <li><i class="bi bi-star"></i> Follow your favorite podcast channels</li>
+                        <li><i class="bi bi-music-note-list"></i> Create playlists</li>
+                    </ul>
+                    <div class="bottom">
+                        <p class="price">Just $@Model.Price</p>
+                        <a asp-controller="Payment" asp-action="CheckOut">
+                            <button>Buy now</button>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

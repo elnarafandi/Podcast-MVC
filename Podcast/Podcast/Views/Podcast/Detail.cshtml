@@ -66,59 +66,57 @@
                                     </div>
                                 </div>
                                 <div class="icons-play">
-                                    <div class="icons">
-                                        <div class="add-episode">
-                                            <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal-@episode.Id">
-                                                <i class="bi bi-plus-circle"></i>
-                                            </button>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal-@episode.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Your Playlists</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form asp-action="AddEpisodeToPlaylist" method="post">
-                                                                <input type="hidden" name="episodeId" value="@episode.Id" />
-                                                                <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
+                                    @if (Model.User.PackageId == 3)
+                                    {
+                                        <div class="icons">
+                                            <div class="add-episode">
+                                                <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal-@episode.Id">
+                                                    <i class="bi bi-plus-circle"></i>
+                                                </button>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="exampleModal-@episode.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Your Playlists</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form asp-action="AddEpisodeToPlaylist" method="post">
+                                                                    <input type="hidden" name="episodeId" value="@episode.Id" />
+                                                                    <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
 
-                                                                <select name="playlistId" class="form-control">
-                                                                    
-                                                                    <option value="" disabled selected>Select Playlist</option>
+                                                                    <select name="playlistId" class="form-control">
 
-                                                                    @foreach (var playlist in Model.Playlists)
-                                                                    {
-                                                                        <option value="@playlist.Id">@playlist.Name</option>
-                                                                    }
-                                                                </select>
+                                                                        <option value="" disabled selected>Select Playlist</option>
 
-                                                                <button type="submit" class="btn btn-primary mt-2">Add to Playlist</button>
-                                                            </form>
+                                                                        @foreach (var playlist in Model.Playlists)
+                                                                        {
+                                                                            <option value="@playlist.Id">@playlist.Name</option>
+                                                                        }
+                                                                    </select>
+
+                                                                    <button type="submit" class="btn btn-primary mt-2">Add to Playlist</button>
+                                                                </form>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="delete-episode">
-                                            <form action="" method="">
-                                                <button type="submit" class="btn btn-primary delete">
-                                                    <i class="bi bi-dash-circle"></i>
-                                                </button>
-                                            </form>
-                                        </div>
 
-                                        <div class="like-episode">
-                                            <form method="post" class="like-form" data-episode-id="@episode.Id">
-                                                @Html.AntiForgeryToken()
-                                                <button type="submit" class="btn btn-primary like like-btn">
-                                                    <i class="bi @(Model.LikedEpisodeIds.Contains(episode.Id) ? "bi-hand-thumbs-up-fill" : "bi-hand-thumbs-up")"></i>
-                                                </button>
-                                            </form>
-                                            <span class="like-count" data-episode-id="@episode.Id">@episode.Likes.Count()</span>
+
+                                            <div class="like-episode">
+                                                <form method="post" class="like-form" data-episode-id="@episode.Id">
+                                                    @Html.AntiForgeryToken()
+                                                    <button type="submit" class="btn btn-primary like like-btn">
+                                                        <i class="bi @(Model.LikedEpisodeIds.Contains(episode.Id) ? "bi-hand-thumbs-up-fill" : "bi-hand-thumbs-up")"></i>
+                                                    </button>
+                                                </form>
+                                                <span class="like-count" data-episode-id="@episode.Id">@episode.Likes.Count()</span>
+                                            </div>
+
                                         </div>
-                                    </div>
+                                    }
                                     <div class="play">
                                         <button onclick="playAudio('@episode.Audio', this)">
                                             <i class="bi bi-play-circle-fill"></i>
@@ -136,47 +134,59 @@
                 </div>
             </div>
         </section>
+   
+    
         <section id="comments">
-          <div class="my-container">
-            <div class="area">
-              <div class="write-comment">
-                    <form asp-controller="Podcast" asp-action="AddComment" method="post">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
-                        <input type="text" name="content" placeholder="Share your opinion . . ." required>
-                        <button type="submit"><i class="bi bi-send"></i></button>
-                    </form>
-              </div>
+            <div class="my-container">
+                <div class="area">
+                @if (Model.User.PackageId == 3)
+                {
+                    <div class="write-comment">
+                        <form asp-controller="Podcast" asp-action="AddComment" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
+                            <input type="text" name="content" placeholder="Share your opinion . . ." required>
+                            <button type="submit"><i class="bi bi-send"></i></button>
+                        </form>
+                    </div>
+                }
+                @if (Model.User.PackageId == 4)
+                {
+                    <h5>Comments</h5>
+                }
                 <div class="all-comments">
-                    @foreach (var comment in Model.Comments)
-                    {
-                        <div class="comment" style="position: relative; background-color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-                            
-                            @if (comment.AppUserId == Model.UserId) 
-                            {
-                                <form method="post" action="@Url.Action("DeleteComment", "Podcast")" style="position: absolute; top: 10px; right: 10px; padding: 0; margin: 0;">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="commentId" value="@comment.Id" />
-                                    <button type="submit" class="btn btn-danger btn-sm" style="background-color: transparent; border: none; font-size: 18px; color: #dc3545; cursor: pointer;">
-                                        <i class="bi bi-x-circle" style="font-size: 20px;"></i>
-                                    </button>
-                                </form>
-                            }
+                        
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="comment" style="position: relative; background-color: #fff; padding: 15px; margin-bottom: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
 
-                            
-                            <div class="profile" style="display: flex; align-items: center; gap: 10px;">
-                                <img src="~/assets/images/home/@comment.AppUser.Image" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                                <p style="font-weight: bold; margin: 0;">@comment.AppUser.FirstName @comment.AppUser.LastName</p>
+                                @if (comment.AppUserId == Model.UserId)
+                                {
+                                    <form method="post" action="@Url.Action("DeleteComment", "Podcast")" style="position: absolute; top: 10px; right: 10px; padding: 0; margin: 0;">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="commentId" value="@comment.Id" />
+                                        <button type="submit" class="btn btn-danger btn-sm" style="background-color: transparent; border: none; font-size: 18px; color: #dc3545; cursor: pointer;">
+                                            <i class="bi bi-x-circle" style="font-size: 20px;"></i>
+                                        </button>
+                                    </form>
+                                }
+
+
+                                <div class="profile" style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="~/assets/images/home/@comment.AppUser.Image" alt="" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                                    <p style="font-weight: bold; margin: 0;">@comment.AppUser.FirstName @comment.AppUser.LastName</p>
+                                </div>
+                                <div class="text" style="margin-top: 10px;">
+                                    <p style="font-size: 15px; color: #555;">@comment.Content</p>
+                                </div>
                             </div>
-                            <div class="text" style="margin-top: 10px;">
-                                <p style="font-size: 15px; color: #555;">@comment.Content</p>
-                            </div>
-                        </div>
-                    }
+                        }
+                    </div>
                 </div>
             </div>
-          </div>
         </section>
+    
+
 </main>
 
 

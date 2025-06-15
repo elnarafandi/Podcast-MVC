@@ -11,8 +11,6 @@ namespace Domain.Entities
     {
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public int DurationInDays { get; set; }
-        public DateTime PurchasedAt { get; set; }
         public ICollection<AppUser> AppUsers { get; set; }
     }
 }

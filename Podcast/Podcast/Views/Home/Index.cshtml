@@ -36,60 +36,63 @@
                 <div class="parameters">
                     <div class="list">
                         <ul class="main-ul">
-                            <li class="play-li">
-                                <div class="p-name">
-                                    <div class="icon-name"><i class="bi bi-collection-fill"></i><p>Playlist</p></div>
+                                <li class="play-li">
+                                    <div class="p-name">
+                                        <div class="icon-name"><i class="bi bi-collection-fill"></i><p>Playlist</p></div>
 
-                                    <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="bi bi-plus-lg"></i>
-                                    </button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create playlist</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        @if (Model.User.PackageId == 3)
+                                    {
+                                        <button type="button" class="btn btn-primary create" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            <i class="bi bi-plus-lg"></i>
+                                        </button>
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Create playlist</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="/create-playlist" method="post">
+                                                            @Html.AntiForgeryToken()
+
+                                                            <div class="mb-3">
+                                                                <input type="text"
+                                                                       class="form-control"
+                                                                       id="playlistName"
+                                                                       name="playlist_name"
+                                                                       placeholder="Məsələn: Mənim Favorilərim"
+                                                                       required>
+                                                            </div>
+
+
+                                                            <button type="submit" class="btn btn-primary w-100">
+                                                                <i class="bi bi-plus-circle"></i> Create Playlist
+                                                            </button>
+                                                        </form>
+                                                    </div>
+
+
                                                 </div>
-                                                <div class="modal-body">
-                                                    <form action="/create-playlist" method="post">
-                                                        @Html.AntiForgeryToken()
-                                                        
-                                                        <div class="mb-3">
-                                                            <input type="text"
-                                                                   class="form-control"
-                                                                   id="playlistName"
-                                                                   name="playlist_name"
-                                                                   placeholder="Məsələn: Mənim Favorilərim"
-                                                                   required>
-                                                        </div>
-
-                                                        
-                                                        <button type="submit" class="btn btn-primary w-100">
-                                                            <i class="bi bi-plus-circle"></i> Create Playlist
-                                                        </button>
-                                                    </form>
-                                                </div>
-
-
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <ul class="child-ul">
-                                    @foreach(var playlist in Model.Playlists)
-                                    {
-                                        <li>
-                                            <div class="name"><a asp-controller="Playlist" asp-action="Detail" asp-route-id="@playlist.Id"><p>@playlist.Name</p></a></div>
-                                            <div class="delete">
-                                                <form asp-controller="Playlist" asp-action="DeletePlaylist" method="post" asp-route-id="@playlist.Id">
-                                                    <button type="submit"><i class="bi bi-trash"></i></button>
-                                                </form>
-                                            </div>
-                                        </li>
                                     }
+                                    </div>
+                                    <ul class="child-ul">
+                                        @foreach (var playlist in Model.Playlists)
+                                        {
+                                            <li>
+                                                <div class="name"><a asp-controller="Playlist" asp-action="Detail" asp-route-id="@playlist.Id"><p>@playlist.Name</p></a></div>
+                                                <div class="delete">
+                                                    <form asp-controller="Playlist" asp-action="DeletePlaylist" method="post" asp-route-id="@playlist.Id">
+                                                        <button type="submit"><i class="bi bi-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                            </li>
+                                        }
 
-                                </ul>
-                            </li>
+                                    </ul>
+                                </li>
                             <li class="sub-li">
                                 <p><i class="bi bi-file-plus-fill"></i>Followed Podcasts</p>
                                 <ul class="child-ul">
@@ -106,6 +109,18 @@
                                 </ul>
                             </li>
                         </ul>
+                    </div>
+                    <div class="premium-package">
+                        <div class="package">
+                            @if (Model.User.PackageId == 4)
+                            {
+                                <a asp-controller="Package" asp-action="Index">Buy Premium Package for more features</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Home" asp-action="Index">Whoo, you have Premium Membership!</a>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div class="podcasts">

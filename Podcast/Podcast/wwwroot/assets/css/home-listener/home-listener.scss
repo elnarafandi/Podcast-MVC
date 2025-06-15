@@ -240,7 +240,7 @@ main{
                   .child-ul{
                   margin-top: 7%;
                   list-style-type: none;
-                  max-height: 170px; 
+                  max-height: 130px; 
                   overflow-y: auto; 
                   a{
                     text-decoration: none;
@@ -307,7 +307,7 @@ main{
                   .child-ul{
                   margin-top: 7%;
                   list-style-type: none;
-                  max-height: 200px; 
+                  max-height: 180px; 
                   overflow-y: auto; 
                   a{
                     text-decoration: none;
@@ -323,7 +323,7 @@ main{
                       img{
                         height: 35px;
                       width: 35px;
-                      border-radius: 50%;
+                      border-radius: 5px;
                       }
                     }
                     .name{
@@ -342,6 +342,17 @@ main{
                     color: #6A0DAD;
                   }
                 }
+                }
+              }
+            }
+            .premium-package{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-top: 15%;
+              .package{
+                a{
+                  text-decoration: none;
                 }
               }
             }

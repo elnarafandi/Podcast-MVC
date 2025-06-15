@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using Service.Services.Interfaces;
@@ -17,12 +18,14 @@ namespace Podcast.Controllers
         private readonly ICommentService _commentService;
         private readonly IPlaylistService _playlistService;
         private readonly ILikeService _likeService;
+        private readonly UserManager<AppUser> _userManager;
         public PodcastController(IPodcastService podcastService, 
                                  IPodcastCategoryService podcastCategoryService,
                                  IAppUserPodcastService appUserPodcastService,
                                  ICommentService commentService,
                                  IPlaylistService playlistService,
-                                 ILikeService likeService)
+                                 ILikeService likeService,
+                                 UserManager<AppUser> userManager)
         {
             _podcastService = podcastService;
             _podcastCategoryService = podcastCategoryService;
@@ -30,6 +33,7 @@ namespace Podcast.Controllers
             _commentService = commentService;
             _playlistService = playlistService;
             _likeService = likeService;
+            _userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -42,6 +46,8 @@ namespace Podcast.Controllers
                 return NotFound();
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+
 
             bool isFollowing = false;
             if (!string.IsNullOrEmpty(userId))
@@ -64,7 +70,8 @@ namespace Podcast.Controllers
                 Comments=comments,
                 Playlists=playlists,
                 LikedEpisodeIds = likedEpisodeIds,
-                UserId = userId
+                UserId = userId,
+                User=user
             });
         }
         [HttpGet]

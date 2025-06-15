@@ -18,15 +18,18 @@ namespace Podcast.Controllers
         private readonly IPodcastService _podcastService;
         private readonly IAppUserPodcastService _appUserPodcastService;
         private readonly IPlaylistService _playlistService;
+        private readonly UserManager<AppUser> _userManager;
         public HomeController(IPodcastCategoryService podcastCategoryService, 
                               IPodcastService podcastService,
                               IAppUserPodcastService appUserPodcastService,
-                              IPlaylistService playlistService)
+                              IPlaylistService playlistService,
+                              UserManager<AppUser> userManager)
         {
             _podcastCategoryService = podcastCategoryService;
             _podcastService = podcastService;
             _appUserPodcastService = appUserPodcastService;
             _playlistService = playlistService;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Index(int page = 1)
         {
@@ -42,6 +45,8 @@ namespace Podcast.Controllers
             var totalPages = (int)Math.Ceiling((double)totalPodcasts / pageSize);
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
+
             var playlists = await _playlistService.GetPlaylistsByUserIdAsync(userId);
             var followedPodcastIds = userId != null
                 ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
@@ -58,7 +63,8 @@ namespace Podcast.Controllers
                 FollowedPodcasts = followedPodcasts,
                 Playlists = playlists,
                 CurrentPage = page,
-                TotalPages = totalPages
+                TotalPages = totalPages,
+                User=user
             };
 
             if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")

@@ -15,6 +15,7 @@ namespace Domain.Entities
         public DateTime CreatedDate { get; set; }= DateTime.Now;
         public int? PackageId { get; set; }
         public Package Package { get; set; }
+        public DateTime PurchasedAt { get; set; }
         public ICollection<Playlist> Playlists { get; set; }
         public ICollection<AppUserPodcast> AppUserPodcasts { get; set; }
         public ICollection<Like> Likes { get; set; }

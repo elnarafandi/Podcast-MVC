@@ -47,9 +47,9 @@ header{
     
 }
 
-main{
-    width: 100vw;
-#packages {
+main {
+  width: 100vw;
+  #packages {
   padding: 60px 0;
 
   .my-container {
@@ -136,16 +136,23 @@ main{
         color: #2b9348;
       }
 
-      .buy-now-btn {
+      form {
         margin-top: 10px;
-        display: inline-block;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      button {
         padding: 10px 25px;
         background-color: #6A0DAD;
         color: white;
         font-size: 1rem;
         border-radius: 6px;
-        text-decoration: none;
+        border: none;
+        cursor: pointer;
         transition: background-color 0.3s ease;
+        width: 100%;
 
         &:hover {
           background-color: #C084FC;
@@ -163,10 +170,16 @@ main{
     .package-card {
       max-width: 100%;
     }
+
+    .bottom button {
+      width: auto;
+    }
   }
 }
-
 }
+
+
+
 
 footer{
     

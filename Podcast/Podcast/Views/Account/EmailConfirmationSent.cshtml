@@ -1,0 +1,46 @@
+﻿<main>
+    <section id="confirmation-message" class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-4">
+                    <!-- Bootstrap alert with custom styling -->
+                    <div class="alert alert-warning text-center shadow-sm" role="alert">
+                        Please check your email for confirmation!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<style>
+    /* Custom styling for the alert */
+    .alert-warning {
+        background-color: #fff3cd; /* Light yellow background */
+        color: #856404; /* Darker text color for better contrast */
+        border: 1px solid #ffeeba; /* Border color */
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+        .alert-warning .alert-text {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+    /* For responsiveness and centering */
+    #confirmation-message {
+        min-height: 100vh;
+    }
+
+    .alert {
+        font-size: 18px;
+        font-weight: 600;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        /* Hover effect for alert box */
+        .alert:hover {
+            transform: translateY(-5px); /* Slight lift effect */
+        }
+</style>

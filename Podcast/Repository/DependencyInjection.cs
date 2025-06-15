@@ -24,6 +24,7 @@ namespace Repository
             services.AddScoped<IPlaylistRepository, PlaylistRepository>();
             services.AddScoped<IPlaylistEpisodeRepository, PlaylistEpisodeRepository>();
             services.AddScoped<ILikeRepository, LikeRepository>();
+            services.AddScoped<IPackageRepository, PackageRepository>();
             return services;
         }
     }

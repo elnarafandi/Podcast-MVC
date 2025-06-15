@@ -228,7 +228,7 @@ main #parameters-filter .my-container .all .parameters .list .main-ul .play-li {
 main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul {
   margin-top: 7%;
   list-style-type: none;
-  max-height: 170px;
+  max-height: 130px;
   overflow-y: auto;
 }
 main #parameters-filter .my-container .all .parameters .list .main-ul .play-li .child-ul a {
@@ -294,7 +294,7 @@ main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li {
 main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul {
   margin-top: 7%;
   list-style-type: none;
-  max-height: 200px;
+  max-height: 180px;
   overflow-y: auto;
 }
 main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul a {
@@ -313,7 +313,7 @@ main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .c
 main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul li .image img {
   height: 35px;
   width: 35px;
-  border-radius: 50%;
+  border-radius: 5px;
 }
 main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li .child-ul li .name {
   padding-top: 2%;
@@ -328,6 +328,15 @@ main #parameters-filter .my-container .all .parameters .list .main-ul .sub-li p 
   margin-right: 3%;
   font-size: 20px;
   color: #6A0DAD;
+}
+main #parameters-filter .my-container .all .parameters .premium-package {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15%;
+}
+main #parameters-filter .my-container .all .parameters .premium-package .package a {
+  text-decoration: none;
 }
 main #parameters-filter .my-container .all .podcasts {
   grid-column-start: 2;

@@ -17,10 +17,6 @@ namespace Domain.Configurations
                .IsRequired();
             builder.Property(t => t.Price)
                .IsRequired();
-            builder.Property(t => t.DurationInDays)
-               .IsRequired();
-            builder.Property(t => t.PurchasedAt)
-               .IsRequired();
         }
     }
 }

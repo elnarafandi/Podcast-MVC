@@ -10,5 +10,6 @@ namespace Service.ViewModels.Playlist
     {
         public PlaylistAdminVM Playlist {  get; set; }
         public List<int> LikedEpisodeIds { get; set; }
+        public Domain.Entities.AppUser User { get; set; }
     }
 }

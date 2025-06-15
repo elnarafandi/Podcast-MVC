@@ -4,9 +4,12 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Podcast.Middlewares;
 using Repository;
 using Repository.Data;
+using Serilog;
 using Service;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,7 +56,7 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredLength = 6;
     options.Password.RequiredUniqueChars = 1;
 
-    options.SignIn.RequireConfirmedEmail = false;
+    options.SignIn.RequireConfirmedEmail = true;
 
     // User settings.
     options.User.AllowedUserNameCharacters =
@@ -62,7 +65,13 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 });
 
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)  // Write logs to file (daily rolling)
+    .Enrich.FromLogContext()
+    .MinimumLevel.Information()
+    .CreateLogger();
 
+builder.Host.UseSerilog();
 
 builder.Services.AddFluentValidationAutoValidation();
 var assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -71,8 +80,15 @@ foreach (var assembly in assemblies)
     builder.Services.AddValidatorsFromAssembly(assembly);
 }
 
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddRepositoryLayer();
 builder.Services.AddServiceLayer();
+
+// Register the global exception handler
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 
 var app = builder.Build();
 
@@ -85,9 +101,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
+
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Use the global exception handler
+app.UseExceptionHandler();
 
 app.MapControllerRoute(
             name: "areas",

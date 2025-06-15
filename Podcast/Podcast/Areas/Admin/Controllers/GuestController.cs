@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Podcast.Controllers;
 using Service.Services;
 using Service.Services.Interfaces;
 using Service.ViewModels.Guest;
@@ -32,6 +33,7 @@ namespace Podcast.Areas.Admin.Controllers
         public async Task<IActionResult> Create(GuestCreateVM request)
         {
             if (!ModelState.IsValid) return View(request);
+            //_logger.LogInformation("Send request to Create method");
             await _guestService.CreateAsync(request);
             return RedirectToAction(nameof(Index));
         }

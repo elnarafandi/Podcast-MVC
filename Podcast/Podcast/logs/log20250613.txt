@@ -1,0 +1,987 @@
+2025-06-13 21:11:36.674 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:11:36.746 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:11:36.748 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:11:36.749 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:11:36.749 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:11:38.638 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/ - null null
+2025-06-13 21:11:38.882 +04:00 [INF] Executing endpoint 'Podcast.Controllers.AboutController.Index (Podcast)'
+2025-06-13 21:11:38.922 +04:00 [INF] Route matched with {action = "Index", controller = "About", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index() on controller Podcast.Controllers.AboutController (Podcast).
+2025-06-13 21:11:39.573 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:11:40.346 +04:00 [INF] Executed DbCommand (76ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title]
+FROM [TeamMembers] AS [t]
+LEFT JOIN [Podcasts] AS [p] ON [t].[Id] = [p].[TeamMemberId]
+ORDER BY [t].[CreatedDate] DESC, [t].[Id]
+2025-06-13 21:11:40.452 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:11:40.480 +04:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [l].[Id], [l].[AppUserId], [l].[CreatedDate], [l].[EpisodeId], [t].[Id], [t].[CreatedDate], [t].[EpisodeId], [t].[GuestId], [t].[Id0], [t].[CreatedDate0], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [Episodes] AS [e]
+INNER JOIN [Podcasts] AS [p] ON [e].[PodcastId] = [p].[Id]
+LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+LEFT JOIN (
+    SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+    FROM [EpisodeGuests] AS [e0]
+    INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+) AS [t] ON [e].[Id] = [t].[EpisodeId]
+ORDER BY [e].[CreatedDate] DESC, [e].[Id], [p].[Id], [l].[Id], [t].[Id]
+2025-06-13 21:11:40.528 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:11:40.608 +04:00 [INF] Executed ViewResult - view Index executed in 85.05ms.
+2025-06-13 21:11:40.610 +04:00 [INF] Executed action Podcast.Controllers.AboutController.Index (Podcast) in 1687.5977ms
+2025-06-13 21:11:40.611 +04:00 [INF] Executed endpoint 'Podcast.Controllers.AboutController.Index (Podcast)'
+2025-06-13 21:11:40.619 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/ - 200 null text/html; charset=utf-8 1990.5743ms
+2025-06-13 21:11:40.626 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/home-listener/home-listener.css - null null
+2025-06-13 21:11:40.626 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/podcasts/podcasts.css - null null
+2025-06-13 21:11:40.628 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/about/about.css - null null
+2025-06-13 21:11:40.629 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/team-info/team-info.css - null null
+2025-06-13 21:11:40.629 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/signup-listener/signup-listener.css - null null
+2025-06-13 21:11:40.630 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/signin-listener/signin-listener.css - null null
+2025-06-13 21:11:40.632 +04:00 [INF] The file /assets/css/podcasts/podcasts.css was not modified
+2025-06-13 21:11:40.632 +04:00 [INF] The file /assets/css/signin-listener/signin-listener.css was not modified
+2025-06-13 21:11:40.632 +04:00 [INF] The file /assets/css/about/about.css was not modified
+2025-06-13 21:11:40.632 +04:00 [INF] The file /assets/css/signup-listener/signup-listener.css was not modified
+2025-06-13 21:11:40.632 +04:00 [INF] The file /assets/css/home-listener/home-listener.css was not modified
+2025-06-13 21:11:40.632 +04:00 [INF] The file /assets/css/team-info/team-info.css was not modified
+2025-06-13 21:11:40.633 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/team-info/team-info.css - 304 null text/css 4.1503ms
+2025-06-13 21:11:40.633 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/signup-listener/signup-listener.css - 304 null text/css 3.8991ms
+2025-06-13 21:11:40.633 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/about/about.css - 304 null text/css 4.1539ms
+2025-06-13 21:11:40.633 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/home-listener/home-listener.css - 304 null text/css 6.7655ms
+2025-06-13 21:11:40.633 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/podcasts/podcasts.css - 304 null text/css 6.765ms
+2025-06-13 21:11:40.633 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/signin-listener/signin-listener.css - 304 null text/css 3.0633ms
+2025-06-13 21:11:40.634 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/search-listener/search-listener.css - null null
+2025-06-13 21:11:40.635 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/account-listener/account-listener.css - null null
+2025-06-13 21:11:40.635 +04:00 [INF] The file /assets/css/search-listener/search-listener.css was not modified
+2025-06-13 21:11:40.635 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/search-listener/search-listener.css - 304 null text/css 0.8649ms
+2025-06-13 21:11:40.636 +04:00 [INF] The file /assets/css/account-listener/account-listener.css was not modified
+2025-06-13 21:11:40.636 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/account-listener/account-listener.css - 304 null text/css 0.8427ms
+2025-06-13 21:11:40.638 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b4ce9371-f488-47cc-a7d3-842fe066fc3a-3.jpg - null null
+2025-06-13 21:11:40.638 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/49abb456-c585-41b6-8cfc-9f2f25aa2747-7.jpg - null null
+2025-06-13 21:11:40.638 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/ac581604-835f-4c84-ad1b-9a64bf4b2c89-9.jpg - null null
+2025-06-13 21:11:40.639 +04:00 [INF] The file /assets/images/podcasts/49abb456-c585-41b6-8cfc-9f2f25aa2747-7.jpg was not modified
+2025-06-13 21:11:40.639 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/home/c76fc83d-3fe6-4bfd-a48f-8e6274bfd285-person1.jpg - null null
+2025-06-13 21:11:40.639 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/49abb456-c585-41b6-8cfc-9f2f25aa2747-7.jpg - 304 null image/jpeg 0.6353ms
+2025-06-13 21:11:40.639 +04:00 [INF] The file /assets/images/podcasts/b4ce9371-f488-47cc-a7d3-842fe066fc3a-3.jpg was not modified
+2025-06-13 21:11:40.639 +04:00 [INF] The file /assets/images/podcasts/ac581604-835f-4c84-ad1b-9a64bf4b2c89-9.jpg was not modified
+2025-06-13 21:11:40.639 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b4ce9371-f488-47cc-a7d3-842fe066fc3a-3.jpg - 304 null image/jpeg 0.8625ms
+2025-06-13 21:11:40.639 +04:00 [INF] The file /assets/images/home/c76fc83d-3fe6-4bfd-a48f-8e6274bfd285-person1.jpg was not modified
+2025-06-13 21:11:40.639 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/ac581604-835f-4c84-ad1b-9a64bf4b2c89-9.jpg - 304 null image/jpeg 0.8838ms
+2025-06-13 21:11:40.639 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/home/c76fc83d-3fe6-4bfd-a48f-8e6274bfd285-person1.jpg - 304 null image/jpeg 0.4671ms
+2025-06-13 21:11:40.641 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/js/home-listener.js - null null
+2025-06-13 21:11:40.641 +04:00 [INF] The file /assets/js/home-listener.js was not modified
+2025-06-13 21:11:40.641 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:11:40.641 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/js/home-listener.js - 304 null text/javascript 0.4966ms
+2025-06-13 21:11:40.643 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 1.7562ms
+2025-06-13 21:11:40.643 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/home/267d2077-f2ce-4fb4-bf73-c363749bc39d-person4.jpg - null null
+2025-06-13 21:11:40.644 +04:00 [INF] The file /assets/images/home/267d2077-f2ce-4fb4-bf73-c363749bc39d-person4.jpg was not modified
+2025-06-13 21:11:40.644 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/home/267d2077-f2ce-4fb4-bf73-c363749bc39d-person4.jpg - 304 null image/jpeg 0.722ms
+2025-06-13 21:11:40.645 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/home/4b890e50-fed1-47e4-84f6-7183905d1a43-person3.jpg - null null
+2025-06-13 21:11:40.645 +04:00 [INF] The file /assets/images/home/4b890e50-fed1-47e4-84f6-7183905d1a43-person3.jpg was not modified
+2025-06-13 21:11:40.645 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/home/6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg - null null
+2025-06-13 21:11:40.645 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/home/4b890e50-fed1-47e4-84f6-7183905d1a43-person3.jpg - 304 null image/jpeg 0.5549ms
+2025-06-13 21:11:40.645 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:11:40.645 +04:00 [INF] The file /assets/images/home/6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg was not modified
+2025-06-13 21:11:40.646 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/home/6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg - 304 null image/jpeg 0.5574ms
+2025-06-13 21:11:40.681 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 35.8486ms
+2025-06-13 21:11:40.760 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/favicon.ico - null null
+2025-06-13 21:11:40.767 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/favicon.ico - 404 0 null 7.0672ms
+2025-06-13 21:11:40.768 +04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5134/favicon.ico, Response status code: 404
+2025-06-13 21:12:05.159 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Account/Login - null null
+2025-06-13 21:12:05.167 +04:00 [INF] Executing endpoint 'Podcast.Controllers.AccountController.Login (Podcast)'
+2025-06-13 21:12:05.172 +04:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login() on controller Podcast.Controllers.AccountController (Podcast).
+2025-06-13 21:12:05.177 +04:00 [INF] Executing ViewResult, running view Login.
+2025-06-13 21:12:05.217 +04:00 [INF] Executed ViewResult - view Login executed in 40.8758ms.
+2025-06-13 21:12:05.217 +04:00 [INF] Executed action Podcast.Controllers.AccountController.Login (Podcast) in 44.7934ms
+2025-06-13 21:12:05.217 +04:00 [INF] Executed endpoint 'Podcast.Controllers.AccountController.Login (Podcast)'
+2025-06-13 21:12:05.219 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Account/Login - 200 null text/html; charset=utf-8 59.775ms
+2025-06-13 21:12:05.232 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:12:05.232 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:12:05.233 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.6276ms
+2025-06-13 21:12:05.242 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.2351ms
+2025-06-13 21:12:20.854 +04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5134/Account/Login - application/x-www-form-urlencoded 252
+2025-06-13 21:12:20.863 +04:00 [INF] Executing endpoint 'Podcast.Controllers.AccountController.Login (Podcast)'
+2025-06-13 21:12:20.882 +04:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(Service.ViewModels.Account.LoginVM) on controller Podcast.Controllers.AccountController (Podcast).
+2025-06-13 21:12:21.064 +04:00 [INF] Executed DbCommand (34ms) [Parameters=[@__normalizedEmail_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @__normalizedEmail_0
+2025-06-13 21:12:21.246 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-06-13 21:12:21.266 +04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-06-13 21:12:21.283 +04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__normalizedName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @__normalizedName_0
+2025-06-13 21:12:21.304 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__role_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @__role_Id_0
+2025-06-13 21:12:21.308 +04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-06-13 21:12:21.309 +04:00 [INF] Executing RedirectResult, redirecting to /Home.
+2025-06-13 21:12:21.309 +04:00 [INF] Executed action Podcast.Controllers.AccountController.Login (Podcast) in 426.5047ms
+2025-06-13 21:12:21.309 +04:00 [INF] Executed endpoint 'Podcast.Controllers.AccountController.Login (Podcast)'
+2025-06-13 21:12:21.310 +04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5134/Account/Login - 302 0 null 455.4121ms
+2025-06-13 21:12:21.315 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:12:21.329 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:12:21.336 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:12:21.378 +04:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:12:21.408 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:12:46.466 +04:00 [INF] Executed DbCommand (25,052ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:12:46.569 +04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:12:46.610 +04:00 [INF] Executed DbCommand (10ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:12:46.645 +04:00 [INF] Executed DbCommand (11ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:12:46.649 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:12:46.706 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:12:46.719 +04:00 [INF] Executed ViewResult - view Index executed in 71.4677ms.
+2025-06-13 21:12:46.721 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 25384.7336ms
+2025-06-13 21:12:46.721 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:12:46.722 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home - 200 null text/html; charset=utf-8 25406.5982ms
+2025-06-13 21:12:46.747 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:12:46.747 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/home/listener.jpg - null null
+2025-06-13 21:12:46.747 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b6b44def-88bc-4ea1-8fc1-0f14127ae0e4-lemons.jpg - null null
+2025-06-13 21:12:46.747 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.4353ms
+2025-06-13 21:12:46.747 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/5ab43866-c006-452b-a784-454211096b61-podcast2.jpg - null null
+2025-06-13 21:12:46.748 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b660a69a-266f-4767-ad34-b81071d649b1-podcast3.jpg - null null
+2025-06-13 21:12:46.748 +04:00 [INF] The file /assets/images/podcasts/b6b44def-88bc-4ea1-8fc1-0f14127ae0e4-lemons.jpg was not modified
+2025-06-13 21:12:46.748 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b861ca99-df33-40e8-b7a8-b88ad3f49712-podcast1.jpg - null null
+2025-06-13 21:12:46.748 +04:00 [INF] The file /assets/images/home/listener.jpg was not modified
+2025-06-13 21:12:46.748 +04:00 [INF] The file /assets/images/podcasts/5ab43866-c006-452b-a784-454211096b61-podcast2.jpg was not modified
+2025-06-13 21:12:46.749 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/5ab43866-c006-452b-a784-454211096b61-podcast2.jpg - 304 null image/jpeg 1.2347ms
+2025-06-13 21:12:46.749 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/home/listener.jpg - 304 null image/jpeg 1.9639ms
+2025-06-13 21:12:46.749 +04:00 [INF] The file /assets/images/podcasts/b861ca99-df33-40e8-b7a8-b88ad3f49712-podcast1.jpg was not modified
+2025-06-13 21:12:46.749 +04:00 [INF] The file /assets/images/podcasts/b660a69a-266f-4767-ad34-b81071d649b1-podcast3.jpg was not modified
+2025-06-13 21:12:46.749 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b861ca99-df33-40e8-b7a8-b88ad3f49712-podcast1.jpg - 304 null image/jpeg 0.453ms
+2025-06-13 21:12:46.749 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b660a69a-266f-4767-ad34-b81071d649b1-podcast3.jpg - 304 null image/jpeg 0.5544ms
+2025-06-13 21:12:46.749 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/b6b44def-88bc-4ea1-8fc1-0f14127ae0e4-lemons.jpg - 304 null image/jpeg 1.6014ms
+2025-06-13 21:12:46.752 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/f110f6c3-5fda-4fe1-8775-654b9b5dd65d-podcast2.jpg - null null
+2025-06-13 21:12:46.752 +04:00 [INF] The file /assets/images/podcasts/f110f6c3-5fda-4fe1-8775-654b9b5dd65d-podcast2.jpg was not modified
+2025-06-13 21:12:46.753 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/f110f6c3-5fda-4fe1-8775-654b9b5dd65d-podcast2.jpg - 304 null image/jpeg 0.9253ms
+2025-06-13 21:12:46.757 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/38749808-1e04-4df2-b47f-ab37d7972deb-podcast1.jpg - null null
+2025-06-13 21:12:46.757 +04:00 [INF] The file /assets/images/podcasts/38749808-1e04-4df2-b47f-ab37d7972deb-podcast1.jpg was not modified
+2025-06-13 21:12:46.757 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/38749808-1e04-4df2-b47f-ab37d7972deb-podcast1.jpg - 304 null image/jpeg 0.6521ms
+2025-06-13 21:12:46.759 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/cb56165f-07df-487f-bbcf-169f2ed1f6a8-podcast3.jpg - null null
+2025-06-13 21:12:46.759 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/4c612b57-46ed-4918-9d78-7e52127158a4-podcast1.jpg - null null
+2025-06-13 21:12:46.759 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:12:46.760 +04:00 [INF] The file /assets/images/podcasts/cb56165f-07df-487f-bbcf-169f2ed1f6a8-podcast3.jpg was not modified
+2025-06-13 21:12:46.760 +04:00 [INF] The file /assets/images/podcasts/4c612b57-46ed-4918-9d78-7e52127158a4-podcast1.jpg was not modified
+2025-06-13 21:12:46.760 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/cb56165f-07df-487f-bbcf-169f2ed1f6a8-podcast3.jpg - 304 null image/jpeg 0.9375ms
+2025-06-13 21:12:46.760 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/4c612b57-46ed-4918-9d78-7e52127158a4-podcast1.jpg - 304 null image/jpeg 0.9382ms
+2025-06-13 21:12:46.765 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 5.5134ms
+2025-06-13 21:13:20.111 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home/Index?page=2 - null null
+2025-06-13 21:13:20.115 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:13:20.115 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:13:20.127 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:13:20.146 +04:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:13:20.152 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:13:20.154 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:20.157 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:20.158 +04:00 [INF] Executing PartialViewResult, running view _PodcastHomePartial.
+2025-06-13 21:13:20.160 +04:00 [INF] Executed PartialViewResult - view _PodcastHomePartial executed in 2.1804ms.
+2025-06-13 21:13:20.160 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 44.739ms
+2025-06-13 21:13:20.160 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:13:20.160 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home/Index?page=2 - 200 null text/html; charset=utf-8 49.276ms
+2025-06-13 21:13:20.169 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/fe4d6b6f-af8a-466a-a8ee-03031b82eb03-podcast2.jpg - null null
+2025-06-13 21:13:20.169 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/e68da9db-393e-4178-befa-88525dade23c-2.jpeg - null null
+2025-06-13 21:13:20.169 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/110057d8-a87d-406a-a64a-58b7e9c35751-6.jpg - null null
+2025-06-13 21:13:20.169 +04:00 [INF] The file /assets/images/podcasts/110057d8-a87d-406a-a64a-58b7e9c35751-6.jpg was not modified
+2025-06-13 21:13:20.169 +04:00 [INF] The file /assets/images/podcasts/fe4d6b6f-af8a-466a-a8ee-03031b82eb03-podcast2.jpg was not modified
+2025-06-13 21:13:20.169 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/110057d8-a87d-406a-a64a-58b7e9c35751-6.jpg - 304 null image/jpeg 0.3772ms
+2025-06-13 21:13:20.169 +04:00 [INF] The file /assets/images/podcasts/e68da9db-393e-4178-befa-88525dade23c-2.jpeg was not modified
+2025-06-13 21:13:20.169 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/fe4d6b6f-af8a-466a-a8ee-03031b82eb03-podcast2.jpg - 304 null image/jpeg 0.7115ms
+2025-06-13 21:13:20.169 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/e68da9db-393e-4178-befa-88525dade23c-2.jpeg - 304 null image/jpeg 0.6389ms
+2025-06-13 21:13:20.170 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/5fa8741f-f1f8-4297-bacf-8fff49dccb44-1.jpg - null null
+2025-06-13 21:13:20.170 +04:00 [INF] The file /assets/images/podcasts/5fa8741f-f1f8-4297-bacf-8fff49dccb44-1.jpg was not modified
+2025-06-13 21:13:20.170 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/5fa8741f-f1f8-4297-bacf-8fff49dccb44-1.jpg - 304 null image/jpeg 0.2155ms
+2025-06-13 21:13:21.642 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home/Index?page=3 - null null
+2025-06-13 21:13:21.655 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:13:21.655 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:13:21.664 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:13:21.666 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:13:21.668 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:13:21.669 +04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:21.669 +04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:21.669 +04:00 [INF] Executing PartialViewResult, running view _PodcastHomePartial.
+2025-06-13 21:13:21.670 +04:00 [INF] Executed PartialViewResult - view _PodcastHomePartial executed in 0.5005ms.
+2025-06-13 21:13:21.670 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 14.5499ms
+2025-06-13 21:13:21.670 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:13:21.670 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home/Index?page=3 - 200 null text/html; charset=utf-8 28.4982ms
+2025-06-13 21:13:21.673 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/eceef303-501a-4fa6-8726-03fa3ee965ca-4.jpg - null null
+2025-06-13 21:13:21.673 +04:00 [INF] The file /assets/images/podcasts/eceef303-501a-4fa6-8726-03fa3ee965ca-4.jpg was not modified
+2025-06-13 21:13:21.673 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/images/podcasts/eceef303-501a-4fa6-8726-03fa3ee965ca-4.jpg - 304 null image/jpeg 0.4816ms
+2025-06-13 21:13:30.079 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/PodcastCategory/Index/4 - null null
+2025-06-13 21:13:30.085 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PodcastCategoryController.Index (Podcast)'
+2025-06-13 21:13:30.091 +04:00 [INF] Route matched with {action = "Index", controller = "PodcastCategory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String) on controller Podcast.Controllers.PodcastCategoryController (Podcast).
+2025-06-13 21:13:30.117 +04:00 [INF] Executed DbCommand (8ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedDate], [t].[Name], [t0].[Id], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastCategoryId], [t0].[TeamMemberId], [t0].[Title], [t0].[Id0], [t0].[CreatedDate0], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM (
+    SELECT TOP(1) [p].[Id], [p].[CreatedDate], [p].[Name]
+    FROM [PodcastCategories] AS [p]
+    WHERE [p].[Id] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title], [t1].[Id] AS [Id0], [t1].[CreatedDate] AS [CreatedDate0], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Podcasts] AS [p0]
+    INNER JOIN [TeamMembers] AS [t1] ON [p0].[TeamMemberId] = [t1].[Id]
+) AS [t0] ON [t].[Id] = [t0].[PodcastCategoryId]
+ORDER BY [t].[Id], [t0].[Id]
+2025-06-13 21:13:30.131 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:13:30.155 +04:00 [INF] Executed DbCommand (19ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedDate], [t].[Description], [t].[Image], [t].[PodcastCategoryId], [t].[TeamMemberId], [t].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t0].[Id], [t0].[CreatedDate], [t0].[FirstName], [t0].[Image], [t0].[Information], [t0].[LastName], [t0].[SocialMedia], [t1].[Id], [t1].[Audio], [t1].[CreatedDate], [t1].[Description], [t1].[Image], [t1].[PodcastId], [t1].[Title], [t1].[Id0], [t1].[AppUserId], [t1].[CreatedDate0], [t1].[EpisodeId], [t1].[Id1], [t1].[CreatedDate1], [t1].[EpisodeId0], [t1].[GuestId], [t1].[Id00], [t1].[CreatedDate00], [t1].[FirstName], [t1].[Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+FROM (
+    SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title]
+    FROM [Podcasts] AS [p]
+    WHERE [p].[PodcastCategoryId] = @__categoryId_0
+    ORDER BY [p].[CreatedDate] DESC
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t]
+INNER JOIN [PodcastCategories] AS [p0] ON [t].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t0] ON [t].[TeamMemberId] = [t0].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t2].[Id] AS [Id1], [t2].[CreatedDate] AS [CreatedDate1], [t2].[EpisodeId] AS [EpisodeId0], [t2].[GuestId], [t2].[Id0] AS [Id00], [t2].[CreatedDate0] AS [CreatedDate00], [t2].[FirstName], [t2].[Image] AS [Image0], [t2].[Information], [t2].[LastName], [t2].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t2] ON [e].[Id] = [t2].[EpisodeId]
+) AS [t1] ON [t].[Id] = [t1].[PodcastId]
+ORDER BY [t].[CreatedDate] DESC, [t].[Id], [p0].[Id], [t0].[Id], [t1].[Id], [t1].[Id0], [t1].[Id1]
+2025-06-13 21:13:30.158 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:30.168 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [p].[PodcastCategoryId] = @__categoryId_0
+ORDER BY [p].[CreatedDate] DESC
+2025-06-13 21:13:30.170 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:13:30.188 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:13:30.190 +04:00 [INF] Executed ViewResult - view Index executed in 20.7338ms.
+2025-06-13 21:13:30.190 +04:00 [INF] Executed action Podcast.Controllers.PodcastCategoryController.Index (Podcast) in 99.4915ms
+2025-06-13 21:13:30.190 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PodcastCategoryController.Index (Podcast)'
+2025-06-13 21:13:30.191 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/PodcastCategory/Index/4 - 200 null text/html; charset=utf-8 111.3731ms
+2025-06-13 21:13:30.204 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:13:30.204 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:13:30.204 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.2501ms
+2025-06-13 21:13:30.208 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 3.7799ms
+2025-06-13 21:13:34.349 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/PodcastCategory/ShowMore?id=4&skip=8&sortOrder= - null null
+2025-06-13 21:13:34.351 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PodcastCategoryController.ShowMore (Podcast)'
+2025-06-13 21:13:34.356 +04:00 [INF] Route matched with {action = "ShowMore", controller = "PodcastCategory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ShowMore(Int32, Int32, System.String) on controller Podcast.Controllers.PodcastCategoryController (Podcast).
+2025-06-13 21:13:34.361 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedDate], [t].[Name], [t0].[Id], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastCategoryId], [t0].[TeamMemberId], [t0].[Title], [t0].[Id0], [t0].[CreatedDate0], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM (
+    SELECT TOP(1) [p].[Id], [p].[CreatedDate], [p].[Name]
+    FROM [PodcastCategories] AS [p]
+    WHERE [p].[Id] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title], [t1].[Id] AS [Id0], [t1].[CreatedDate] AS [CreatedDate0], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Podcasts] AS [p0]
+    INNER JOIN [TeamMembers] AS [t1] ON [p0].[TeamMemberId] = [t1].[Id]
+) AS [t0] ON [t].[Id] = [t0].[PodcastCategoryId]
+ORDER BY [t].[Id], [t0].[Id]
+2025-06-13 21:13:34.372 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:13:34.390 +04:00 [INF] Executed DbCommand (15ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedDate], [t].[Description], [t].[Image], [t].[PodcastCategoryId], [t].[TeamMemberId], [t].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t0].[Id], [t0].[CreatedDate], [t0].[FirstName], [t0].[Image], [t0].[Information], [t0].[LastName], [t0].[SocialMedia], [t1].[Id], [t1].[Audio], [t1].[CreatedDate], [t1].[Description], [t1].[Image], [t1].[PodcastId], [t1].[Title], [t1].[Id0], [t1].[AppUserId], [t1].[CreatedDate0], [t1].[EpisodeId], [t1].[Id1], [t1].[CreatedDate1], [t1].[EpisodeId0], [t1].[GuestId], [t1].[Id00], [t1].[CreatedDate00], [t1].[FirstName], [t1].[Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+FROM (
+    SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title]
+    FROM [Podcasts] AS [p]
+    WHERE [p].[PodcastCategoryId] = @__categoryId_0
+    ORDER BY [p].[CreatedDate] DESC
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_1 ROWS ONLY
+) AS [t]
+INNER JOIN [PodcastCategories] AS [p0] ON [t].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t0] ON [t].[TeamMemberId] = [t0].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t2].[Id] AS [Id1], [t2].[CreatedDate] AS [CreatedDate1], [t2].[EpisodeId] AS [EpisodeId0], [t2].[GuestId], [t2].[Id0] AS [Id00], [t2].[CreatedDate0] AS [CreatedDate00], [t2].[FirstName], [t2].[Image] AS [Image0], [t2].[Information], [t2].[LastName], [t2].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t2] ON [e].[Id] = [t2].[EpisodeId]
+) AS [t1] ON [t].[Id] = [t1].[PodcastId]
+ORDER BY [t].[CreatedDate] DESC, [t].[Id], [p0].[Id], [t0].[Id], [t1].[Id], [t1].[Id0], [t1].[Id1]
+2025-06-13 21:13:34.393 +04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:34.393 +04:00 [INF] Executing PartialViewResult, running view _PodcastPartial.
+2025-06-13 21:13:34.394 +04:00 [INF] Executed PartialViewResult - view _PodcastPartial executed in 0.9992ms.
+2025-06-13 21:13:34.394 +04:00 [INF] Executed action Podcast.Controllers.PodcastCategoryController.ShowMore (Podcast) in 38.1608ms
+2025-06-13 21:13:34.394 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PodcastCategoryController.ShowMore (Podcast)'
+2025-06-13 21:13:34.394 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/PodcastCategory/ShowMore?id=4&skip=8&sortOrder= - 200 null text/html; charset=utf-8 44.8955ms
+2025-06-13 21:13:43.313 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/PodcastCategory/Index/4?sortOrder=most_followed - null null
+2025-06-13 21:13:43.316 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PodcastCategoryController.Index (Podcast)'
+2025-06-13 21:13:43.316 +04:00 [INF] Route matched with {action = "Index", controller = "PodcastCategory", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32, System.String) on controller Podcast.Controllers.PodcastCategoryController (Podcast).
+2025-06-13 21:13:43.325 +04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedDate], [t].[Name], [t0].[Id], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastCategoryId], [t0].[TeamMemberId], [t0].[Title], [t0].[Id0], [t0].[CreatedDate0], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM (
+    SELECT TOP(1) [p].[Id], [p].[CreatedDate], [p].[Name]
+    FROM [PodcastCategories] AS [p]
+    WHERE [p].[Id] = @__id_0
+) AS [t]
+LEFT JOIN (
+    SELECT [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title], [t1].[Id] AS [Id0], [t1].[CreatedDate] AS [CreatedDate0], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Podcasts] AS [p0]
+    INNER JOIN [TeamMembers] AS [t1] ON [p0].[TeamMemberId] = [t1].[Id]
+) AS [t0] ON [t].[Id] = [t0].[PodcastCategoryId]
+ORDER BY [t].[Id], [t0].[Id]
+2025-06-13 21:13:43.350 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:13:43.382 +04:00 [INF] Executed DbCommand (27ms) [Parameters=[@__categoryId_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32), @__p_2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[CreatedDate], [t].[Description], [t].[Image], [t].[PodcastCategoryId], [t].[TeamMemberId], [t].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t0].[Id], [t0].[CreatedDate], [t0].[FirstName], [t0].[Image], [t0].[Information], [t0].[LastName], [t0].[SocialMedia], [t1].[Id], [t1].[Audio], [t1].[CreatedDate], [t1].[Description], [t1].[Image], [t1].[PodcastId], [t1].[Title], [t1].[Id0], [t1].[AppUserId], [t1].[CreatedDate0], [t1].[EpisodeId], [t1].[Id1], [t1].[CreatedDate1], [t1].[EpisodeId0], [t1].[GuestId], [t1].[Id00], [t1].[CreatedDate00], [t1].[FirstName], [t1].[Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+FROM (
+    SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], (
+        SELECT COUNT(*)
+        FROM [AppUserPodcasts] AS [a]
+        WHERE [a].[PodcastId] = [p].[Id]) AS [c]
+    FROM [Podcasts] AS [p]
+    WHERE [p].[PodcastCategoryId] = @__categoryId_0
+    ORDER BY (
+        SELECT COUNT(*)
+        FROM [AppUserPodcasts] AS [a]
+        WHERE [a].[PodcastId] = [p].[Id]) DESC
+    OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+) AS [t]
+INNER JOIN [PodcastCategories] AS [p0] ON [t].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t0] ON [t].[TeamMemberId] = [t0].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t2].[Id] AS [Id1], [t2].[CreatedDate] AS [CreatedDate1], [t2].[EpisodeId] AS [EpisodeId0], [t2].[GuestId], [t2].[Id0] AS [Id00], [t2].[CreatedDate0] AS [CreatedDate00], [t2].[FirstName], [t2].[Image] AS [Image0], [t2].[Information], [t2].[LastName], [t2].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t2] ON [e].[Id] = [t2].[EpisodeId]
+) AS [t1] ON [t].[Id] = [t1].[PodcastId]
+ORDER BY [t].[c] DESC, [t].[Id], [p0].[Id], [t0].[Id], [t1].[Id], [t1].[Id0], [t1].[Id1]
+2025-06-13 21:13:43.387 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:43.397 +04:00 [INF] Executed DbCommand (9ms) [Parameters=[@__categoryId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [p].[PodcastCategoryId] = @__categoryId_0
+ORDER BY [p].[CreatedDate] DESC
+2025-06-13 21:13:43.397 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:13:43.403 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:13:43.404 +04:00 [INF] Executed ViewResult - view Index executed in 6.8231ms.
+2025-06-13 21:13:43.404 +04:00 [INF] Executed action Podcast.Controllers.PodcastCategoryController.Index (Podcast) in 87.7259ms
+2025-06-13 21:13:43.404 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PodcastCategoryController.Index (Podcast)'
+2025-06-13 21:13:43.404 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/PodcastCategory/Index/4?sortOrder=most_followed - 200 null text/html; charset=utf-8 91.696ms
+2025-06-13 21:13:43.416 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:13:43.417 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:13:43.417 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.1792ms
+2025-06-13 21:13:43.420 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 3.3067ms
+2025-06-13 21:13:45.486 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:13:45.489 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:13:45.490 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:13:45.495 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:13:45.513 +04:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:13:45.516 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:13:45.517 +04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:45.520 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:13:45.520 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:13:45.521 +04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:13:45.522 +04:00 [INF] Executed ViewResult - view Index executed in 2.1048ms.
+2025-06-13 21:13:45.522 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 32.5107ms
+2025-06-13 21:13:45.522 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:13:45.522 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home - 200 null text/html; charset=utf-8 36.0357ms
+2025-06-13 21:13:45.534 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:13:45.534 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.1592ms
+2025-06-13 21:13:45.534 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:13:45.538 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 3.4343ms
+2025-06-13 21:15:33.637 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:15:33.709 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:15:33.711 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:15:33.711 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:15:33.711 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:15:34.103 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:15:34.397 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:15:34.425 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:15:34.838 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:15:35.482 +04:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:15:35.583 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:16:00.625 +04:00 [INF] Executed DbCommand (25,036ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:16:00.706 +04:00 [INF] Executed DbCommand (17ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:16:00.733 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:16:00.751 +04:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:16:00.759 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:16:00.854 +04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:16:00.917 +04:00 [INF] Executed ViewResult - view Index executed in 159.1086ms.
+2025-06-13 21:16:00.919 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 26492.865ms
+2025-06-13 21:16:00.919 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:16:00.926 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home - 200 null text/html; charset=utf-8 26827.5079ms
+2025-06-13 21:16:00.934 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:16:00.936 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:16:00.938 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 1.2708ms
+2025-06-13 21:16:00.956 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.0965ms
+2025-06-13 21:18:24.954 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:18:25.022 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:18:25.023 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:18:25.024 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:18:25.024 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:18:25.487 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:18:25.680 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:18:25.701 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:18:26.187 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:18:26.901 +04:00 [INF] Executed DbCommand (83ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:18:27.003 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:18:52.832 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:18:52.895 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:18:52.897 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:18:52.897 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:18:52.897 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:18:52.994 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:18:53.165 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:18:53.181 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:18:53.531 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:18:54.105 +04:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:18:54.202 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:19:16.128 +04:00 [INF] Executed DbCommand (21,919ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:19:16.234 +04:00 [INF] Executed DbCommand (18ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:19:16.257 +04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:19:16.270 +04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:19:16.289 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:19:16.386 +04:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:19:16.482 +04:00 [INF] Executed ViewResult - view Index executed in 196.6164ms.
+2025-06-13 21:19:16.485 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 23303.6504ms
+2025-06-13 21:19:16.485 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:19:16.493 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home - 200 null text/html; charset=utf-8 23499.3351ms
+2025-06-13 21:19:16.513 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/assets/css/packages/packages.css - null null
+2025-06-13 21:19:16.523 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:19:16.526 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 2.2726ms
+2025-06-13 21:19:16.528 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:19:16.547 +04:00 [INF] Sending file. Request path: '/assets/css/packages/packages.css'. Physical path: 'C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast\wwwroot\assets\css\packages\packages.css'
+2025-06-13 21:19:16.548 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/assets/css/packages/packages.css - 200 6187 text/css 34.4177ms
+2025-06-13 21:19:16.553 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 24.5532ms
+2025-06-13 21:19:19.797 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Package - null null
+2025-06-13 21:19:19.810 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:19:19.812 +04:00 [INF] Route matched with {action = "Index", controller = "Package", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Podcast.Controllers.PackageController (Podcast).
+2025-06-13 21:19:19.814 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:19:19.854 +04:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:19:19.856 +04:00 [INF] Executed ViewResult - view Index executed in 43.5203ms.
+2025-06-13 21:19:19.857 +04:00 [INF] Executed action Podcast.Controllers.PackageController.Index (Podcast) in 44.5019ms
+2025-06-13 21:19:19.857 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:19:19.857 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Package - 200 null text/html; charset=utf-8 60.1939ms
+2025-06-13 21:19:19.871 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:19:19.871 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:19:19.871 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.2996ms
+2025-06-13 21:19:19.879 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.1455ms
+2025-06-13 21:19:52.783 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:19:52.846 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:19:52.848 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:19:52.848 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:19:52.849 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:19:52.872 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Package - null null
+2025-06-13 21:19:53.018 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:19:53.026 +04:00 [INF] Route matched with {action = "Index", controller = "Package", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Podcast.Controllers.PackageController (Podcast).
+2025-06-13 21:19:53.032 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:19:53.383 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:19:53.857 +04:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:19:53.953 +04:00 [INF] Executed ViewResult - view Index executed in 923.4483ms.
+2025-06-13 21:19:53.955 +04:00 [INF] Executed action Podcast.Controllers.PackageController.Index (Podcast) in 928.2578ms
+2025-06-13 21:19:53.955 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:19:53.963 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Package - 200 null text/html; charset=utf-8 1091.5744ms
+2025-06-13 21:19:53.969 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:19:53.969 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:19:53.970 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 1.2726ms
+2025-06-13 21:19:53.990 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 21.3177ms
+2025-06-13 21:23:35.802 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:23:35.825 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:23:35.836 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:23:35.950 +04:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:23:36.014 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:23:46.513 +04:00 [INF] Executed DbCommand (10,493ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:23:46.582 +04:00 [INF] Executed DbCommand (13ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:23:46.607 +04:00 [INF] Executed DbCommand (8ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:23:46.621 +04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:23:46.624 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:23:46.660 +04:00 [INF] Executed DbCommand (8ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:23:46.667 +04:00 [INF] Executed ViewResult - view Index executed in 43.3469ms.
+2025-06-13 21:23:46.667 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 10831.0486ms
+2025-06-13 21:23:46.667 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:23:46.667 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home - 200 null text/html; charset=utf-8 10865.7468ms
+2025-06-13 21:23:46.680 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:23:46.681 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.704ms
+2025-06-13 21:23:46.685 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:23:46.695 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 8.7913ms
+2025-06-13 21:28:46.577 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Account/EditAccount/603a4f7e-a307-4b03-9f1e-2898d00c2a65 - null null
+2025-06-13 21:28:46.789 +04:00 [INF] Executing endpoint 'Podcast.Controllers.AccountController.EditAccount (Podcast)'
+2025-06-13 21:28:46.818 +04:00 [INF] Route matched with {action = "EditAccount", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] EditAccount(System.String) on controller Podcast.Controllers.AccountController (Podcast).
+2025-06-13 21:28:46.955 +04:00 [INF] Executed DbCommand (68ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:28:46.962 +04:00 [INF] Executing ViewResult, running view EditAccount.
+2025-06-13 21:28:47.007 +04:00 [INF] Executed ViewResult - view EditAccount executed in 46.5286ms.
+2025-06-13 21:28:47.007 +04:00 [INF] Executed action Podcast.Controllers.AccountController.EditAccount (Podcast) in 188.9373ms
+2025-06-13 21:28:47.007 +04:00 [INF] Executed endpoint 'Podcast.Controllers.AccountController.EditAccount (Podcast)'
+2025-06-13 21:28:47.008 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Account/EditAccount/603a4f7e-a307-4b03-9f1e-2898d00c2a65 - 200 null text/html; charset=utf-8 436.8883ms
+2025-06-13 21:28:47.033 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:28:47.034 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:28:47.035 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.5077ms
+2025-06-13 21:28:47.044 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 10.6416ms
+2025-06-13 21:29:16.543 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:29:16.560 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:29:16.560 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:29:16.594 +04:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:29:16.633 +04:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:29:16.645 +04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:29:16.649 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:29:16.656 +04:00 [INF] Executed DbCommand (6ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:29:16.657 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:29:16.662 +04:00 [INF] Executed DbCommand (3ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:29:16.664 +04:00 [INF] Executed ViewResult - view Index executed in 7.3061ms.
+2025-06-13 21:29:16.664 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 103.7824ms
+2025-06-13 21:29:16.664 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:29:16.664 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home - 200 null text/html; charset=utf-8 120.8955ms
+2025-06-13 21:29:16.680 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:29:16.680 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:29:16.681 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.2995ms
+2025-06-13 21:29:16.684 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 3.8824ms
+2025-06-13 21:31:27.310 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:31:27.537 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:31:27.539 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:31:27.539 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:31:27.539 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:31:27.704 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Home - null null
+2025-06-13 21:31:27.945 +04:00 [INF] Executing endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:31:27.968 +04:00 [INF] Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(Int32) on controller Podcast.Controllers.HomeController (Podcast).
+2025-06-13 21:31:28.390 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:31:29.213 +04:00 [INF] Executed DbCommand (43ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[Description], [p0].[Image], [p0].[PodcastCategoryId], [p0].[TeamMemberId], [p0].[Title]
+FROM [PodcastCategories] AS [p]
+LEFT JOIN [Podcasts] AS [p0] ON [p].[Id] = [p0].[PodcastCategoryId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id]
+2025-06-13 21:31:29.339 +04:00 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2025-06-13 21:31:37.629 +04:00 [INF] Executed DbCommand (8,280ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [p0].[Id], [p0].[CreatedDate], [p0].[Name], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia], [t0].[Id], [t0].[Audio], [t0].[CreatedDate], [t0].[Description], [t0].[Image], [t0].[PodcastId], [t0].[Title], [t0].[Id0], [t0].[AppUserId], [t0].[CreatedDate0], [t0].[EpisodeId], [t0].[Id1], [t0].[CreatedDate1], [t0].[EpisodeId0], [t0].[GuestId], [t0].[Id00], [t0].[CreatedDate00], [t0].[FirstName], [t0].[Image0], [t0].[Information], [t0].[LastName], [t0].[SocialMedia]
+FROM [Podcasts] AS [p]
+INNER JOIN [PodcastCategories] AS [p0] ON [p].[PodcastCategoryId] = [p0].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+LEFT JOIN (
+    SELECT [e].[Id], [e].[Audio], [e].[CreatedDate], [e].[Description], [e].[Image], [e].[PodcastId], [e].[Title], [l].[Id] AS [Id0], [l].[AppUserId], [l].[CreatedDate] AS [CreatedDate0], [l].[EpisodeId], [t1].[Id] AS [Id1], [t1].[CreatedDate] AS [CreatedDate1], [t1].[EpisodeId] AS [EpisodeId0], [t1].[GuestId], [t1].[Id0] AS [Id00], [t1].[CreatedDate0] AS [CreatedDate00], [t1].[FirstName], [t1].[Image] AS [Image0], [t1].[Information], [t1].[LastName], [t1].[SocialMedia]
+    FROM [Episodes] AS [e]
+    LEFT JOIN [Likes] AS [l] ON [e].[Id] = [l].[EpisodeId]
+    LEFT JOIN (
+        SELECT [e0].[Id], [e0].[CreatedDate], [e0].[EpisodeId], [e0].[GuestId], [g].[Id] AS [Id0], [g].[CreatedDate] AS [CreatedDate0], [g].[FirstName], [g].[Image], [g].[Information], [g].[LastName], [g].[SocialMedia]
+        FROM [EpisodeGuests] AS [e0]
+        INNER JOIN [Guests] AS [g] ON [e0].[GuestId] = [g].[Id]
+    ) AS [t1] ON [e].[Id] = [t1].[EpisodeId]
+) AS [t0] ON [p].[Id] = [t0].[PodcastId]
+ORDER BY [p].[CreatedDate] DESC, [p].[Id], [p0].[Id], [t].[Id], [t0].[Id], [t0].[Id0], [t0].[Id1]
+2025-06-13 21:31:37.744 +04:00 [INF] Executed DbCommand (30ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[AppUserId], [p].[CreatedDate], [p].[Name], [p0].[Id], [p0].[CreatedDate], [p0].[EpisodeId], [p0].[PlaylistId]
+FROM [Playlists] AS [p]
+LEFT JOIN [PlaylistEpisodes] AS [p0] ON [p].[Id] = [p0].[PlaylistId]
+WHERE [p].[AppUserId] = @__userId_0
+ORDER BY [p].[Id]
+2025-06-13 21:31:37.776 +04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[PodcastId]
+FROM [AppUserPodcasts] AS [a]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:31:37.793 +04:00 [INF] Executed DbCommand (7ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedDate], [p].[Description], [p].[Image], [p].[PodcastCategoryId], [p].[TeamMemberId], [p].[Title], [t].[Id], [t].[CreatedDate], [t].[FirstName], [t].[Image], [t].[Information], [t].[LastName], [t].[SocialMedia]
+FROM [AppUserPodcasts] AS [a]
+INNER JOIN [Podcasts] AS [p] ON [a].[PodcastId] = [p].[Id]
+INNER JOIN [TeamMembers] AS [t] ON [p].[TeamMemberId] = [t].[Id]
+WHERE [a].[AppUserId] = @__userId_0
+2025-06-13 21:31:37.802 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:31:37.916 +04:00 [INF] Executed DbCommand (14ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:31:38.008 +04:00 [INF] Executed ViewResult - view Index executed in 206.5808ms.
+2025-06-13 21:31:38.010 +04:00 [INF] Executed action Podcast.Controllers.HomeController.Index (Podcast) in 10040.9634ms
+2025-06-13 21:31:38.010 +04:00 [INF] Executed endpoint 'Podcast.Controllers.HomeController.Index (Podcast)'
+2025-06-13 21:31:38.018 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Home - 200 null text/html; charset=utf-8 10315.4937ms
+2025-06-13 21:31:38.126 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:31:38.128 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:31:38.131 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 2.0317ms
+2025-06-13 21:31:38.156 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 29.8574ms
+2025-06-13 21:31:40.439 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Package - null null
+2025-06-13 21:31:40.453 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:31:40.455 +04:00 [INF] Route matched with {action = "Index", controller = "Package", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Podcast.Controllers.PackageController (Podcast).
+2025-06-13 21:31:40.456 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:31:40.515 +04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:31:40.518 +04:00 [INF] Executed ViewResult - view Index executed in 62.4135ms.
+2025-06-13 21:31:40.518 +04:00 [INF] Executed action Podcast.Controllers.PackageController.Index (Podcast) in 63.2517ms
+2025-06-13 21:31:40.518 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:31:40.519 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Package - 200 null text/html; charset=utf-8 79.5837ms
+2025-06-13 21:31:40.538 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:31:40.540 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:31:40.540 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 0.4124ms
+2025-06-13 21:31:40.547 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 9.4087ms
+2025-06-13 21:31:58.491 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:31:58.561 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:31:58.563 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:31:58.563 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:31:58.563 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:31:58.955 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Package - null null
+2025-06-13 21:31:59.144 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:31:59.155 +04:00 [INF] Route matched with {action = "Index", controller = "Package", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Podcast.Controllers.PackageController (Podcast).
+2025-06-13 21:31:59.163 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:31:59.582 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:32:00.057 +04:00 [INF] Executed DbCommand (35ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:32:00.152 +04:00 [INF] Executed ViewResult - view Index executed in 993.0739ms.
+2025-06-13 21:32:00.155 +04:00 [INF] Executed action Podcast.Controllers.PackageController.Index (Podcast) in 999.059ms
+2025-06-13 21:32:00.155 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:32:00.164 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Package - 200 null text/html; charset=utf-8 1211.9486ms
+2025-06-13 21:32:00.177 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:32:00.177 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:32:00.178 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 1.2333ms
+2025-06-13 21:32:00.199 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.1729ms
+2025-06-13 21:37:00.880 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:37:00.955 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:37:00.957 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:37:00.958 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:37:00.958 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:37:01.391 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Package - null null
+2025-06-13 21:37:01.684 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:37:01.700 +04:00 [INF] Route matched with {action = "Index", controller = "Package", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Podcast.Controllers.PackageController (Podcast).
+2025-06-13 21:37:01.711 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:37:02.156 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:37:02.834 +04:00 [INF] Executed DbCommand (76ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:37:02.938 +04:00 [INF] Executed ViewResult - view Index executed in 1231.1787ms.
+2025-06-13 21:37:02.941 +04:00 [INF] Executed action Podcast.Controllers.PackageController.Index (Podcast) in 1239.928ms
+2025-06-13 21:37:02.941 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:37:02.948 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Package - 200 null text/html; charset=utf-8 1559.7148ms
+2025-06-13 21:37:02.960 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:37:02.960 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:37:02.962 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 1.151ms
+2025-06-13 21:37:02.982 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 22.0861ms
+2025-06-13 21:41:48.943 +04:00 [INF] User profile is available. Using 'C:\Users\Elnare\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-06-13 21:41:49.012 +04:00 [INF] Now listening on: http://localhost:5134
+2025-06-13 21:41:49.013 +04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 21:41:49.014 +04:00 [INF] Hosting environment: Development
+2025-06-13 21:41:49.014 +04:00 [INF] Content root path: C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
+2025-06-13 21:41:49.207 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/Package - null null
+2025-06-13 21:41:49.376 +04:00 [INF] Executing endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:41:49.386 +04:00 [INF] Route matched with {action = "Index", controller = "Package", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller Podcast.Controllers.PackageController (Podcast).
+2025-06-13 21:41:49.392 +04:00 [INF] Executing ViewResult, running view Index.
+2025-06-13 21:41:49.832 +04:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Package'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2025-06-13 21:41:50.455 +04:00 [INF] Executed DbCommand (61ms) [Parameters=[@__p_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[CreatedDate], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[Image], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PackageId], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2025-06-13 21:41:50.583 +04:00 [INF] Executed ViewResult - view Index executed in 1193.0345ms.
+2025-06-13 21:41:50.585 +04:00 [INF] Executed action Podcast.Controllers.PackageController.Index (Podcast) in 1198.7286ms
+2025-06-13 21:41:50.585 +04:00 [INF] Executed endpoint 'Podcast.Controllers.PackageController.Index (Podcast)'
+2025-06-13 21:41:50.592 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/Package - 200 null text/html; charset=utf-8 1385.713ms
+2025-06-13 21:41:50.603 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_vs/browserLink - null null
+2025-06-13 21:41:50.608 +04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - null null
+2025-06-13 21:41:50.610 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_framework/aspnetcore-browser-refresh.js - 200 13750 application/javascript; charset=utf-8 2.0672ms
+2025-06-13 21:41:50.627 +04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5134/_vs/browserLink - 200 null text/javascript; charset=UTF-8 23.3517ms

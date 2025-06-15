@@ -15,7 +15,15 @@ else
             <div class="all">
                 <div class="logo">
                     <div class="text">
-                        <a asp-controller="Home" asp-action="Index">Podcast <i class="bi bi-soundwave"></i></a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-controller="Home" asp-action="Index">Podcast <i class="bi bi-soundwave"></i></a>
+                        }
+                        else
+                        {
+                            <a asp-controller="About" asp-action="Index">Podcast <i class="bi bi-soundwave"></i></a>
+                        }
+
                     </div>
                 </div>
                 @if (User.Identity.IsAuthenticated)

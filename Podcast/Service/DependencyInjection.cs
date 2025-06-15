@@ -25,6 +25,8 @@ namespace Service
             services.AddScoped<IPlaylistService, PlaylistService>();
             services.AddScoped<IPlaylistEpisodeService, PlaylistEpisodeService>();
             services.AddScoped<ILikeService, LikeService>();
+            services.AddScoped<IPackageService, PackageService>();
+            services.AddScoped<IEmailService, EmailService>();
             return services;
         }
     }

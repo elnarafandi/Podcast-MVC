@@ -15,5 +15,6 @@ namespace Service.ViewModels.Podcast
         public IEnumerable<Domain.Entities.Playlist> Playlists { get; set; }
         public List<int> LikedEpisodeIds { get; set; } = new List<int>();
         public string UserId { get; set; }
+        public Domain.Entities.AppUser User { get; set; }
     }
 }

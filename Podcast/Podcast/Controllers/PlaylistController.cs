@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Service.Services;
 using Service.Services.Interfaces;
 using Service.ViewModels.Playlist;
@@ -11,18 +13,22 @@ namespace Podcast.Controllers
         private readonly IPlaylistService _playlistService;
         private readonly IPlaylistEpisodeService _playlistEpisodeService;
         private readonly ILikeService _likeService;
+        private readonly UserManager<AppUser> _userManager;
         public PlaylistController(IPlaylistService playlistService, 
                                  IPlaylistEpisodeService playlistEpisodeService,
-                                 ILikeService likeService)
+                                 ILikeService likeService,
+                                 UserManager<AppUser> userManager)
         {
             _playlistService = playlistService;
             _playlistEpisodeService = playlistEpisodeService;
             _likeService = likeService;
+            _userManager = userManager;
         }
         public async Task<IActionResult> Detail(int id)
         {
             var playlist= await _playlistService.GetByIdAsync(id);
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var user = await _userManager.FindByIdAsync(userId);
 
             List<int> likedEpisodeIds = new();
             if (!string.IsNullOrEmpty(userId))
@@ -33,7 +39,8 @@ namespace Podcast.Controllers
             return View(new PlaylistVM
             {
                 Playlist = playlist,
-                LikedEpisodeIds = likedEpisodeIds
+                LikedEpisodeIds = likedEpisodeIds,
+                User=user
             });
         }
         [HttpPost]

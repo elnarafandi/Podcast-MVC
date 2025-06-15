@@ -46,15 +46,18 @@
                                         </form>
                                     </div>
 
-                                    <div class="like-episode">
-                                        <form method="post" class="like-form" data-episode-id="@playlistEpisode.Episode.Id">
-                                            @Html.AntiForgeryToken()
-                                            <button type="submit" class="btn btn-primary like like-btn">
-                                                <i class="bi @(Model.LikedEpisodeIds.Contains(playlistEpisode.Episode.Id) ? "bi-hand-thumbs-up-fill" : "bi-hand-thumbs-up")"></i>
-                                            </button>
-                                        </form>
-                                        <span class="like-count" data-episode-id="@playlistEpisode.Episode.Id">@playlistEpisode.Episode.Likes.Count()</span>
-                                    </div>
+                                    @if (Model.User.PackageId == 3)
+                                    {
+                                        <div class="like-episode">
+                                            <form method="post" class="like-form" data-episode-id="@playlistEpisode.Episode.Id">
+                                                @Html.AntiForgeryToken()
+                                                <button type="submit" class="btn btn-primary like like-btn">
+                                                    <i class="bi @(Model.LikedEpisodeIds.Contains(playlistEpisode.Episode.Id) ? "bi-hand-thumbs-up-fill" : "bi-hand-thumbs-up")"></i>
+                                                </button>
+                                            </form>
+                                            <span class="like-count" data-episode-id="@playlistEpisode.Episode.Id">@playlistEpisode.Episode.Likes.Count()</span>
+                                        </div>
+                                    }
                                 </div>
                                 <div class="play">
                                     <button onclick="playAudio('@playlistEpisode.Episode.Audio', this)">
