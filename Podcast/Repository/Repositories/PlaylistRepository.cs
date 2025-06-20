@@ -40,5 +40,11 @@ namespace Repository.Repositories
         {
             return await _context.Set<PlaylistEpisode>().AnyAsync(pe => pe.EpisodeId == episodeId && pe.PlaylistId == playlistId);
         }
+
+        public async Task<bool> PlaylistExistsAsync(string name, string userId)
+        {
+            return await _context.Set<Playlist>()
+                .AnyAsync(p => p.Name.ToLower().Trim() == name.ToLower().Trim() && p.AppUserId == userId);
+        }
     }
 }

@@ -12,6 +12,9 @@ namespace Service.ViewModels.Account
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public int PackageId { get; set; }
+        public string Image { get; set; }
+        public string Username { get; set; }
         public List<string> Roles { get; set; }
     }
 }

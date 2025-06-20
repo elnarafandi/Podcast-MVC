@@ -14,15 +14,18 @@ namespace Podcast.Controllers
         private readonly IPlaylistEpisodeService _playlistEpisodeService;
         private readonly ILikeService _likeService;
         private readonly UserManager<AppUser> _userManager;
+        private readonly ILogger<PlaylistController> _logger;
         public PlaylistController(IPlaylistService playlistService, 
                                  IPlaylistEpisodeService playlistEpisodeService,
                                  ILikeService likeService,
-                                 UserManager<AppUser> userManager)
+                                 UserManager<AppUser> userManager,
+                                 ILogger<PlaylistController> logger)
         {
             _playlistService = playlistService;
             _playlistEpisodeService = playlistEpisodeService;
             _likeService = likeService;
             _userManager = userManager;
+            _logger = logger;
         }
         public async Task<IActionResult> Detail(int id)
         {
@@ -36,6 +39,9 @@ namespace Podcast.Controllers
                 var episodeIds = playlist.PlaylistEpisodes.Select(pe => pe.Episode.Id).ToList();
                 likedEpisodeIds = await _likeService.GetLikedEpisodeIdsAsync(userId, episodeIds);
             }
+
+            _logger.LogInformation($"A request has been received for the Playlist Detail.");
+
             return View(new PlaylistVM
             {
                 Playlist = playlist,

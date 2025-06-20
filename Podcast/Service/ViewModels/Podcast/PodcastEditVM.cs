@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,8 @@ namespace Service.ViewModels.Podcast
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Image { get; set; }
-        public IFormFile UploadImage { get; set; }
+        public string? Image {  get; set; }
+        public IFormFile? UploadImage { get; set; }
         public int TeamMemberId { get; set; }
         public int PodcastCategoryId { get; set; }
     }

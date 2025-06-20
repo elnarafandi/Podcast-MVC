@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Elnare\Desktop\Podcast-MVC\Podcast\Podcast
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Account/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Elnare/Desktop/Podcast-MVC/Podcast/Podcast/Areas/Admin/Views/Account/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

@@ -9,6 +9,17 @@
                     <p class="text">Sign in to Podcast</p>
                     <form method="post" asp-action="Login">
                         
+                        @if (ViewData.ModelState[""]?.Errors?.Count > 0)
+                        {
+                            <div class="alert alert-danger">
+                                @foreach (var error in ViewData.ModelState[""].Errors)
+                                {
+                                    <p>@error.ErrorMessage</p>
+                                }
+                            </div>
+                        }
+
+
                             
                             <input type="text" asp-for="UserNameOrEmail" placeholder="Username or Email">
                             <span asp-validation-for="UserNameOrEmail" class="text-danger mb-2"></span>
@@ -18,7 +29,7 @@
                             <span asp-validation-for="Password" class="text-danger mb-2"></span>
 
                         <div class="remember-me">
-                            <input type="checkbox" asp-for="RememberMe" id="remember-me" name="remember-me">
+                            <input type="checkbox" asp-for="RememberMe">
                             <label for="remember-me">Remember Me</label>
                         </div>
 

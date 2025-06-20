@@ -13,5 +13,6 @@ namespace Service.ViewModels.PodcastCategory
         public PodcastCategoryAdminVM PodcastCategory{ get; set; }
         public List<int> FollowedPodcastIds { get; set; }
         public int PodcastCount { get; set; }
+        public string SortOrder { get; set; }
     }
 }

@@ -29,7 +29,14 @@ else
                 @if (User.Identity.IsAuthenticated)
                 {
                     <div class="account">
-                        <div class="profile"><a asp-controller="Account" asp-action="EditAccount" asp-route-id="@Model.AppUserId"><img src="~/assets/images/home/@Model.Image" alt=""></a></div>
+                        @if (!string.IsNullOrEmpty(Model.Image))
+                        {
+                            <div class="profile"><a asp-controller="Account" asp-action="EditAccount" asp-route-id="@Model.AppUserId"><img src="~/assets/images/home/@Model.Image" alt=""></a></div>
+                        }
+                        else
+                        {
+                            <div class="profile" style="background-color: #C084FC; border: 1px solid #6A0DAD"><a asp-controller="Account" asp-action="EditAccount" asp-route-id="@Model.AppUserId"><img></a></div>
+                        }
                         <div class="logout">
                             <form method="POST" asp-controller="Account" asp-action="Logout">
                                 <button type="submit"><i class="bi bi-box-arrow-right"></i><p>Logout</p></button>

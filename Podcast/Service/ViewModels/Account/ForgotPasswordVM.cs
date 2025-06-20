@@ -16,7 +16,8 @@ namespace Service.ViewModels.Account
         public ForgotPasswordVMValidator()
         {
             RuleFor(x => x.Email).NotNull().WithMessage("Can't be empty")
-                                     .NotEmpty().WithMessage("Can't be empty");
+                                 .NotEmpty().WithMessage("Can't be empty")
+                                 .Matches(@"^(?!.*\.\.)[^@\s]+@[^@\s]+\.[^@\s]+$").WithMessage("Email address format is wrong");
 
         }
     }

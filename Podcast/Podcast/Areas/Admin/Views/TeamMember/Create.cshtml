@@ -21,6 +21,12 @@
                     <span asp-validation-for="LastName" class="text-danger small"></span>
                 </div>
 
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label fw-semibold">Email</label>
+                    <input asp-for="Email" class="form-control rounded-3" placeholder="Enter email">
+                    <span asp-validation-for="Email" class="text-danger small"></span>
+                </div>
+
                 <!-- Upload Image Field -->
                 <div class="mb-3">
                     <label asp-for="UploadImage" class="form-label fw-semibold">Profile Image</label>

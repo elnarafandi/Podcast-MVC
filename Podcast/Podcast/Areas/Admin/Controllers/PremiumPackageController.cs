@@ -34,6 +34,10 @@ namespace Podcast.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, PackageEditVM request)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
             await _packageService.EditAsync(id, request);
             return RedirectToAction(nameof(Index));
         }

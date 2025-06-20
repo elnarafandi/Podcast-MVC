@@ -29,9 +29,24 @@ namespace Podcast.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var podcastCategory = await _podcastCategoryService.GetByIdAsync(id);
 
-            var podcasts = sortOrder == "most_followed"
-                ? await _podcastService.GetAllByCategorySortedByFollowCountShowMoreAsync(podcastCategory.Id,0,8)
-                : await _podcastService.GetAllByCategoryShowMoreAsync(id);
+            IEnumerable<PodcastAdminVM> podcasts;
+
+            if (sortOrder == "most_followed")
+            {
+                podcasts = await _podcastService.GetAllByCategorySortedByFollowCountShowMoreAsync(podcastCategory.Id, 0, 8);
+            }
+            else if (sortOrder == "less_followed")
+            {
+                podcasts = await _podcastService.GetAllByCategorySortedByFollowCountLessShowMoreAsync(podcastCategory.Id, 0, 8);
+            }
+            else if (sortOrder == "oldest")
+            {
+                podcasts = await _podcastService.GetAllByCategorySortedByOldestAsync(podcastCategory.Id, 0, 8);
+            }
+            else
+            {
+                podcasts = await _podcastService.GetAllByCategoryShowMoreAsync(id);
+            }
 
             var followedPodcastIds = userId != null
                 ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
@@ -45,8 +60,10 @@ namespace Podcast.Controllers
                 Podcasts = podcasts,
                 PodcastCategory = podcastCategory,
                 FollowedPodcastIds = followedPodcastIds,
-                PodcastCount = podcastCount
+                PodcastCount = podcastCount,
+                SortOrder = sortOrder
             };
+
 
             return View(viewModel);
         }
@@ -55,9 +72,24 @@ namespace Podcast.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var podcastCategory = await _podcastCategoryService.GetByIdAsync(id);
 
-            var podcasts = sortOrder == "most_followed"
-                ? await _podcastService.GetAllByCategorySortedByFollowCountShowMoreAsync(podcastCategory.Id, skip, 8)
-                : await _podcastService.GetAllByCategoryShowMoreAsync(id, skip, 8);
+            IEnumerable<PodcastAdminVM> podcasts;
+
+            if (sortOrder == "most_followed")
+            {
+                podcasts = await _podcastService.GetAllByCategorySortedByFollowCountShowMoreAsync(podcastCategory.Id, skip, 4);
+            }
+            else if (sortOrder == "less_followed")
+            {
+                podcasts = await _podcastService.GetAllByCategorySortedByFollowCountLessShowMoreAsync(podcastCategory.Id, skip, 4);
+            }
+            else if (sortOrder == "oldest")
+            {
+                podcasts = await _podcastService.GetAllByCategorySortedByOldestAsync(podcastCategory.Id, skip, 4);
+            }
+            else
+            {
+                podcasts = await _podcastService.GetAllByCategoryShowMoreAsync(id, skip, 4);
+            }
 
             var followedPodcastIds = userId != null
                 ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
@@ -72,6 +104,7 @@ namespace Podcast.Controllers
 
             return PartialView("_PodcastPartial", viewModel);
         }
+
 
     }
 }

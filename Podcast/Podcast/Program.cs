@@ -9,6 +9,7 @@ using Repository;
 using Repository.Data;
 using Serilog;
 using Service;
+using Service.Services;
 using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,12 +39,14 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>()
                                                          .AddDefaultTokenProviders();
 
+
+
 builder.Services.ConfigureApplicationCookie(options =>
 {
     // Cookie (çerez) parametrl?ri
-    options.ExpireTimeSpan = TimeSpan.FromDays(3);
+    options.ExpireTimeSpan = TimeSpan.FromDays(7);
     options.Cookie.HttpOnly = true;  
-    options.Cookie.SecurePolicy = CookieSecurePolicy.None;  
+    options.Cookie.SecurePolicy = CookieSecurePolicy.None;
 });
 
 builder.Services.Configure<IdentityOptions>(options =>

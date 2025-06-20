@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Podcast.Controllers;
 using Service.Services.Interfaces;
 
 namespace Podcast.Areas.Admin.Controllers
@@ -24,6 +25,7 @@ namespace Podcast.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _commentService.DeleteAsync(id);
+            
             return RedirectToAction(nameof(Index));
         }
     }

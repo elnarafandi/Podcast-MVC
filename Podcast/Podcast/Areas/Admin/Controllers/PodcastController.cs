@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
 using Service.ViewModels.Podcast;
@@ -36,7 +37,7 @@ namespace Podcast.Areas.Admin.Controllers
             var teamMembers = teamMembersDb.Select(a => new SelectListItem()
             {
                 Value = a.Id.ToString(),
-                Text = a.SocialMedia
+                Text = a.Email
             });
             var categoriesDb= await _podcastCategoryService.GetAllAsync();
             var categories = categoriesDb.Select(a => new SelectListItem()
@@ -53,8 +54,54 @@ namespace Podcast.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PodcastCreateVM request)
         {
-            if (!ModelState.IsValid) return View(request);
-            await _podcastService.CreateAsync(request);
+            var teamMembersDb = await _teamMemberService.GetAllAsync();
+            var teamMembers = teamMembersDb.Select(a => new SelectListItem()
+            {
+                Value = a.Id.ToString(),
+                Text = a.Email
+            });
+            var categoriesDb = await _podcastCategoryService.GetAllAsync();
+            var categories = categoriesDb.Select(a => new SelectListItem()
+            {
+                Value = a.Id.ToString(),
+                Text = a.Name
+            });
+
+            ViewBag.TeamMembers = teamMembers;
+            ViewBag.Categories = categories;
+
+            if (request.UploadImage == null)
+            {
+                ModelState.AddModelError("UploadImage", "Please upload an image file.");
+            }
+            else
+            {
+                if (!request.UploadImage.CheckFileType("image"))
+                {
+                    ModelState.AddModelError("UploadImage", "Only image files are allowed.");
+                }
+
+                if (!request.UploadImage.CheckFileSize(1024)) // 1MB limit
+                {
+                    ModelState.AddModelError("UploadImage", "File size should be less than 1 MB.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            try
+            {
+                await _podcastService.CreateAsync(request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Title", "A podcast with the same title already exists.");
+                return View(request);
+            }
+
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
@@ -64,7 +111,7 @@ namespace Podcast.Areas.Admin.Controllers
             var teamMembers = teamMembersDb.Select(a => new SelectListItem()
             {
                 Value = a.Id.ToString(),
-                Text = $"{a.FirstName} {a.LastName}"
+                Text = a.Email
             });
             var categoriesDb = await _podcastCategoryService.GetAllAsync();
             var categories = categoriesDb.Select(a => new SelectListItem()
@@ -76,13 +123,16 @@ namespace Podcast.Areas.Admin.Controllers
             ViewBag.TeamMembers = teamMembers;
             ViewBag.Categories = categories;
 
-            var podcast= await _podcastService.GetByIdAsync(id);
+            var podcast = await _podcastService.GetByIdAsync(id);
 
-            return View(new PodcastEditVM { Title=podcast.Title,
-                                            Description=podcast.Description,
-                                            Image=podcast.Image,
-                                            TeamMemberId=podcast.TeamMember.Id,
-                                            PodcastCategoryId=podcast.PodcastCategory.Id });
+            return View(new PodcastEditVM
+            {
+                Title = podcast.Title,
+                Description = podcast.Description,
+                Image = podcast.Image,
+                TeamMemberId = podcast.TeamMember.Id,
+                PodcastCategoryId = podcast.PodcastCategory.Id
+            });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -92,7 +142,7 @@ namespace Podcast.Areas.Admin.Controllers
             var teamMembers = teamMembersDb.Select(a => new SelectListItem()
             {
                 Value = a.Id.ToString(),
-                Text = $"{a.FirstName} {a.LastName}"
+                Text = a.Email
             });
             var categoriesDb = await _podcastCategoryService.GetAllAsync();
             var categories = categoriesDb.Select(a => new SelectListItem()
@@ -103,7 +153,39 @@ namespace Podcast.Areas.Admin.Controllers
 
             ViewBag.TeamMembers = teamMembers;
             ViewBag.Categories = categories;
-            await _podcastService.EditAsync(id, request);
+
+            var existingPodcast = await _podcastService.GetByIdAsync(id);
+            request.Image = existingPodcast.Image;
+
+            if (request.UploadImage != null)
+            {
+                if (!request.UploadImage.CheckFileType("image"))
+                {
+                    ModelState.AddModelError("UploadImage", "Only image files are allowed.");
+                }
+
+                if (!request.UploadImage.CheckFileSize(1024)) // 1 MB
+                {
+                    ModelState.AddModelError("UploadImage", "File size should be less than 1 MB.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            try
+            {
+                await _podcastService.EditAsync(id, request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                request.Image = existingPodcast.Image;
+                ModelState.AddModelError("Title", ex.Message);
+                return View(request);
+            }
+
             return RedirectToAction(nameof(Index));
         }
 

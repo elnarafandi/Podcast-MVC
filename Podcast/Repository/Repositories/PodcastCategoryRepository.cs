@@ -15,6 +15,12 @@ namespace Repository.Repositories
     {
         public PodcastCategoryRepository(AppDbContext context) : base(context) { }
 
+        public async Task<bool> ExistsByNameAsync(string name)
+        {
+            return await _context.PodcastCategories
+                .AnyAsync(c => c.Name.ToLower().Trim() == name.ToLower().Trim());
+        }
+
         public async Task<List<PodcastCategory>> GetAllAsync()
         {
             return await _context.Set<PodcastCategory>().Include(pc=>pc.Podcasts).OrderByDescending(pc=>pc.CreatedDate).ToListAsync();

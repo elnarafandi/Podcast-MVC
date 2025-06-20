@@ -72,6 +72,25 @@ namespace Podcast.Areas.Admin.Controllers
         }
 
 
+        [HttpGet]
+        public async Task<IActionResult> Detail(string id)
+        {
+            var userDb = await _userManager.FindByIdAsync(id);
+            var userRoles = await _userManager.GetRolesAsync(userDb);
+            var user = new UserRolesVM()
+            {
+                Id = userDb.Id,
+                FirstName = userDb.FirstName,
+                LastName = userDb.LastName,
+                Email = userDb.Email,
+                Image=userDb.Image,
+                Username=userDb.UserName,
+                PackageId=(int)userDb.PackageId,
+                Roles = userRoles.ToList()
+            };
+            return View(user);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {

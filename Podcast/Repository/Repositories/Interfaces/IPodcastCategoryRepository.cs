@@ -12,5 +12,6 @@ namespace Repository.Repositories.Interfaces
     {
         Task<PodcastCategory> GetByIdAsync(int id);
         Task<List<PodcastCategory>> GetAllAsync();
+        Task<bool> ExistsByNameAsync(string name);
     }
 }

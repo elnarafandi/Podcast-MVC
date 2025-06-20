@@ -16,5 +16,6 @@ namespace Service.Services.Interfaces
         Task<PlaylistAdminVM> GetByIdAsync(int id);
         Task<bool> IsEpisodeInPlaylistAsync(int episodeId, int playlistId);
         Task DeleteAsync(int id);
+        Task<bool> PlaylistExistsAsync(string name, string userId);
     }
 }

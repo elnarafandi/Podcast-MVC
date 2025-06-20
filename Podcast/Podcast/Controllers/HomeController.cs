@@ -33,6 +33,28 @@ namespace Podcast.Controllers
         }
         public async Task<IActionResult> Index(int page = 1)
         {
+
+            var allUsersDb = _userManager.Users.Where(u => u.PackageId == 3).ToList();
+
+            foreach (var userDb in allUsersDb)
+            {
+                var adjustedTime = DateTime.UtcNow.AddHours(4);
+
+
+                var daysSincePurchased = (adjustedTime - userDb.PurchasedAt).Days;
+
+                if (daysSincePurchased >= 30)
+                {
+                    userDb.PackageId = 4;
+                    userDb.PurchasedAt = adjustedTime;
+                    await _userManager.UpdateAsync(userDb);
+                    
+                }
+            }
+
+
+
+
             int pageSize = 6;
 
 
@@ -84,7 +106,7 @@ namespace Podcast.Controllers
         {
             if (string.IsNullOrWhiteSpace(playlist_name))
             {
-                ModelState.AddModelError("", "dont playlsit");
+                ModelState.AddModelError("", "Playlist name is required");
                 return RedirectToAction("Index", "Home"); 
             }
 
@@ -92,6 +114,12 @@ namespace Podcast.Controllers
             if (string.IsNullOrEmpty(userId))
             {
                 return Unauthorized(); 
+            }
+
+            if (await _playlistService.PlaylistExistsAsync(playlist_name, userId))
+            {
+                TempData["Error"] = "You already have a playlist with this name.";
+                return RedirectToAction("Index", "Home");
             }
 
             var playlist = new Playlist

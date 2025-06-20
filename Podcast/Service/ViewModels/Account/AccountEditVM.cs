@@ -12,10 +12,11 @@ namespace Service.ViewModels.Account
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Image { get; set; }
-        public IFormFile UploadImage { get; set; }
-        public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
+        public string? Image { get; set; }
+        public IFormFile? UploadImage { get; set; }
+        public string? Password { get; set; }
+        public string? ConfirmPassword { get; set; }
+        public bool IsAdmin { get; set; }
     }
     public class AccountEditVMValidator : AbstractValidator<AccountEditVM>
     {
@@ -25,10 +26,7 @@ namespace Service.ViewModels.Account
                                      .NotEmpty().WithMessage("Can't be empty");
             RuleFor(x => x.LastName).NotNull().WithMessage("Can't be empty")
                                     .NotEmpty().WithMessage("Can't be empty");
-            RuleFor(x => x.Password).NotNull().WithMessage("Can't be empty")
-                                    .NotEmpty().WithMessage("Can't be empty");
-            RuleFor(x => x.ConfirmPassword).NotNull().WithMessage("Can't be empty")
-                                           .NotEmpty().WithMessage("Can't be empty")
+            RuleFor(x => x.ConfirmPassword)
                                            .Equal(x => x.Password).WithMessage("Password and confirmation password do not match");
 
         }

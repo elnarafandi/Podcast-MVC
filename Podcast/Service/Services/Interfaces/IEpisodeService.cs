@@ -1,4 +1,5 @@
-﻿using Service.ViewModels.Episode;
+﻿using Domain.Entities;
+using Service.ViewModels.Episode;
 using Service.ViewModels.TeamMember;
 using System;
 using System.Collections.Generic;
@@ -15,5 +16,6 @@ namespace Service.Services.Interfaces
         Task DeleteAsync(int id);
         Task<EpisodeAdminVM> GetByIdAsync(int id);
         Task<List<EpisodeAdminVM>> GetAllAsync(int? count = null);
+        Task<List<EpisodeAdminVM>> GetEpisodesByPodcastIdAsync(int? podcastId);
     }
 }

@@ -9,13 +9,17 @@ namespace Podcast.Controllers
     public class GuestController : Controller
     {
         private readonly IGuestService _guestService;
-        public GuestController(IGuestService guestService)
+        private readonly ILogger<GuestController> _logger;
+        public GuestController(IGuestService guestService, 
+                               ILogger<GuestController> logger)
         {
             _guestService = guestService;
+            _logger = logger;
         }
         public async Task<IActionResult> Detail(int id)
         {
             var guest= await _guestService.GetByIdAsync(id);
+            _logger.LogInformation($"A request has been received for the Guest Detail.");
             return View(guest);
         }
     }

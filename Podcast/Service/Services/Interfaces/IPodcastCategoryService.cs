@@ -14,5 +14,6 @@ namespace Service.Services.Interfaces
         Task DeleteAsync(int id);
         Task<PodcastCategoryAdminVM> GetByIdAsync(int id);
         Task<List<PodcastCategoryAdminVM>> GetAllAsync();
+        Task<bool> ExistsByNameAsync(string name);
     }
 }

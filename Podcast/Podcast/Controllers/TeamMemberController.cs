@@ -8,13 +8,17 @@ namespace Podcast.Controllers
     public class TeamMemberController : Controller
     {
         private readonly ITeamMemberService _teamMemberService;
-        public TeamMemberController(ITeamMemberService teamMemberService)
+        private readonly ILogger<TeamMemberController> _logger;
+        public TeamMemberController(ITeamMemberService teamMemberService, 
+                                    ILogger<TeamMemberController> logger)
         {
             _teamMemberService = teamMemberService;
+            _logger = logger;
         }
         public async Task<IActionResult> Detail(int id)
         {
             var teamMember= await _teamMemberService.GetByIdAsync(id);
+            _logger.LogInformation($"A request has been received for the TeamMember Detail.");
             return View(teamMember);
         }
     }

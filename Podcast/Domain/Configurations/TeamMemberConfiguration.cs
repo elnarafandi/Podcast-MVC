@@ -17,6 +17,8 @@ namespace Domain.Configurations
                .IsRequired();
             builder.Property(t => t.LastName)
                .IsRequired();
+            builder.Property(t => t.Email)
+               .IsRequired();
             builder.Property(t => t.Image)
                .IsRequired();
             builder.Property(t => t.Information)

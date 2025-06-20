@@ -59,8 +59,17 @@ namespace Service.Services
             var user = await _userManager.FindByIdAsync(id);
             if (request.UploadImage != null)
             {
-                string oldFilePath = _env.GenerateFilePath("assets/images/home", user.Image);
-                oldFilePath.DeleteFile();
+                if (!request.UploadImage.CheckFileType("image"))
+                    throw new InvalidOperationException("Only image files are allowed.");
+                if (!request.UploadImage.CheckFileSize(1024)) // 1 MB limit
+                    throw new InvalidOperationException("Image size should be less than 1 MB.");
+
+                if (!string.IsNullOrEmpty(user.Image))
+                {
+                    string oldFilePath = _env.GenerateFilePath("assets/images/home", user.Image);
+                    oldFilePath.DeleteFile();
+                }
+                    
                 string fileName = Guid.NewGuid().ToString() + "-" + request.UploadImage.FileName;
                 string filePath = _env.GenerateFilePath("assets/images/home", fileName);
                 using (FileStream stream = new FileStream(filePath, FileMode.Create))
@@ -72,14 +81,22 @@ namespace Service.Services
             user.FirstName=request.FirstName;
             user.LastName=request.LastName;
 
-            var hasPassword = await _userManager.HasPasswordAsync(user);
-            if (hasPassword)
+            if (!string.IsNullOrEmpty(request.Password) && !string.IsNullOrEmpty(request.ConfirmPassword))
             {
-                var removeResult = await _userManager.RemovePasswordAsync(user);
-                
-            }
+                if (request.Password != request.ConfirmPassword)
+                {
+                    throw new InvalidOperationException("Password and Confirm Password do not match.");
+                }
 
-            var addResult = await _userManager.AddPasswordAsync(user, request.Password);
+                var hasPassword = await _userManager.HasPasswordAsync(user);
+                if (hasPassword)
+                {
+                    var removeResult = await _userManager.RemovePasswordAsync(user);
+
+                }
+
+                var addResult = await _userManager.AddPasswordAsync(user, request.Password);
+            }
             
 
             await _userManager.UpdateAsync(user);
@@ -104,7 +121,7 @@ namespace Service.Services
             await _signInManager.SignOutAsync();
         }
 
-        public async Task RegisterAsync(RegisterVM model)
+        public async Task<IdentityResult> RegisterAsync(RegisterVM model)
         {
             AppUser appUser = new AppUser
             {
@@ -112,7 +129,6 @@ namespace Service.Services
                 LastName = model.LastName,
                 UserName = model.UserName,
                 Email = model.Email,
-                Image = "listener.jpg",
                 PackageId = 4,
                 PurchasedAt = DateTime.UtcNow
             };
@@ -120,7 +136,7 @@ namespace Service.Services
             var result = await _userManager.CreateAsync(appUser, model.Password);
             if (!result.Succeeded)
             {
-                throw new Exception($"User creation failed: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                return result;
             }
 
             await _userManager.AddToRoleAsync(appUser, Roles.Member.ToString());
@@ -143,7 +159,37 @@ namespace Service.Services
 
             string message = $"Zəhmət olmasa e-poçtunuzu təsdiqləyin: <a href='{confirmationLink}'>Təsdiqlə</a>";
             await _emailService.SendEmailAsync(appUser.Email, "Email təsdiqi", message);
+
+            return IdentityResult.Success;
         }
+
+
+        public async Task<IdentityResult> DeleteAccountAsync(string userId)
+        {
+            // Fetch the user by ID
+            var currentUser = await _userManager.FindByIdAsync(userId);
+
+            if (currentUser == null)
+            {
+                throw new InvalidOperationException("User not found.");
+            }
+
+            // Delete the user's associated data (like profile image, etc.)
+            if (!string.IsNullOrEmpty(currentUser.Image))
+            {
+                string filePath = _env.GenerateFilePath("assets/images/home", currentUser.Image);
+                filePath.DeleteFile();
+            }
+
+            // Delete the user account from the database
+            var result = await _userManager.DeleteAsync(currentUser);
+
+            return result;
+        }
+
+
+
+
 
     }
 }

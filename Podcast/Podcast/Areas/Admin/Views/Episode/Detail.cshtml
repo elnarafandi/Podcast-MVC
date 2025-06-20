@@ -1,31 +1,37 @@
 ﻿@model EpisodeAdminVM
 
-
 <div class="container mt-4">
-    <h2>@Model.Title</h2>
+    
 
     <div class="row">
         <!-- Episode Image -->
-        <div class="col-md-4">
-            <div class="card">
-                <img src="~/assets//images/podcasts/@Model.Image" class="card-img-top" alt="Episode Image">
+        <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card shadow-sm border-0 rounded-3">
+                <img src="~/assets/images/podcasts/@Model.Image" class="card-img-top rounded-3" alt="Episode Image">
             </div>
         </div>
 
         <!-- Episode Details -->
         <div class="col-md-8">
-            <div class="card">
+            <div class="card shadow-sm border-0 rounded-3">
                 <div class="card-body">
-                    <h5 class="card-title">Episode Details</h5>
-                    <p><strong>Title:</strong> @Model.Title</p>
-                    <p><strong>Description:</strong> @Model.Description</p>
-                    <p><strong>Podcast:</strong> @Model.Podcast.Title</p>
+                    
+
+                    <!-- Title -->
+                    <p><strong class="text-secondary">Title:</strong> @Model.Title</p>
+
+                    <!-- Description -->
+                    <p><strong class="text-secondary">Description:</strong> @Model.Description</p>
+
+                    <!-- Podcast Name -->
+                    <p><strong class="text-secondary">Podcast:</strong> @Model.Podcast.Title</p>
 
                     <!-- Audio file, if exists -->
                     @if (!string.IsNullOrEmpty(Model.Audio))
                     {
-                        <div>
-                            <audio controls>
+                        <div class="mt-3">
+                            <strong class="text-secondary">Audio:</strong>
+                            <audio controls class="w-100 mt-2">
                                 <source src="@Url.Content("~/audios/" + Model.Audio)" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
@@ -35,12 +41,14 @@
                     <!-- Episode Guests -->
                     @if (Model.EpisodeGuests != null && Model.EpisodeGuests.Any())
                     {
-                        <div>
-                            <strong>Guests:</strong>
-                            <ul>
+                        <div class="mt-4">
+                            <strong class="text-secondary">Guests:</strong>
+                            <ul class="list-unstyled mt-2">
                                 @foreach (var episodeGuest in Model.EpisodeGuests)
                                 {
-                                    <li>@episodeGuest.Guest.FirstName @episodeGuest.Guest.LastName</li>  <!-- Assuming the "EpisodeGuest" model has a "GuestName" property -->
+                                    <li>
+                                        <span class="fw-bold">@episodeGuest.Guest.Email</span>
+                                    </li>
                                 }
                             </ul>
                         </div>
@@ -49,5 +57,5 @@
             </div>
         </div>
     </div>
-
 </div>
+

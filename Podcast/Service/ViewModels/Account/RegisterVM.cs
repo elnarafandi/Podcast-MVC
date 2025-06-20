@@ -27,7 +27,7 @@ namespace Service.ViewModels.Account
             RuleFor(x => x.UserName).NotNull().WithMessage("Can't be empty");
             RuleFor(x => x.Email).NotNull().WithMessage("Can't be empty")
                                  .NotEmpty().WithMessage("Can't be empty")
-                                 .EmailAddress().WithMessage("Email address format is wrong");
+                                 .Matches(@"^(?!.*\.\.)[^@\s]+@[^@\s]+\.[^@\s]+$").WithMessage("Email address format is wrong");
             RuleFor(x => x.Password).NotNull().WithMessage("Can't be empty")
                                     .NotEmpty().WithMessage("Can't be empty");
             RuleFor(x => x.ConfirmPassword).NotNull().WithMessage("Can't be empty")

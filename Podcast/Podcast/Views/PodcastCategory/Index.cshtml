@@ -4,7 +4,9 @@
     <section id="all-podcasts">
         <div class="my-container">
             <div class="sorting-filter">
-                <div class="text"><p>Category: @Model.PodcastCategory.Name</p></div>
+                <div class="text">
+                    <p>Category: @Model.PodcastCategory.Name</p>
+                </div>
                 <div class="mix">
                     <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -12,10 +14,24 @@
                         </button>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" asp-action="Index" asp-route-id="@Model.PodcastCategory.Id" asp-route-sortOrder="most_followed">Most followed</a>
+                                <a class="dropdown-item @((Model.SortOrder == "most_followed") ? "active" : "")" asp-action="Index" asp-route-id="@Model.PodcastCategory.Id" asp-route-sortOrder="most_followed">
+                                    Most followed
+                                </a>
                             </li>
                             <li>
-                                <a class="dropdown-item" asp-action="Index" asp-route-id="@Model.PodcastCategory.Id">Default</a>
+                                <a class="dropdown-item @((Model.SortOrder == "less_followed") ? "active" : "")" asp-action="Index" asp-route-id="@Model.PodcastCategory.Id" asp-route-sortOrder="less_followed">
+                                    Less followed
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item @((Model.SortOrder == null) ? "active" : "")" asp-action="Index" asp-route-id="@Model.PodcastCategory.Id">
+                                    Newest
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item @((Model.SortOrder == "oldest") ? "active" : "")" asp-action="Index" asp-route-id="@Model.PodcastCategory.Id" asp-route-sortOrder="oldest">
+                                    Oldest
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -26,17 +42,15 @@
                 <div class="all-podcasts parent-elem">
                     <partial name="_PodcastPartial" model="@Model" />
                 </div>
-                
-                    
-                
             </div>
         </div>
     </section>
-    @if (Model.PodcastCount>8)
+
+    @if (Model.PodcastCount > 8)
     {
         <section id="button">
             <div class="show-more mt-5 text-center"
-                 data-count="@Model.Podcasts.Count()"
+                 data-count="@Model.PodcastCount"
                  data-category-id="@Model.PodcastCategory.Id"
                  data-sort-order="@Context.Request.Query["sortOrder"]">
                 <button type="button" class="btn btn-primary">Show more</button>
@@ -44,6 +58,15 @@
         </section>
     }
 </main>
+
+@* CSS üçün əlavə edilən stil *@
+<style>
+    .dropdown-item.active {
+        background-color: #007bff; /* Seçilmiş elementin fon rəngi */
+        color: white; /* Mətnin rəngi */
+    }
+</style>
+
 
 
 
@@ -79,5 +102,39 @@
                 });
         });
     });
-</script>
 
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const showMoreBtn = document.querySelector(".show-more"); // <div class="show-more" ...>
+    //     const parentElem = document.querySelector(".parent-elem"); // .parent-elem -> podcast konteyneri
+
+    //     if (!showMoreBtn || !parentElem) return;
+
+    //     showMoreBtn.addEventListener("click", function () {
+    //         const skip = parentElem.children.length; // Mövcud podcast sayını götürürük
+    //         const totalCount = parseInt(this.getAttribute("data-count")); // Ümumi podcast sayı
+    //         const categoryId = this.getAttribute("data-category-id");
+    //         const sortOrder = this.getAttribute("data-sort-order") || "";
+
+    //         // `skip` dəyəri ilə yeni podcastları yükləyirik
+    //         fetch(`/PodcastCategory/ShowMore?id=${categoryId}&skip=${skip}&sortOrder=${sortOrder}`)
+    //             .then(response => {
+    //                 if (!response.ok) throw new Error("Şəbəkə cavabı düzgün deyil");
+    //                 return response.text();
+    //             })
+    //             .then(html => {
+    //                 // Yeni podcastları mövcud konteynerə əlavə edirik
+    //                 parentElem.innerHTML += html;
+
+    //                 // Yeni `skip` dəyərini hesablayırıq və "Show More" düyməsinin görünməsini təyin edirik
+    //                 const newSkip = parentElem.children.length;
+    //                 if (newSkip >= totalCount) {
+    //                     showMoreBtn.classList.add("d-none"); // Əgər bütün məlumatlar yüklənibsə, "Show More" düyməsini gizlət
+    //                 }
+    //             })
+    //             .catch(error => {
+    //                 console.error("Fetch xətası:", error);
+    //             });
+    //     });
+    // });
+
+</script>

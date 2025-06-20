@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Service.Helpers.Extensions;
 using Service.Services.Interfaces;
 using Service.ViewModels.PodcastCategory;
 using Service.ViewModels.TeamMember;
@@ -30,8 +31,38 @@ namespace Podcast.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TeamMemberCreateVM request)
         {
-            if (!ModelState.IsValid) return View(request);
-            await _teamMemberService.CreateAsync(request);
+            if (request.UploadImage == null)
+            {
+                ModelState.AddModelError("UploadImage", "Please upload an image.");
+            }
+            else
+            {
+                if (!request.UploadImage.CheckFileType("image"))
+                {
+                    ModelState.AddModelError("UploadImage", "Only image files are allowed.");
+                }
+
+                if (!request.UploadImage.CheckFileSize(1024)) // 1 MB
+                {
+                    ModelState.AddModelError("UploadImage", "Image size must be less than 1 MB.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            try
+            {
+                await _teamMemberService.CreateAsync(request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Email", ex.Message);
+                return View(request);
+            }
+
             return RedirectToAction(nameof(Index));
         }
         [HttpGet]
@@ -40,6 +71,7 @@ namespace Podcast.Areas.Admin.Controllers
             var teamMember= await _teamMemberService.GetByIdAsync(id);
             return View(new TeamMemberEditVM { FirstName=teamMember.FirstName, 
                                                LastName=teamMember.LastName,
+                                               Email=teamMember.Email,
                                                Image=teamMember.Image,
                                                Information=teamMember.Information,
                                                SocialMedia=teamMember.SocialMedia});
@@ -48,7 +80,37 @@ namespace Podcast.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, TeamMemberEditVM request)
         {
-            await _teamMemberService.EditAsync(id, request);
+            var existingMember = await _teamMemberService.GetByIdAsync(id);
+            request.Image = existingMember.Image;
+
+            if (request.UploadImage != null)
+            {
+                if (!request.UploadImage.CheckFileType("image"))
+                {
+                    ModelState.AddModelError("UploadImage", "Only image files are allowed.");
+                }
+
+                if (!request.UploadImage.CheckFileSize(1024)) // 1 MB
+                {
+                    ModelState.AddModelError("UploadImage", "Image size must be less than 1 MB.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            try
+            {
+                await _teamMemberService.EditAsync(id, request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Email", ex.Message);
+                return View(request);
+            }
+
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]

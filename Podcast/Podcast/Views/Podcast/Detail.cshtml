@@ -1,5 +1,14 @@
 ﻿@model PodcastDetailVM
 
+@if (TempData["PlaylistError"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="text-center">
+            @TempData["PlaylistError"]
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 
 <main>
@@ -46,12 +55,16 @@
                                     <div class="image"><a href=""><img src="~/assets/images/podcasts/@episode.Image" alt=""></a></div>
                                     <div class="number">
                                         <div class="title"><a href="">@episode.Title</a></div>
-                                        <div class="num"><p>56000 listen</p></div>
+                                        
                                     </div>
                                 </div>
                                 <div class="description"><p>@episode.Description</p></div>
                                 <div class="guests">
-                                    <div class="text"><p>Our guests:</p></div>
+                                    @if (episode.EpisodeGuests.Any())
+                                    {
+                                        <div class="text"><p>Our guests:</p></div>
+                                    }
+                                    
                                     <div class="g-info">
                                         @if (episode.EpisodeGuests.Any())
                                         {
@@ -70,38 +83,51 @@
                                     {
                                         <div class="icons">
                                             <div class="add-episode">
-                                                <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal-@episode.Id">
-                                                    <i class="bi bi-plus-circle"></i>
-                                                </button>
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal-@episode.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Your Playlists</h1>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form asp-action="AddEpisodeToPlaylist" method="post">
-                                                                    <input type="hidden" name="episodeId" value="@episode.Id" />
-                                                                    <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
+                                                @if (Model.Playlists != null && Model.Playlists.Any())
+                                                {
+                                                    <!-- Playlists mövcuddursa, modal açılacaq -->
+                                                    <button type="button" class="btn btn-primary add" data-bs-toggle="modal" data-bs-target="#exampleModal-@episode.Id">
+                                                        <i class="bi bi-plus-circle"></i>
+                                                    </button>
+                                                }
+                                                else
+                                                {
+                                                    <!-- Playlist yoxdursa xəbərdarlıq -->
+                                                    <button type="button" class="btn btn-secondary add" onclick="alert('You don\'t have any playlists. Please create one first.')" disabled>
+                                                        <i class="bi bi-plus-circle"></i>
+                                                    </button>
+                                                }
 
-                                                                    <select name="playlistId" class="form-control">
+                                                <!-- Modal (yalnız mövcud playlist olduqda render olunur) -->
+                                                @if (Model.Playlists != null && Model.Playlists.Any())
+                                                {
+                                                    <div class="modal fade" id="exampleModal-@episode.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Your Playlists</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form asp-action="AddEpisodeToPlaylist" method="post">
+                                                                        <input type="hidden" name="episodeId" value="@episode.Id" />
+                                                                        <input type="hidden" name="podcastId" value="@Model.Podcast.Id" />
 
-                                                                        <option value="" disabled selected>Select Playlist</option>
+                                                                        <select name="playlistId" class="form-control">
+                                                                            <option value="" disabled selected>Select Playlist</option>
+                                                                            @foreach (var playlist in Model.Playlists)
+                                                                            {
+                                                                                <option value="@playlist.Id">@playlist.Name</option>
+                                                                            }
+                                                                        </select>
 
-                                                                        @foreach (var playlist in Model.Playlists)
-                                                                        {
-                                                                            <option value="@playlist.Id">@playlist.Name</option>
-                                                                        }
-                                                                    </select>
-
-                                                                    <button type="submit" class="btn btn-primary mt-2">Add to Playlist</button>
-                                                                </form>
+                                                                        <button type="submit" class="btn btn-primary mt-2">Add to Playlist</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                }
                                             </div>
 
 
@@ -150,7 +176,7 @@
                         </form>
                     </div>
                 }
-                @if (Model.User.PackageId == 4)
+                @if (Model.Comments != null && Model.Comments.Any() && Model.User.PackageId == 4)
                 {
                     <h5>Comments</h5>
                 }

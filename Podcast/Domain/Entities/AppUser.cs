@@ -11,7 +11,7 @@ namespace Domain.Entities
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Image { get; set; }
+        public string? Image { get; set; }
         public DateTime CreatedDate { get; set; }= DateTime.Now;
         public int? PackageId { get; set; }
         public Package Package { get; set; }

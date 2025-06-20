@@ -16,8 +16,8 @@ namespace Service.ViewModels.Package
     {
         public PackageEditVMValidator()
         {
-            RuleFor(x => x.Price).NotNull().WithMessage("Can't be empty")
-                                    .NotEmpty().WithMessage("Can't be empty");
+            RuleFor(x => x.Price).NotNull().WithMessage("Price can't be empty")
+                                    .NotEmpty().WithMessage("Price can't be empty");
         }
     }
 }

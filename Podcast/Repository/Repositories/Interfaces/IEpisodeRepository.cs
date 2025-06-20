@@ -11,5 +11,6 @@ namespace Repository.Repositories.Interfaces
     {
         Task<Episode> GetByIdAsync(int id);
         Task<List<Episode>> GetAllAsync(int? count = null);
+        Task<List<Episode>> GetEpisodesByPodcastIdAsync(int? podcastId);
     }
 }

@@ -18,6 +18,7 @@ namespace Podcast.Controllers
         private readonly ICommentService _commentService;
         private readonly IPlaylistService _playlistService;
         private readonly ILikeService _likeService;
+        private readonly ITeamMemberService _teamMemberService;
         private readonly UserManager<AppUser> _userManager;
         public PodcastController(IPodcastService podcastService, 
                                  IPodcastCategoryService podcastCategoryService,
@@ -25,7 +26,8 @@ namespace Podcast.Controllers
                                  ICommentService commentService,
                                  IPlaylistService playlistService,
                                  ILikeService likeService,
-                                 UserManager<AppUser> userManager)
+                                 UserManager<AppUser> userManager,
+                                 ITeamMemberService teamMemberService)
         {
             _podcastService = podcastService;
             _podcastCategoryService = podcastCategoryService;
@@ -34,6 +36,7 @@ namespace Podcast.Controllers
             _playlistService = playlistService;
             _likeService = likeService;
             _userManager = userManager;
+            _teamMemberService = teamMemberService;
         }
         public IActionResult Index()
         {
@@ -41,6 +44,27 @@ namespace Podcast.Controllers
         }
         public async Task<IActionResult> Detail(int id)
         {
+            var allUsersDb = _userManager.Users.Where(u => u.PackageId == 3).ToList();
+
+            foreach (var userDb in allUsersDb)
+            {
+                var adjustedTime = DateTime.UtcNow.AddHours(4);
+
+
+                var daysSincePurchased = (adjustedTime - userDb.PurchasedAt).Days;
+
+                if (daysSincePurchased >= 30)
+                {
+                    userDb.PackageId = 4;
+                    userDb.PurchasedAt = adjustedTime;
+                    await _userManager.UpdateAsync(userDb);
+                    
+                }
+            }
+
+
+
+
             var podcast= await _podcastService.GetByIdAsync(id);
             if (podcast == null)
                 return NotFound();
@@ -78,12 +102,9 @@ namespace Podcast.Controllers
         public async Task<IActionResult> Search(string podcastTitle)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrEmpty(podcastTitle))
-            {
-                return BadRequest("Podcast title is required.");
-            }
-            var podcasts= await _podcastService.SearchByTitleAsync(podcastTitle);
             
+            var podcasts= await _podcastService.SearchByTitleAsync(podcastTitle);
+            var teamMembers= await _teamMemberService.GetAllAsync();
             var podcastCategories= await _podcastCategoryService.GetAllAsync();
             var followedPodcastIds = userId != null
                 ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
@@ -94,30 +115,33 @@ namespace Podcast.Controllers
                 Podcasts = podcasts,
                 PodcastCategories = podcastCategories,
                 SearchText= podcastTitle,
-                FollowedPodcastIds= followedPodcastIds
+                FollowedPodcastIds= followedPodcastIds,
+                TeamMembers= teamMembers
             });
         }
         [HttpGet]
-        public async Task<IActionResult> Filter(string category, string searchText)
+        public async Task<IActionResult> Filter(string searchText, List<int>? categoryIds, List<int>? teamMemberIds)
         {
-            if (string.IsNullOrEmpty(category))
-            {
-                return BadRequest("Category is required.");
-            }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var podcasts = await _podcastService.FilterByCategoryAsync(searchText,category);
+            var podcasts = await _podcastService.FilterAsync(searchText, categoryIds, teamMemberIds);
             var podcastCategories = await _podcastCategoryService.GetAllAsync();
+            var teamMembers = await _teamMemberService.GetAllAsync();
             var followedPodcastIds = userId != null
                 ? await _appUserPodcastService.GetFollowedPodcastIdsAsync(userId)
                 : new List<int>();
+
             return View("Search", new PodcastVM
             {
                 Podcasts = podcasts,
                 PodcastCategories = podcastCategories,
                 SearchText = searchText,
-                FollowedPodcastIds = followedPodcastIds
+                FollowedPodcastIds = followedPodcastIds,
+                TeamMembers = teamMembers,
+                SelectedCategoryIds = categoryIds, // Selected categories
+                SelectedTeamMemberIds = teamMemberIds // Selected team members
             });
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -172,7 +196,7 @@ namespace Podcast.Controllers
                 bool isInPlaylist = await _playlistService.IsEpisodeInPlaylistAsync(episodeId, playlistId);
                 if (isInPlaylist)
                 {
-                    ModelState.AddModelError("", "This episode is already in the selected playlist.");
+                    TempData["PlaylistError"] = "This episode is already in the selected playlist.";
                     return RedirectToAction("Detail", new { id = podcastId });
                 }
 

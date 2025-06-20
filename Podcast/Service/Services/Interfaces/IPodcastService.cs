@@ -22,6 +22,11 @@ namespace Service.Services.Interfaces
         Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountAsync(int categoryId);
 
         Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountShowMoreAsync(int categoryId, int skip = 0, int take = 8);
+        Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByFollowCountLessShowMoreAsync(int categoryId, int skip = 0, int take = 8);
         Task<IEnumerable<PodcastAdminVM>> GetAllByCategoryShowMoreAsync(int categoryId, int skip = 0, int take = 8);
+        Task<IEnumerable<PodcastAdminVM>> FilterAsync(string searchText, List<int>? categoryIds, List<int>? teamMemberIds);
+
+        Task<IEnumerable<PodcastAdminVM>> GetAllByCategorySortedByOldestAsync(int categoryId, int skip, int take);
+
     }
 }

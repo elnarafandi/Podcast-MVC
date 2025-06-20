@@ -6,8 +6,15 @@
     ViewData["Title"] = "Home Page";
 }
 
-
-
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="text-center">
+            @TempData["Error"]
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
 
 <main>
@@ -61,7 +68,7 @@
                                                                        class="form-control"
                                                                        id="playlistName"
                                                                        name="playlist_name"
-                                                                       placeholder="Məsələn: Mənim Favorilərim"
+                                                                       placeholder="For example: My Favorites"
                                                                        required>
                                                             </div>
 
@@ -118,7 +125,7 @@
                             }
                             else
                             {
-                                <a asp-controller="Home" asp-action="Index">Whoo, you have Premium Membership!</a>
+                                <p style="color:blue">Whoo, you have Premium Membership!</p>
                             }
                         </div>
                     </div>
@@ -325,7 +332,7 @@
             const prevIcon = prevBtn?.querySelector("i");
             const nextIcon = nextBtn?.querySelector("i");
 
-            // Sol ox (prev)
+            
             if (prevBtn) {
                 if (currentPage <= 1) {
                     prevBtn.setAttribute("disabled", "disabled");
@@ -344,7 +351,7 @@
                 }
             }
 
-            // Sağ ox (next)
+            
             if (nextBtn) {
                 if (currentPage >= totalPages) {
                     nextBtn.setAttribute("disabled", "disabled");

@@ -16,7 +16,7 @@ namespace Service.ViewModels.Episode
         public IFormFile UploadImage { get; set; }
         public IFormFile AudioFile {  get; set; }
         public int PodcastId { get; set; }
-        public List<int> GuestIds { get; set; }
+        public List<int>? GuestIds { get; set; }
     }
     public class EpisodeCreateVMValidator : AbstractValidator<EpisodeCreateVM>
     {

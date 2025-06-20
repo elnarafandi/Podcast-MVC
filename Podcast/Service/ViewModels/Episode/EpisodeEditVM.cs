@@ -12,12 +12,12 @@ namespace Service.ViewModels.Episode
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Image {  get; set; }
-        public IFormFile UploadImage { get; set; }
-        public string Audio { get; set; }
-        public IFormFile AudioFile { get; set; }
+        public string? Image {  get; set; }
+        public IFormFile? UploadImage { get; set; }
+        public string? Audio { get; set; }
+        public IFormFile? AudioFile { get; set; }
         public int PodcastId { get; set; }
-        public List<int> GuestIds { get; set; }
+        public List<int>? GuestIds { get; set; }
     }
     public class EpisodeEditVMValidator : AbstractValidator<EpisodeEditVM>
     {

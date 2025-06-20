@@ -32,7 +32,15 @@ namespace Podcast.Areas.Admin.Controllers
         public async Task<IActionResult> Create(PodcastCategoryCreateVM request)
         {
             if (!ModelState.IsValid) return View(request);
-            await _podcastCategoryService.CreateAsync(request);
+            try
+            {
+                await _podcastCategoryService.CreateAsync(request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Name", ex.Message);
+                return View(request);
+            }
             return RedirectToAction(nameof(Index));
         }
 
@@ -46,7 +54,17 @@ namespace Podcast.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, PodcastCategoryEditVM request)
         {
-            await _podcastCategoryService.EditAsync(id, request);
+            if (!ModelState.IsValid) return View(request);
+
+            try
+            {
+                await _podcastCategoryService.EditAsync(id, request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Name", ex.Message);
+                return View(request);
+            }
             return RedirectToAction(nameof(Index));
         }
         [HttpPost]

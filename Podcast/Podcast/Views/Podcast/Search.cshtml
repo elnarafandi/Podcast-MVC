@@ -1,78 +1,128 @@
 ﻿@model PodcastVM
 
-
-
 <main>
-        <section id="all-podcasts">
-            <div class="my-container">
-                <div class="sorting-filter">
-                    <div class="text"><p>Results of searching . . .</p></div>
-                    <div class="mix">
-                         <div class="filter">
+    <section id="all-podcasts">
+        <div class="my-container">
+            <div class="sorting-filter">
+                <div class="text">
+                    <p>Results of searching . . .</p>
+                </div>
+                <div class="mix">
+                    @if (Model.SearchText != null)
+                    {
+                        <div class="filter">
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary fltr" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                <i class="bi bi-filter-left"></i>Filter
+                                <i class="bi bi-filter-left"></i> Filter
                             </button>
-                           <!-- Modal -->
-                           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Select a category</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-                                        <form asp-controller="Podcast" asp-action="Filter" method="get">
-                                            <input type="hidden" name="searchText" value="@Model.SearchText" />
-                                            <div class="mb-3">
-                                                <label for="categorySelect" class="form-label">Kateqoriya seçin:</label>
-                                                <select class="form-control" id="categorySelect" name="category" required>
-                                                    <option disabled selected>Birini seçin</option>
-                                                    @foreach (var category in Model.PodcastCategories)
-                                                    {
-                                                        @if (category.Podcasts.Any())
-                                                        {
-                                                            <option value="@category.Name">@category.Name</option>
-                                                        }
-                                                    }
-                                                </select>
-                                            </div>
 
-                                            <!-- Submit düyməsi -->
-                                            <button type="submit" class="btn btn-primary">
-                                                <i class="bi bi-check-circle"></i> Təsdiqlə
-                                            </button>
-                                        </form>
-      </div>
-    </div>
-  </div>
-                           </div>
-                         </div>
-                    </div> 
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Filter Podcasts</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form asp-controller="Podcast" asp-action="Filter" method="get" id="filterForm">
+                                                <input type="hidden" name="searchText" value="@Model.SearchText" />
+
+                                                <!-- Category Checkboxes -->
+                                                <div class="mb-4">
+                                                    <label for="categorySelect" class="form-label">Select categories:</label>
+                                                    <div>
+                                                        @foreach (var category in Model.PodcastCategories)
+                                                        {
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                       name="categoryIds" value="@category.Id"
+                                                                       id="category_@category.Id"
+                                                                @if (Model.SelectedCategoryIds != null && Model.SelectedCategoryIds.Contains(category.Id))
+                                                                {
+                                                                    <text>checked</text>
+                                                                } />
+                                                                <label class="form-check-label" for="category_@category.Id">
+                                                                    @category.Name
+                                                                </label>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    <small class="form-text text-muted">Select one or more categories for the podcast filter.</small>
+                                                </div>
+
+                                                <!-- Team Member Checkboxes -->
+                                                <div class="mb-4">
+                                                    <label for="teamMemberSelect" class="form-label">Select creators:</label>
+                                                    <div>
+                                                        @foreach (var teamMember in Model.TeamMembers)
+                                                        {
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" type="checkbox"
+                                                                       name="teamMemberIds" value="@teamMember.Id"
+                                                                       id="teamMember_@teamMember.Id"
+                                                                @if (Model.SelectedTeamMemberIds != null && Model.SelectedTeamMemberIds.Contains(teamMember.Id))
+                                                                {
+                                                                    <text>checked</text>
+                                                                } />
+                                                                <label class="form-check-label" for="teamMember_@teamMember.Id">
+                                                                    @teamMember.FirstName @teamMember.LastName
+                                                                </label>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                    <small class="form-text text-muted">Choose one or more creators who contributed to the podcast.</small>
+                                                </div>
+
+                                                <!-- Submit button -->
+                                                <button type="submit" class="btn btn-primary w-100 mt-3">
+                                                    <i class="bi bi-check-circle"></i> Confirm
+                                                </button>
+
+                                                <!-- Clear Form Button -->
+                                                <button type="button" class="btn btn-secondary w-100 mt-2" id="clearFormButton">
+                                                    <i class="bi bi-x-circle"></i> Clear Form
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
-            
-                <div class="podcasts">
+            </div>
+
+            <div class="podcasts">
                 @if (Model.Podcasts == null || !Model.Podcasts.Any())
                 {
                     <div class="d-flex justify-content-center align-items-center vh-50">
-                        <p class="text-muted fs-4">Uyğun podcast tapılmadı.</p>
+                        <p class="text-muted fs-4">No matching podcasts found.</p>
                     </div>
                 }
-                        <div class="all-podcasts">
-                   
-                    @foreach(var podcast in Model.Podcasts)
+                <div class="all-podcasts">
+                    @foreach (var podcast in Model.Podcasts)
                     {
                         <div class="podcast">
-                            <div class="image"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><img src="~/assets/images/podcasts/@podcast.Image" alt=""></a></div>
+                            <div class="image">
+                                <a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id">
+                                    <img src="~/assets/images/podcasts/@podcast.Image" alt="" />
+                                </a>
+                            </div>
                             <div class="info">
-                                <div class="title"><a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id"><p>@podcast.Title</p></a></div>
-                                <div class="podcaster"><p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p></div>
+                                <div class="title">
+                                    <a asp-controller="Podcast" asp-action="Detail" asp-route-id="@podcast.Id">
+                                        <p>@podcast.Title</p>
+                                    </a>
+                                </div>
+                                <div class="podcaster">
+                                    <p>@podcast.TeamMember.FirstName @podcast.TeamMember.LastName</p>
+                                </div>
                             </div>
                             <div class="follow">
                                 <form asp-controller="Podcast" asp-action="ToggleFollow" method="post">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="podcastId" value="@podcast.Id" />
-
                                     @if (Model.FollowedPodcastIds.Contains(podcast.Id))
                                     {
                                         <button type="submit" class="btn btn-danger">Unfollow</button>
@@ -86,8 +136,29 @@
                         </div>
                     }
                 </div>
-                       
-                </div>
             </div>
-        </section>
+        </div>
+    </section>
 </main>
+
+<!-- Script to clear the form but keep the search text -->
+<script>
+    document.getElementById('clearFormButton').addEventListener('click', function () {
+        // Reset the filter form (checkboxes and other inputs)
+        const form = document.getElementById('filterForm');
+
+        // Reset checkboxes
+        const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.checked = false;
+        });
+
+        // Optionally, reset any other fields (like text inputs) here if necessary, but leave searchText intact
+        const textInputs = form.querySelectorAll('input[type="text"]');
+        textInputs.forEach(function (input) {
+            input.value = '';
+        });
+
+        // Do not reset searchText, it should persist
+    });
+</script>

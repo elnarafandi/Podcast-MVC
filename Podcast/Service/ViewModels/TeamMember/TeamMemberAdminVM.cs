@@ -14,5 +14,6 @@ namespace Service.ViewModels.TeamMember
         public string Image { get; set; }
         public string Information { get; set; }
         public string SocialMedia { get; set; }
+        public string Email { get; set; }
     }
 }

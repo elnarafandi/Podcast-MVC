@@ -13,5 +13,6 @@ namespace Repository.Repositories.Interfaces
         Task AddEpisodeToPlaylistAsync(int episodeId, int playlistId);
         Task<bool> IsEpisodeInPlaylistAsync(int episodeId, int playlistId);
         Task<Playlist> GetByIdAsync(int id);
+        Task<bool> PlaylistExistsAsync(string name, string userId);
     }
 }

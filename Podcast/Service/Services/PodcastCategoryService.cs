@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Service.Services
 {
@@ -21,10 +22,14 @@ namespace Service.Services
         }
         public async Task CreateAsync(PodcastCategoryCreateVM request)
         {
+            if (await _podcastCategoryRepository.ExistsByNameAsync(request.Name))
+                throw new InvalidOperationException("A category with the same name already exists.");
+
             PodcastCategory category = new PodcastCategory
             {
                 Name = request.Name
             };
+
             await _podcastCategoryRepository.CreateAsync(category);
         }
 
@@ -36,9 +41,24 @@ namespace Service.Services
 
         public async Task EditAsync(int id, PodcastCategoryEditVM request)
         {
+            var normalizedNewName = request.Name.Trim().ToLower();
+
+            var allCategories = await _podcastCategoryRepository.GetAllAsync();
+
+            bool exists = allCategories
+                .Any(c => c.Id != id && c.Name.Trim().ToLower() == normalizedNewName);
+
+            if (exists)
+                throw new InvalidOperationException("A category with the same name already exists.");
+
             var category = await _podcastCategoryRepository.GetByIdAsync(id);
             category.Name = request.Name;
             await _podcastCategoryRepository.EditAsync(category);
+        }
+
+        public async Task<bool> ExistsByNameAsync(string name)
+        {
+            return await _podcastCategoryRepository.ExistsByNameAsync(name);
         }
 
         public async Task<List<PodcastCategoryAdminVM>> GetAllAsync()

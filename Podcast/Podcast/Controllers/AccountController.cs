@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
+using Service.Helpers.Extensions;
 using Service.Services;
 using Service.Services.Interfaces;
 using Service.ViewModels.Account;
@@ -41,9 +42,32 @@ namespace Podcast.Controllers
             {
                 return View(model);
             }
-            await _accountService.RegisterAsync(model);
+
+            var result = await _accountService.RegisterAsync(model);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    if (error.Code.Contains("Email"))
+                    {
+                        ModelState.AddModelError("Email", error.Description);
+                    }
+                    else if (error.Code.Contains("UserName"))
+                    {
+                        ModelState.AddModelError("UserName", error.Description);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+                return View(model);
+            }
+
             return RedirectToAction(nameof(EmailConfirmationSent));
         }
+
 
 
         [HttpGet]
@@ -192,20 +216,88 @@ namespace Podcast.Controllers
         public async Task<IActionResult> EditAccount(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
+            var roles = await _userManager.GetRolesAsync(user);
+            var isAdmin = roles.Contains("Admin");
             return View(new AccountEditVM
             {
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Image = user.Image
+                Image = user.Image,
+                IsAdmin = isAdmin
             });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditAccount(string id, AccountEditVM request)
         {
-            await _accountService.EditAccountAsync(id, request);
-            return RedirectToAction("Index", "Home");
+            var user = await _userManager.FindByIdAsync(id);
+            var roles = await _userManager.GetRolesAsync(user);
+            var isAdmin = roles.Contains("Admin");
+            request.Image = user.Image;
+            request.IsAdmin = isAdmin;
+
+            if (request.UploadImage != null)
+            {
+                if (!request.UploadImage.CheckFileType("image"))
+                {
+                    ModelState.AddModelError("UploadImage", "Only image files are allowed.");
+                }
+
+                if (!request.UploadImage.CheckFileSize(1024)) // 1 MB
+                {
+                    ModelState.AddModelError("UploadImage", "Image size must be less than 1 MB.");
+                }
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+            try
+            {
+                await _accountService.EditAccountAsync(id, request);
+                return RedirectToAction("Index", "Home");
+            }
+            catch (InvalidOperationException ex)
+            {
+                // If an error occurs, add it to ModelState and return to the same view
+                ModelState.AddModelError("ConfirmPassword", ex.Message);
+                
+
+                // Return the view with the error message and existing user data
+                return View(request);
+            }
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteAccount()
+        {
+            
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+            {
+                ModelState.AddModelError(string.Empty, "User not found. Please log in.");
+                return RedirectToAction("Login", "Account"); 
+            }
+
+            var result = await _accountService.DeleteAccountAsync(userId);
+
+            if (result.Succeeded)
+            {
+                await _accountService.LogoutAsync();
+
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                ModelState.AddModelError(string.Empty, "An error occurred while deleting your account.");
+                return View(); 
+            }
+        }
+
+
 
     }
 }

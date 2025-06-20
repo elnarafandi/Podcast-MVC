@@ -69,5 +69,10 @@ namespace Service.Services
         {
             return await _playlistRepository.IsEpisodeInPlaylistAsync(episodeId, playlistId);
         }
+
+        public async Task<bool> PlaylistExistsAsync(string name, string userId)
+        {
+            return await _playlistRepository.PlaylistExistsAsync(name, userId);
+        }
     }
 }

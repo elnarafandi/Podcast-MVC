@@ -30,7 +30,11 @@ namespace Repository.Repositories
         {
             return await _context.Set<Episode>().Include(e => e.Podcast).Include(e => e.Likes).Include(e => e.EpisodeGuests).ThenInclude(eg => eg.Guest).FirstOrDefaultAsync(g=>g.Id==id);
         }
+        public async Task<List<Episode>> GetEpisodesByPodcastIdAsync(int? podcastId)
+        {
+            return await _context.Set<Episode>().Include(e => e.Podcast).Include(e => e.Likes).Include(e => e.EpisodeGuests).ThenInclude(eg => eg.Guest).OrderByDescending(c => c.CreatedDate).Where(e => e.PodcastId == podcastId).ToListAsync();
+        }
 
-        
+
     }
 }

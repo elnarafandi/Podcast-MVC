@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Service.Helpers.Extensions;
 using Service.Services.Interfaces;
 using Service.ViewModels.Episode;
 using Service.ViewModels.Podcast;
@@ -26,22 +27,61 @@ namespace Podcast.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var episode = await _episodeService.GetAllAsync();
-            return View(episode);
+            var podcasts= await _podcastService.GetAllAsync();
+            return View(new EpisodeVM()
+            {
+                Episodes = episode,
+                Podcasts = podcasts
+            });
         }
+
+        [HttpGet]
+        public async Task<IActionResult> FilterByPodcast(int? podcastId)
+        {
+            if (podcastId == 0)
+            {
+                return BadRequest("PodcastId is required.");
+            }
+
+            List<EpisodeAdminVM> episodes;
+
+            if (podcastId == null)
+            {
+                episodes= await _episodeService.GetAllAsync();
+            }
+            else
+            {
+                episodes = await _episodeService.GetEpisodesByPodcastIdAsync(podcastId);
+            }
+            
+            
+            var podcasts = await _podcastService.GetAllAsync();
+
+            return View("Index", new EpisodeVM
+            {
+                Episodes = episodes,
+                Podcasts = podcasts
+            });
+        }
+
+
+
+
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var podcastsDb= await _podcastService.GetAllAsync();
-            var podcasts = podcastsDb.Select(a => new SelectListItem()
+            var podcastsDb = await _podcastService.GetAllAsync();
+            var podcasts = podcastsDb.Select(a => new SelectListItem
             {
                 Value = a.Id.ToString(),
                 Text = a.Title
             });
-            var guestsDb=await _guestService.GetAllAsync();
-            var guests = guestsDb.Select(a => new SelectListItem()
+
+            var guestsDb = await _guestService.GetAllAsync();
+            var guests = guestsDb.Select(a => new SelectListItem
             {
                 Value = a.Id.ToString(),
-                Text = a.SocialMedia
+                Text = a.Email
             });
 
             ViewBag.Podcasts = podcasts;
@@ -49,14 +89,77 @@ namespace Podcast.Areas.Admin.Controllers
 
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EpisodeCreateVM request)
         {
-            if (!ModelState.IsValid) return View(request);
-            await _episodeService.CreateAsync(request);
+            var podcastsDb = await _podcastService.GetAllAsync();
+            ViewBag.Podcasts = podcastsDb.Select(a => new SelectListItem
+            {
+                Value = a.Id.ToString(),
+                Text = a.Title
+            });
+
+            var guestsDb = await _guestService.GetAllAsync();
+            ViewBag.Guests = guestsDb.Select(a => new SelectListItem
+            {
+                Value = a.Id.ToString(),
+                Text = a.Email
+            });
+
+            // Əlavə ModelState yoxlamaları
+            if (string.IsNullOrWhiteSpace(request.Title))
+                ModelState.AddModelError("Title", "Title is required.");
+
+            if (string.IsNullOrWhiteSpace(request.Description))
+                ModelState.AddModelError("Description", "Description is required.");
+
+            if (request.PodcastId <= 0)
+                ModelState.AddModelError("PodcastId", "Please select a podcast.");
+
+            if (request.UploadImage == null)
+            {
+                ModelState.AddModelError("UploadImage", "Please upload an image.");
+            }
+            else
+            {
+                if (!request.UploadImage.CheckFileType("image"))
+                    ModelState.AddModelError("UploadImage", "Only image files are allowed.");
+                if (!request.UploadImage.CheckFileSize(1 * 1024 * 1024))
+                    ModelState.AddModelError("UploadImage", "Image file size must be less than 1 MB.");
+            }
+
+            if (request.AudioFile == null)
+            {
+                ModelState.AddModelError("AudioFile", "Please upload an audio file.");
+            }
+            else
+            {
+                if (!request.AudioFile.CheckFileType("audio"))
+                    ModelState.AddModelError("AudioFile", "Only audio files are allowed.");
+                if (!request.AudioFile.CheckFileSize(50 * 1024 * 1024))
+                    ModelState.AddModelError("AudioFile", "Audio file size must be less than 50 MB.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            try
+            {
+                await _episodeService.CreateAsync(request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Title", ex.Message);
+                return View(request);
+            }
+
             return RedirectToAction(nameof(Index));
         }
+
 
 
 
@@ -73,7 +176,7 @@ namespace Podcast.Areas.Admin.Controllers
             var guests = guestsDb.Select(a => new SelectListItem()
             {
                 Value = a.Id.ToString(),
-                Text = a.SocialMedia
+                Text = a.Email
             });
 
             ViewBag.Podcasts = podcasts;
@@ -105,16 +208,76 @@ namespace Podcast.Areas.Admin.Controllers
             var guests = guestsDb.Select(a => new SelectListItem()
             {
                 Value = a.Id.ToString(),
-                Text = a.SocialMedia
+                Text = a.Email
             });
 
             ViewBag.Podcasts = podcasts;
             ViewBag.Guests = guests;
 
-            await _episodeService.EditAsync(id, request);
+            // Mövcud şəkil və audio itməsin deyə saxlayırıq
+            var existingEpisode = await _episodeService.GetByIdAsync(id);
+            request.Image = existingEpisode.Image;
+            request.Audio = existingEpisode.Audio;
+
+            // Şəkil yoxlamaları (isteğe bağlı, yüklənibsə yoxlanacaq)
+            if (request.UploadImage != null)
+            {
+                if (!request.UploadImage.CheckFileType("image"))
+                {
+                    ModelState.AddModelError("UploadImage", "Only image files are allowed.");
+                }
+                if (!request.UploadImage.CheckFileSize(1024)) // 1 MB limit (1024 KB)
+                {
+                    ModelState.AddModelError("UploadImage", "Image size should be less than 1 MB.");
+                }
+            }
+
+            // Audio yoxlamaları (isteğe bağlı)
+            if (request.AudioFile != null)
+            {
+                if (!request.AudioFile.CheckFileType("audio"))
+                {
+                    ModelState.AddModelError("AudioFile", "Only audio files are allowed.");
+                }
+                if (!request.AudioFile.CheckFileSize(50 * 1024 * 1024)) // 50 MB limit
+                {
+                    ModelState.AddModelError("AudioFile", "Audio size should be less than 50 MB.");
+                }
+            }
+
+            // Əsas sahələrin boş olmamasını da yoxlamaq yaxşıdır
+            if (string.IsNullOrWhiteSpace(request.Title))
+            {
+                ModelState.AddModelError("Title", "Title can't be empty.");
+            }
+            if (string.IsNullOrWhiteSpace(request.Description))
+            {
+                ModelState.AddModelError("Description", "Description can't be empty.");
+            }
+            if (request.PodcastId <= 0)
+            {
+                ModelState.AddModelError("PodcastId", "Please select a valid podcast.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            try
+            {
+                await _episodeService.EditAsync(id, request);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ModelState.AddModelError("Title", ex.Message);
+                return View(request);
+            }
 
             return RedirectToAction(nameof(Index));
         }
+
+
 
 
         [HttpPost]
