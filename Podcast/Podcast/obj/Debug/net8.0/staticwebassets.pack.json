@@ -7545,10 +7545,6 @@
       "PackagePath": "staticwebassets\\assets\\images\\home\\267d2077-f2ce-4fb4-bf73-c363749bc39d-person4.jpg"
     },
     {
-      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\4b890e50-fed1-47e4-84f6-7183905d1a43-person3.jpg",
-      "PackagePath": "staticwebassets\\assets\\images\\home\\4b890e50-fed1-47e4-84f6-7183905d1a43-person3.jpg"
-    },
-    {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\home\\6a28ad3d-a0bb-4ee0-a49f-a949439763d4-person2.jpg"
     },
@@ -7559,6 +7555,10 @@
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\8be77cd7-23b5-41f1-a6bf-c19d2a73ce28-person3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\home\\8be77cd7-23b5-41f1-a6bf-c19d2a73ce28-person3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\937dc32f-236d-46db-bf0e-4a7075106a2f-person2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\home\\937dc32f-236d-46db-bf0e-4a7075106a2f-person2.jpg"
     },
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\home\\f839b144-f030-41db-940b-999023d58e19-podcast2.jpg",
@@ -7595,6 +7595,10 @@
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\25275289-20ff-4054-af04-3c97de89833f-podcast2.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\podcasts\\25275289-20ff-4054-af04-3c97de89833f-podcast2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\30c81b6d-ca71-46b8-b081-c49cbaabad3d-podcast1.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\podcasts\\30c81b6d-ca71-46b8-b081-c49cbaabad3d-podcast1.jpg"
     },
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\39e77b23-176e-4260-b6d8-e1843df4fe1b-podcast1.jpg",
@@ -7635,6 +7639,10 @@
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\d28e09cb-2c7f-46a4-950d-31340eb7c130-podcast3.jpg",
       "PackagePath": "staticwebassets\\assets\\images\\podcasts\\d28e09cb-2c7f-46a4-950d-31340eb7c130-podcast3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\d4ca0098-0fe5-467d-93a7-fd770a3190e9-podcast2.jpg",
+      "PackagePath": "staticwebassets\\assets\\images\\podcasts\\d4ca0098-0fe5-467d-93a7-fd770a3190e9-podcast2.jpg"
     },
     {
       "Id": "C:\\Users\\Elnare\\Desktop\\Podcast-MVC\\Podcast\\Podcast\\wwwroot\\assets\\images\\podcasts\\e17831f7-f262-47e6-9080-5eaf70b3005a-podcast2.jpg",

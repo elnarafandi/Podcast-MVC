@@ -223,7 +223,9 @@ namespace Podcast.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Image = user.Image,
-                IsAdmin = isAdmin
+                IsAdmin = isAdmin,
+                UserName=user.UserName,
+                Email=user.Email
             });
         }
         [HttpPost]
@@ -235,6 +237,8 @@ namespace Podcast.Controllers
             var isAdmin = roles.Contains("Admin");
             request.Image = user.Image;
             request.IsAdmin = isAdmin;
+            request.UserName = user.UserName;
+            request.Email = user.Email;
 
             if (request.UploadImage != null)
             {

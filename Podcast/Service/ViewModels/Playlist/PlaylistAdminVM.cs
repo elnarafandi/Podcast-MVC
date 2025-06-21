@@ -11,6 +11,6 @@ namespace Service.ViewModels.Playlist
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public ICollection<PlaylistEpisode> PlaylistEpisodes { get; set; }
+        public ICollection<Domain.Entities.PlaylistEpisode> PlaylistEpisodes { get; set; }
     }
 }

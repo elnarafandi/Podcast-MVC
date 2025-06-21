@@ -166,7 +166,7 @@ namespace Service.Services
 
         public async Task<IdentityResult> DeleteAccountAsync(string userId)
         {
-            // Fetch the user by ID
+            
             var currentUser = await _userManager.FindByIdAsync(userId);
 
             if (currentUser == null)
@@ -174,14 +174,13 @@ namespace Service.Services
                 throw new InvalidOperationException("User not found.");
             }
 
-            // Delete the user's associated data (like profile image, etc.)
             if (!string.IsNullOrEmpty(currentUser.Image))
             {
                 string filePath = _env.GenerateFilePath("assets/images/home", currentUser.Image);
                 filePath.DeleteFile();
             }
 
-            // Delete the user account from the database
+            
             var result = await _userManager.DeleteAsync(currentUser);
 
             return result;

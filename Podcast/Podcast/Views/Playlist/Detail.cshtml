@@ -39,13 +39,16 @@
                             </div>
                             <div class="description"><p>@playlistEpisode.Episode.Description</p></div>
                             <div class="guests">
-                                <div class="text"><p>Our guests:</p></div>
+                                @if (playlistEpisode.Episode.EpisodeGuests.Any())
+                                {
+                                    <div class="text"><p>Our guests:</p></div>
+                                }
                                 <div class="g-info">
                                     @foreach (var guest in playlistEpisode.Episode.EpisodeGuests)
                                     {
                                         <div class="member">
-                                            <a href=""><img src="~/assets/images/home/@guest.Guest.Image" alt=""></a>
-                                            <a class="name" href="">@guest.Guest.FirstName @guest.Guest.LastName</a>
+                                            <a asp-controller="Guest" asp-action="Detail" asp-route-id="@guest.Guest.Id"><img src="~/assets/images/home/@guest.Guest.Image" alt=""></a>
+                                            <a class="name" asp-controller="Guest" asp-action="Detail" asp-route-id="@guest.Guest.Id">@guest.Guest.FirstName @guest.Guest.LastName</a>
                                         </div>
                                     }
                                 </div>

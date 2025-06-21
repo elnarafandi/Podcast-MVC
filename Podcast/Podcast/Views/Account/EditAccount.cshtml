@@ -1,7 +1,7 @@
 ﻿@model AccountEditVM
 
 <main>
-    <section id="account">
+    <section id="account" class="mt-5" style="background:none">
         <div class="my-container">
             <div class="profile">
 
@@ -15,6 +15,29 @@
                 {
                     <div class="photo" style="background-color: #C084FC"> </div>
                 }
+
+                <!-- İstifadəçi məlumatları şəkilin altında, formun xaricində -->
+                <div style="
+    background-color: #E9DDFF;
+    color: #2D2D2D;
+    border: 1px solid #D8B4FE;
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 20px;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(155, 89, 182, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+" class="mb-5">
+                    <p style="margin-bottom: 8px; font-weight: 600;">
+                        <span style="color: #9B59B6;">Username:</span> @Model.UserName
+                    </p>
+                    <p style="margin: 0; font-weight: 600;">
+                        <span style="color: #9B59B6;">Email:</span> @Model.Email
+                    </p>
+                </div>
+
+
+
 
                 <form method="post" asp-controller="Account" asp-action="EditAccount" enctype="multipart/form-data">
                     <div class="custom-file-wrapper">
