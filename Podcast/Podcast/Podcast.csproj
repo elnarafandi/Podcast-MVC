@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\images\podcasts\" />
     <Folder Include="wwwroot\audios\" />
   </ItemGroup>
 
